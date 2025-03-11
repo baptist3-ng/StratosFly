@@ -1,0 +1,64 @@
+.custom-color {
+    background-color: #09012F !important; /* Exemple de couleur */
+    color: white;
+};
+
+/* Partie avec les cards*/
+
+.card {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+.card-img-top {
+    object-fit: cover;
+    height: 300px;
+}
+.card-body {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1.25rem;
+}
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.card-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Partie avec les avis*/
+
+.avis-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+}
+.avis-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.avis-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+.star-rating {
+    color: #ffc107;
+    font-size: 1.2rem;
+}
+.review-text {
+    font-style: italic;
+    color: #6c757d;
+}
+.reviewer-name {
+    font-weight: bold;
+    margin-top: 5px;
+}
+.review-date {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
