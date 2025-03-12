@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('titre', 'Home')
+@section('title', 'StratosFly - Accueil')
 
 @section('content')
 

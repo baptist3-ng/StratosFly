@@ -13,15 +13,15 @@
 <header class="custom-color">
     <nav class="navbar navbar-expand-md navbar-dark custom-color rounded-bottom-5 py-4">
         <div class="container-fluid fw-bold">
-            <a class="navbar-brand fs-1 ps-3 ps-lg-5" href="#"><i class="bi bi-airplane pe-lg-4 pe-3"></i>StratosFly</a>
+            <a class="navbar-brand fs-1 ps-3 ps-lg-5" href="/"><i class="bi bi-airplane pe-lg-4 pe-3"></i>StratosFly</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto fs-4 pe-5">
-                    <li class="nav-item mx-lg-3"><a class="nav-link active" href="#">Billets</a></li>
-                    <li class="nav-item mx-lg-3"><a class="nav-link active" href="#">Contact</a></li>
-                    <li class="nav-item mx-lg-3"><a class="nav-link active" href="#">Mon compte</a></li>
+                    <li class="nav-item mx-lg-3"><a class="nav-link active" href="/billets">Billets</a></li>
+                    <li class="nav-item mx-lg-3"><a class="nav-link active" href="#contact">Contact</a></li>
+                    <li class="nav-item mx-lg-3"><a class="nav-link active" href="/login">Mon compte</a></li>
                 </ul>
             </div>
         </div>
@@ -33,13 +33,13 @@
 @yield('content')
 
 
-<footer class="custom-color">
+<footer class="custom-color" id="contact">
     <div class="container">
         <div class="row text-center py-4">
             <a class="navbar-brand fs-1 ps-3 ps-lg-5" href="#"><i class="bi bi-airplane pe-lg-4 pe-3"></i>StratosFly</a>
         </div>
-        <div class="row justify-content-evenly mx-4">
-            <div class="col-md-3 col-6">
+        <div class="row mx-4 justify-content-center">
+            <div class="col-md-3 col-5">
                 <div style="font-size: extra-large" class="row py-2">
                     Liens Utiles
                 </div>
@@ -47,23 +47,27 @@
                     - Accueil<br>- A propos<br>- Réservations<br>- Contact<br>- FAQ 
                 </div>
             </div>
-            <div class="col-md-3 col-6">
+            <div class="col-md-3 col-5">
                 <div style="font-size: extra-large" class="row py-2">
                     Contact
                 </div>
                 <div style="font-size: medium" class="row">
-                    - support@company.com<br>- +123 456 789
+                    - help@stratos.com<br>- +123 456 789
                 </div>
             </div>
-            <div class="col-md-3 col-6">
+            <div class="col-md-3 col-5">
                 <div style="font-size: extra-large" class="row py-2">
                     Suivez-nous
                 </div>
-                <div class="row">
-                    
+                <div class="row d-flex">
+                    <div class="col-md-12">
+                        <i class="bi bi-twitter-x me-1"></i>
+                        <i class="bi bi-instagram me-1"></i>
+                        <i class="bi bi-tiktok"></i>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3 col-6">
+            <div class="col-md-3 col-5">
                 <div style="font-size: extra-large" class="row py-2">
                     Newsletter
                 </div>
