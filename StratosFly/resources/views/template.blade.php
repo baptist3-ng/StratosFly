@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>@yield('title', 'AirPlane')</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
@@ -12,7 +13,7 @@
 <header class="custom-color">
     <nav class="navbar navbar-expand-md navbar-dark custom-color rounded-bottom-5 py-4">
         <div class="container-fluid fw-bold">
-            <a class="navbar-brand fs-1 ps-5" href="#">Company Name</a>
+            <a class="navbar-brand fs-1 ps-3 ps-lg-5" href="#"><i class="bi bi-airplane pe-lg-4 pe-3"></i>StratosFly</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,8 +35,8 @@
 
 <footer class="custom-color">
     <div class="container">
-        <div class="row justify-content-evenly py-4">
-            Company Name + Logo
+        <div class="row text-center py-4">
+            <a class="navbar-brand fs-1 ps-3 ps-lg-5" href="#"><i class="bi bi-airplane pe-lg-4 pe-3"></i>StratosFly</a>
         </div>
         <div class="row justify-content-evenly mx-4">
             <div class="col-md-3 col-6">
@@ -72,7 +73,7 @@
             </div>
         </div>
         <div class="row py-4 d-flex justify-content-center">
-            © 2025 AirPlane INC - Tous droits réservés
+            © 2025 StratosFly INC - Tous droits réservés
         </div>
     </div>
 </footer>
