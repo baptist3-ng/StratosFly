@@ -26,21 +26,21 @@
                     </select>
                 </div>
                 <div class="col-lg-3 py-lg-4 py-2 col-12">
-                    <select id="depart" name="depart" class="p-lg-3 form-select">
-                        <option value="default" disabled selected>Départ de </option>
-                        <option value="a1">Aéroport Francisco Sá Carneiro, Portugal.</option>
-                        <option value="a2">Aéroport Roissy Charles de Gaulle, France.</option>
-                        <option value="a3">Aéroport Francisco Sá Carneiro, Portugal.</option>
-                        <option value="a4">Aéroport Roissy Charles de Gaulle, France.</option>
+                    <select id="depart" name="depart" class="p-lg-3 form-select text-truncate">
+                        <option value="default" disabled selected>Depart de </option>
+                        <option value="a-depart-1">Aéroport Francisco Sá Carneiro, Portugal.</option>
+                        <option value="a-depart-2">Aéroport international de Budapest Ferenc Liszt, Hongrie.</option>
+                        <option value="a-depart-3">Aéroport Roissy Charles de Gaulle, France.</option>
+                        <option value="a-depart-4">Aéroport international de Santiago du Chili, Chili.</option>  
                     </select>
                 </div>
                 <div class="col-lg-3 py-lg-4 py-2 col-12">
-                    <select id="arrivee" name="arrivee" class="p-lg-3 form-select">
-                        <option value="default" disabled selected>Arrivée à </option>
-                        <option value="a1">Aéroport Francisco Sá Carneiro, Portugal.</option>
-                        <option value="a2">Aéroport Roissy Charles de Gaulle, France.</option>
-                        <option value="a3">Aéroport Francisco Sá Carneiro, Portugal.</option>
-                        <option value="a4">Aéroport Roissy Charles de Gaulle, France.</option>
+                    <select id="arrivee" name="arrivee" class="p-lg-3 form-select text-truncate">
+                        <option value="default" disabled selected>Depart de </option>
+                        <option value="a-arrivee-1">Aéroport Francisco Sá Carneiro, Portugal.</option>
+                        <option value="a-arrivee-2">Aéroport international de Budapest Ferenc Liszt, Hongrie.</option>
+                        <option value="a-arrivee-3">Aéroport Roissy Charles de Gaulle, France.</option>
+                        <option value="a-arrivee-4">Aéroport international de Santiago du Chili, Chili.</option>
                     </select>
                 </div>
                 <div class="col-lg-2 py-lg-4 py-2 col-12">

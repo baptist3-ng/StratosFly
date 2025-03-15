@@ -10,8 +10,8 @@
 </head>
 <body>
 
-<header class="custom-color">
-    <nav class="navbar navbar-expand-md navbar-dark custom-color rounded-bottom-5 py-4">
+<header class=" sticky-top">
+    <nav class="navbar navbar-expand-md navbar-dark custom-color py-4">
         <div class="container-fluid fw-bold">
             <a class="navbar-brand fs-1 ps-3 ps-lg-5" href="/"><i class="bi bi-airplane pe-lg-4 pe-3"></i>StratosFly</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

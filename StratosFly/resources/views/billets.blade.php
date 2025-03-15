@@ -66,7 +66,7 @@
                     <div class="position-relative">
                         <div class="custom-color text-white rounded-top px-3 py-1 w-100">Lieu de départ</div>
                         <div class="border rounded-3 p-2">
-                            <label for="a-depart" class="d-block small text-muted">Aéroport</label>
+                            <label for="lieu-depart" class="d-block small text-muted">Aéroport</label>
                             <select name="lieu-depart" class="form-select border-0 rounded-3 p-2" id="a-depart">
                                 <option value="a-depart-1">Aéroport Francisco Sá Carneiro, Portugal.</option>
                                 <option value="a-depart-2">Aéroport international de Budapest Ferenc Liszt, Hongrie.</option>
