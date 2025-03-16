@@ -20,7 +20,8 @@
 
     <div class="container border border-3 rounded-4 bg-light pb-4">
         <div class="row justify-content-center">
-            <form class="row gy-3 gx-3 justify-content-evenly align-items-center">
+            <form class="row gy-3 gx-3 justify-content-evenly align-items-center" action="{{ route('vols.filter') }}" method="POST">
+                @csrf
                 <!-- Date de départ -->
                 <div class="col-md-3 pb-sm-0 pb-2">
                     <div class="position-relative">
@@ -48,12 +49,13 @@
                     <div class="position-relative">
                         <div class="custom-color text-white rounded-top px-3 py-1 w-100">Prix</div>
                         <div class="border rounded-3 p-2">
-                            <label for="prix" class="d-block small text-muted">Min-Max</label>
-                            <select id="prix" name="prix" class="form-select border-0">
-                                <option value="50-100" selected>50 - 100€</option>
-                                <option value="100-200">100 - 200€</option>
-                                <option value="200-300">200 - 300€</option>
-                            </select>
+                            <label for="prix" class="d-block small text-muted">Max (€)</label>
+                            <input id="prix" type="text" name="prix" class="form-control border-0" placeholder="250">
+                            @error('prix')
+                            <div  class="invalid-feedback d-block position-absolute mt-2">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -68,10 +70,9 @@
                         <div class="border rounded-3 p-2">
                             <label for="lieu-depart" class="d-block small text-muted">Aéroport</label>
                             <select name="lieu-depart" class="form-select border-0 rounded-3 p-2" id="a-depart">
-                                <option value="a-depart-1">Aéroport Francisco Sá Carneiro, Portugal.</option>
-                                <option value="a-depart-2">Aéroport international de Budapest Ferenc Liszt, Hongrie.</option>
-                                <option value="a-depart-3">Aéroport Roissy Charles de Gaulle, France.</option>
-                                <option value="a-depart-4">Aéroport international de Santiago du Chili, Chili.</option>  
+                                @foreach ($aeroports as $aeroport)
+                                    <option value="{{ $aeroport->id }}">{{ $aeroport->nom }}</option>
+                                @endforeach 
                             </select>
                         </div>
                     </div>
@@ -82,10 +83,9 @@
                         <div class="border rounded-3 p-2">
                             <label for="a-arrivee" class="d-block small text-muted">Aéroport</label>
                             <select name="lieu-arrivee" class="form-select border-0 rounded-3 p-2" id="a-arrivee">
-                                <option value="a-arrivee-1">Aéroport Francisco Sá Carneiro, Portugal.</option>
-                                <option value="a-arrivee-2">Aéroport international de Budapest Ferenc Liszt, Hongrie.</option>
-                                <option value="a-arrivee-3" selected>Aéroport Roissy Charles de Gaulle, France.</option>
-                                <option value="a-arrivee-4">Aéroport international de Santiago du Chili, Chili.</option>
+                                @foreach ($aeroports as $aeroport)
+                                    <option value="{{ $aeroport->id }}">{{ $aeroport->nom }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -107,10 +107,25 @@
     <div class="container">
         <div class="row py-5">
             <div class="col-md-6">
-                <h1 class="fw-bold">Vols disponibles</h1>
+                <h1 class="fw-bold">Vols disponibles : {{ $vols->count() }}</h1>
                 <div class="divider-lg"></div>
             </div>
         </div>
+    @if ($vols->isEmpty())
+        <p>Aucun vol disponible pour le moment.</p>
+    @else
+        @foreach ($vols as $vol)
+        <p>Numéro vol : {{ $vol->id }}</p>
+        <p>Aéroport départ : {{ $vol->aeroportDepart->nom }}</p>
+        <p>Aéroport d'arrivée : {{ $vol->aeroportArrivee->nom }}</p>
+        <p>Date de départ : {{ $vol->date_depart }}</p>
+        <p>Date d'arrivée : {{ $vol->date_arrivee }}</p>
+        <p>Places disponibles : {{ $vol->places }}</p>
+        <p>Prix du billet : {{ $vol->prix }}</p>
+        <br>
+    @endforeach
+    @endif
+
     </div>
 </section>
 

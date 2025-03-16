@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create("vols", function (Blueprint $table) {
             $table->id();
-            $table->integer("numero_vol");
             // constrained : vérifie les si les valeurs sont valides.
             // onDelete : Si je supprime un aeroport, les vols associés seront supprimés.
             $table->foreignId("aeroport_depart_id")->constrained("aeroports")->onDelete('cascade');
