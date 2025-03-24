@@ -58,7 +58,7 @@ class VolController extends Controller
         $aeroports = Aeroport::all();
 
         //return view('billets', ['vols'=> $vols]);
-        return view('billets', ['vols'=> $vols, 'aeroports'=> $aeroports]);
+        return view('billets', ['vols'=> $vols, 'aeroports'=> $aeroports, 'billets'=>'billets']);
     }
 
 

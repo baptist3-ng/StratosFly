@@ -97,7 +97,7 @@
                 <hr class="d-none d-md-block mt-4 mb-3 border-dark w-100">
 
                 <!-- Bouton rechercher -->
-                <div class="col-md-3 mt-3 pb-sm-0 pb-2">
+                <div class="col-md-3 mt-3 pb-sm-0 pb-2"  id="billets">
                     <button type="submit" class="btn custom-color w-100 py-2 py-sm-3 fs-3">Rechercher</button>
                 </div>
             </form>
@@ -114,9 +114,13 @@
             </div>
         </div>
     @if ($vols->isEmpty())
-        <p>Aucun vol disponible pour le moment.</p>
+        <div class="row border border-3 border-danger rounded-4 bg-light py-5 mb-5">
+            <div class="col text-center">
+                <div class="text-danger fs-5">Désolé, nous n'avons trouvé aucun vol disponible. Essayez d'ajuster vos dates ou votre destination.</div>
+            </div>
+        </div>
     @else
-        @foreach ($vols as $vol)
+        <!-- @foreach ($vols as $vol)
         <p>Numéro vol : {{ $vol->id }}</p>
         <p>Aéroport départ : {{ $vol->aeroportDepart->nom }}</p>
         <p>Aéroport d'arrivée : {{ $vol->aeroportArrivee->nom }}</p>
@@ -125,11 +129,53 @@
         <p>Places disponibles : {{ $vol->nb_places }}</p>
         <p>Prix du billet : {{ $vol->prix }}</p>
         <br>
+        @endforeach -->
+
+    @foreach ($vols as $vol)
+    <div class="row border border-3 rounded-4 bg-light my-3 py-4">
+        <div class="col-md-1 d-flex align-items-center text-center">
+            <p>ID : {{ $vol->id }}</p>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-6 d-flex align-items-center text-center">
+                    <p>{{ $vol->aeroportDepart->nom }}</p>
+                </div>
+                <div class="col-6 d-flex align-items-center justify-content-evenly">
+                    <p>Départ : {{ $vol->date_depart }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 d-flex align-items-center text-center">
+                    <p>{{ $vol->aeroportArrivee->nom }}</p>
+                </div>
+                <div class="col-6 d-flex align-items-center text-center justify-content-evenly">
+                    <p>Arrivée : {{ $vol->date_arrivee }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 d-flex align-items-center text-center">
+            <p>Places disponibles : {{ $vol->nb_places }}</p>
+        </div>
+        <div class="col-md-3 d-flex align-items-center text-center justify-content-evenly">
+            <p>{{ $vol->prix }} €*</p>
+            <input type="submit" class="btn custom-color p-3" value="RESERVER">
+        </div>
+    </div>
     @endforeach
+
     @endif
 
     </div>
 </section>
+
+
+<!-- Pour que ca affiche vers l'ancre, elle se trouve au niveau du bouton rechercher ! -->
+@if(isset($billets))
+    <script>
+        window.location.hash = "{{ $billets }}";
+    </script>
+@endif
 
 
 @endsection
