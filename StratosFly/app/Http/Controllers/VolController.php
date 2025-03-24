@@ -23,8 +23,8 @@ class VolController extends Controller
             'date-depart'=>'date|nullable',
             'date-arrivee'=>'date|nullable',
             'prix'=>'nullable|integer|min:10', // nullable !!!!!!! 
-            'lieu-depart'=>'integer',
-            'lieu-arrivee'=>'integer'
+            'lieu-depart'=>'integer|nullable',
+            'lieu-arrivee'=>'integer|nullable'
         ]);
 
         // Je vais construire ma query à partir des champs remplis
@@ -67,7 +67,7 @@ class VolController extends Controller
     {
         $request->validate([
             'aeroport_depart_id'=>'required|exists:aeroports,id',
-            'aeroport_arrivee_id'=>'required|exists:aeroports,id',
+            'aeroport_arrivee_id'=>'required|exists:aeroports,id|different:aeroport_depart_id',
             'date_depart'=>'required|date',
             'date_arrivee'=>'required|date|after:date_depart', //Logique pur
             'nb_places'=>'required|integer|min:1',

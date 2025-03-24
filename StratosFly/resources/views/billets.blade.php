@@ -70,6 +70,7 @@
                         <div class="border rounded-3 p-2">
                             <label for="lieu-depart" class="d-block small text-muted">Aéroport</label>
                             <select name="lieu-depart" class="form-select border-0 rounded-3 p-2" id="a-depart">
+                                <option value="" selected>Départ de </option>
                                 @foreach ($aeroports as $aeroport)
                                     <option value="{{ $aeroport->id }}">{{ $aeroport->nom }}</option>
                                 @endforeach 
@@ -83,6 +84,7 @@
                         <div class="border rounded-3 p-2">
                             <label for="a-arrivee" class="d-block small text-muted">Aéroport</label>
                             <select name="lieu-arrivee" class="form-select border-0 rounded-3 p-2" id="a-arrivee">
+                                <option value="" selected>Arrivée à </option>
                                 @foreach ($aeroports as $aeroport)
                                     <option value="{{ $aeroport->id }}">{{ $aeroport->nom }}</option>
                                 @endforeach
@@ -120,7 +122,7 @@
         <p>Aéroport d'arrivée : {{ $vol->aeroportArrivee->nom }}</p>
         <p>Date de départ : {{ $vol->date_depart }}</p>
         <p>Date d'arrivée : {{ $vol->date_arrivee }}</p>
-        <p>Places disponibles : {{ $vol->places }}</p>
+        <p>Places disponibles : {{ $vol->nb_places }}</p>
         <p>Prix du billet : {{ $vol->prix }}</p>
         <br>
     @endforeach
