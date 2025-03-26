@@ -25,10 +25,10 @@
             </select>
             <br><br>
         <label for="date_depart">Date de départ : </label>
-        <input type="date" name="date_depart">
+        <input type="datetime-local" name="date_depart">
         <br><br>
         <label for="date_arrivee">Date d'arrivée' : </label>
-        <input type="date" name="date_arrivee">
+        <input type="datetime-local" name="date_arrivee">
         <br><br>
         <label for="nb_places">Nb de places : </label>
         <input type="number" name="nb_places">

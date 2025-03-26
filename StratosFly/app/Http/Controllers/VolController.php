@@ -69,7 +69,7 @@ class VolController extends Controller
             'aeroport_depart_id'=>'required|exists:aeroports,id',
             'aeroport_arrivee_id'=>'required|exists:aeroports,id|different:aeroport_depart_id',
             'date_depart'=>'required|date',
-            'date_arrivee'=>'required|date|after:date_depart', //Logique pur
+            'date_arrivee'=>'required|date|after:date_depart', //Logique pure
             'nb_places'=>'required|integer|min:1',
             'prix'=>'required|integer|min:10'
         ]);

@@ -140,11 +140,18 @@
                         </div>
                         <div class="col-md-4">
                             <p class="mb-0"><strong>{{ $vol->aeroportDepart->nom }}</strong></p>
-                            <p class="mb-0 text-muted">Départ : {{ $vol->date_depart }}</p>
+                            <p class="mb-0 text-muted">Départ le
+                            <b>{{ \Carbon\Carbon::parse($vol->date_depart)->format('d/m/Y') }}</b>
+                             <br>à 
+                                    {{ \Carbon\Carbon::parse($vol->date_depart)->format('H\hi') }}
+                            </p>
                         </div>
                         <div class="col-md-4">
                             <p class="mb-0"><strong>{{ $vol->aeroportArrivee->nom }}</strong></p>
-                            <p class="mb-0 text-muted">Arrivée : {{ $vol->date_arrivee }}</p>
+                            <p class="mb-0 text-muted">Arrivée le 
+                                    <b>{{ \Carbon\Carbon::parse($vol->date_arrivee)->format('d/m/Y') }}</b>
+                             <br>à 
+                                    {{ \Carbon\Carbon::parse($vol->date_arrivee)->format('H\hi') }}</p>
                         </div>
                         <div class="col-md-3">
                             <div class="d-flex justify-content-between align-items-center">
