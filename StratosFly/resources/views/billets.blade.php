@@ -105,7 +105,7 @@
     </div>
 </section>
 
-<section>
+<section class="mb-5">
     <div class="container">
         <div class="row py-5">
             <div class="col-md-6">
@@ -131,39 +131,40 @@
         <br>
         @endforeach -->
 
-    @foreach ($vols as $vol)
-    <div class="row border border-3 rounded-4 bg-light my-3 py-4">
-        <div class="col-md-1 d-flex align-items-center text-center">
-            <p>ID : {{ $vol->id }}</p>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-6 d-flex align-items-center text-center">
-                    <p>{{ $vol->aeroportDepart->nom }}</p>
-                </div>
-                <div class="col-6 d-flex align-items-center justify-content-evenly">
-                    <p>Départ : {{ $vol->date_depart }}</p>
+        @foreach ($vols as $vol)
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-1 text-center">
+                            <p class="mb-0">ID : {{ $vol->id }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="mb-0"><strong>{{ $vol->aeroportDepart->nom }}</strong></p>
+                            <p class="mb-0 text-muted">Départ : {{ $vol->date_depart }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="mb-0"><strong>{{ $vol->aeroportArrivee->nom }}</strong></p>
+                            <p class="mb-0 text-muted">Arrivée : {{ $vol->date_arrivee }}</p>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                @if ($vol->nb_places == 0)
+                                    <p class="mb-0 text-danger fw-bold">Complet</p>
+                                @else
+                                    <p class="mb-0 text-success fw-bold">{{ $vol->nb_places }} places</p>
+                                @endif
+                                <p class="mb-0 fw-bold">{{ $vol->prix }} €*</p>
+                                @if ($vol->nb_places == 0)
+                                    <input type="submit" class="btn btn-md" disabled value="RESERVER">
+                                @else
+                                    <input type="submit" class="btn custom-color btn-md" value="RESERVER">
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-6 d-flex align-items-center text-center">
-                    <p>{{ $vol->aeroportArrivee->nom }}</p>
-                </div>
-                <div class="col-6 d-flex align-items-center text-center justify-content-evenly">
-                    <p>Arrivée : {{ $vol->date_arrivee }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2 d-flex align-items-center text-center">
-            <p>Places disponibles : {{ $vol->nb_places }}</p>
-        </div>
-        <div class="col-md-3 d-flex align-items-center text-center justify-content-evenly">
-            <p>{{ $vol->prix }} €*</p>
-            <input type="submit" class="btn custom-color p-3" value="RESERVER">
-        </div>
-    </div>
-    @endforeach
-
+            @endforeach
     @endif
 
     </div>
