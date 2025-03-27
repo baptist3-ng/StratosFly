@@ -27,3 +27,7 @@ Route::get('/admin/edit', function (){
 
 Route::post('/admin/add', [VolController::class,'ajout_vol'])->name('vols.ajout');
 Route::post('/admin/delete', [VolController::class,'supprimer_vol'])->name('vols.supprime');
+
+Route::get('/login', function () {
+    return view('admin.login');
+});
