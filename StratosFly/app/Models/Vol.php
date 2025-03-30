@@ -30,4 +30,8 @@ class Vol extends Model
     {
         return $this->belongsTo(Aeroport::class);
     }
+
+    public function reservation(){
+        return $this->hasMany(Reservation::class);
+    }
 }
