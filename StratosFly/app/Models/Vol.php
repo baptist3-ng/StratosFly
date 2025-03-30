@@ -22,12 +22,12 @@ class Vol extends Model
     // Relation avec l'aéroport de départ
     public function aeroportDepart()
     {
-        return $this->belongsTo(Aeroport::class, 'aeroport_depart_id');
+        return $this->belongsTo(Aeroport::class);
     }
 
     // Relation avec l'aéroport d'arrivée
     public function aeroportArrivee()
     {
-        return $this->belongsTo(Aeroport::class, 'aeroport_arrivee_id');
+        return $this->belongsTo(Aeroport::class);
     }
 }

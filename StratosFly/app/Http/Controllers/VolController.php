@@ -11,13 +11,7 @@ class VolController extends Controller
     // Retourner tous les vols car l'utilisateur n'a pas filtré
     public function liste_vols()
     {
-        // Permet de charger les relations associées à un aéroport, comme le nom par exemple directement
-        // en 1 requête
-        $vols = Vol::with(relations: ['aeroportDepart', 'aeroportArrivee'])->get();
-
-        // Ne charge pas les infos des aéroports
-        //$vols = Vol::all();
-
+        $vols = Vol::all();
         $aeroports = Aeroport::all(); // Sélectionner les aeroports dispos
         return view('billets', ['vols'=> $vols, 'aeroports'=> $aeroports]);
     }
