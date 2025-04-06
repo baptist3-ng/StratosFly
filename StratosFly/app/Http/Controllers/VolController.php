@@ -55,7 +55,7 @@ class VolController extends Controller
         //$vols = Vol::where('prix','<=', $request->input('prix'))->get();
         $aeroports = Aeroport::all();
 
-        //return view('billets', ['vols'=> $vols]);
+        
         return view('billets', ['vols'=> $vols, 'aeroports'=> $aeroports, 'billets'=>'billets']);
     }
 

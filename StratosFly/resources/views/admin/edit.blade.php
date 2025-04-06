@@ -59,7 +59,7 @@
     @enderror
 
     @if(session('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success col-6">
         {{ session('success') }}
     </div>
     @endif
