@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Models\Aeroport;
 use App\Models\Vol;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,10 @@ Route::get('/', function () {
 Route::get('/billets', [VolController::class, 'liste_vols']);
 Route::post('/billets', [VolController::class, 'liste_filtree'])->name('vols.filter');
 
+
+// Partie Utilisateur
+
+Route::get('/account', [AccountController::class, 'index']);
 
 
 // Partie Administration
