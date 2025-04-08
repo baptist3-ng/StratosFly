@@ -2,29 +2,44 @@
 @section('title', 'login')
 
 @section('content')
-    <div class="container my-5 pt-5">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Connexion</h3>
-                    </div>
-                    <div class="card-body">
-                        <form action="/login" method="POST">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder = "Entrez votre email" name="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label" >Mot de passe</label>
-                                <input type="password" class="form-control" id="password" placeholder = "Mot de passe" name="password" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Se connecter</button>
-                        </form>
-                    </div>
+    <div style="
+        background-image: url('/images/login-bg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    ">
+        <div style="
+            background-color: rgba(255, 255, 255, 0.92);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        ">
+            <h3 style="text-align: center; margin-bottom: 1.5rem;">Connexion</h3>
+            @if (session('error'))
+                <div class="alert alert-danger">
+                {{ session('error') }}
                 </div>
-            </div>
+            @endif
+            <form action="/myAccount" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Entrez votre email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+                <p class="mt-3 text-center">Vous n'avez pas de compte ? <a href="/accountCreation">S'inscrire</a></p>
+            </form>
         </div>
     </div>
 @endsection
