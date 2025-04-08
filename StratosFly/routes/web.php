@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ReservationController;
 use App\Models\Aeroport;
 use App\Models\Vol;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,9 @@ Route::post('/billets', [VolController::class, 'liste_filtree'])->name('vols.fil
 // Partie Utilisateur
 
 Route::get('/account', [AccountController::class, 'index']);
+
+// Partie Reservation
+Route::get('/reserver', [ReservationController::class, 'index']);
 
 
 // Partie Administration
