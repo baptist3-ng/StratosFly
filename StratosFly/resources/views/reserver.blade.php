@@ -14,7 +14,15 @@
         </div>
         <div class="col-md-6">
             <div class="row">
-                Nom <br>Prenom
+                <form action="">
+                    <p>Voyagez vous seul ?</p>
+                    <label class="form-label" for="name">Nom</label>
+                    <input id="name" name="nom" type="text" class="form-control">
+                    <label class="form-label" for="prenom">Prénom</label>
+                    <input id="prenom" name="prenom" type="text" class="form-control">
+                    <br>
+
+                </form>
             </div>
         </div>
     </div>
