@@ -33,7 +33,7 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <form action="/myAccount" method="POST">
+            <form action="/accountCreation" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label">Nom</label>
@@ -50,6 +50,15 @@
                 <div class="mb-3">
                     <label for="password" class="form-label">Mot de passe</label>
                     <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="genre" class="form-label">Genre</label>
+                    <select class="form-control" id="genre" name="genre" required>
+                        <option value="">Choisir...</option>
+                        <option value="Homme">Homme</option>
+                        <option value="Femme">Femme</option>
+                        <option value="Autre">Autre</option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Créer mon compte</button>
                 <p class="mt-3 text-center">Vous avez déjà un compte ? <a href="/login">Se connecter</a></p>

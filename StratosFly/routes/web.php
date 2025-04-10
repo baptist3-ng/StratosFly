@@ -6,7 +6,6 @@ use App\Models\Vol;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VolController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\AccountCreationController;
 
 Route::get('/', function () {
     return view('home');
@@ -39,5 +38,5 @@ Route::get('/accountCreation', function () {
     return view('admin.accountCreation');
 });
 
-Route::post('/myAccount', [LoginController::class, 'authenticate'])->name('authenticate');
-Route::post('/accountCreation', [AccountCreationController::class, 'store'])->name('accountCreation');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+Route::post('/accountCreation', [LoginController::class, 'register'])->name('register');

@@ -27,7 +27,7 @@
                 {{ session('error') }}
                 </div>
             @endif
-            <form action="/myAccount" method="POST">
+            <form action="/login" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
