@@ -120,17 +120,6 @@
             </div>
         </div>
     @else
-        <!-- @foreach ($vols as $vol)
-        <p>Numéro vol : {{ $vol->id }}</p>
-        <p>Aéroport départ : {{ $vol->aeroportDepart->nom }}</p>
-        <p>Aéroport d'arrivée : {{ $vol->aeroportArrivee->nom }}</p>
-        <p>Date de départ : {{ $vol->date_depart }}</p>
-        <p>Date d'arrivée : {{ $vol->date_arrivee }}</p>
-        <p>Places disponibles : {{ $vol->nb_places }}</p>
-        <p>Prix du billet : {{ $vol->prix }}</p>
-        <br>
-        @endforeach -->
-
         @foreach ($vols as $vol)
             <div class="card mb-3 shadow-sm">
                 <div class="card-body">
