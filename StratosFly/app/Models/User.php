@@ -19,8 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'prenom',
         'email',
         'password',
+        'role',
+        'genre'
     ];
 
     /**
@@ -48,5 +51,9 @@ class User extends Authenticatable
 
     public function passager(){
         return $this->belongsTo(Passager::class);
+    }
+    public function paniers()
+    {
+        return $this->hasOne(Panier::class, 'panier_id');
     }
 }

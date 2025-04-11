@@ -1,9 +1,11 @@
 <?php
 
+
 use App\Models\Aeroport;
 use App\Models\Vol;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VolController;
+use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('home');
@@ -27,3 +29,14 @@ Route::get('/admin/edit', function (){
 
 Route::post('/admin/add', [VolController::class,'ajout_vol'])->name('vols.ajout');
 Route::post('/admin/delete', [VolController::class,'supprimer_vol'])->name('vols.supprime');
+
+Route::get('/login', function () {
+    return view('admin.login');
+});
+
+Route::get('/accountCreation', function () {
+    return view('admin.accountCreation');
+});
+
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+Route::post('/accountCreation', [LoginController::class, 'register'])->name('register');
