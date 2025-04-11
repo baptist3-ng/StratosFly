@@ -5,6 +5,8 @@ use App\Models\Vol;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VolController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
     return view('home');
