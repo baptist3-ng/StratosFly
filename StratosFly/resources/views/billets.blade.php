@@ -153,7 +153,10 @@
                                 @if ($vol->nb_places == 0)
                                     <input type="submit" class="btn btn-md" disabled value="RESERVER">
                                 @else
-                                    <input type="submit" class="btn custom-color btn-md" value="RESERVER">
+                                    <form action="{{ route("reserver") }}" method="POST">
+                                    @csrf
+                                        <input type="submit" class="btn custom-color btn-md" value="RESERVER">
+                                    </form>
                                 @endif
                             </div>
                         </div>

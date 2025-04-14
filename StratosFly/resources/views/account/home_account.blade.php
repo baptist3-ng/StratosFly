@@ -4,12 +4,22 @@
 
 @section('content')
 
+@auth
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6 fs-1 ms-5 mt-3 fw-bold">
-            Bienvenue M.
+        <div class="col-md-10 fs-1 ms-5 mt-3 fw-bold">
+            Bienvenue M.{{ " " . $user->prenom . " " . $user->name}} 
         </div>
+        <div class="col-md-1">
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+
+                @method("delete")
+                <input type="submit" value="LOGOUT" class="btn btn-submit">
+            </form>
+        </div>
+
     </div>
 </div>
 
@@ -51,6 +61,6 @@
 </div>
 
 
-
+@endauth
 
 @endsection

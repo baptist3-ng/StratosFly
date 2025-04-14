@@ -9,23 +9,32 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function index(){
+        if(Auth::check()){
+            return redirect()->route('account.home');
+        }else{
+            return view('admin.login');
+        }
+    }
+
     public function authenticate(Request $request)
     {
-        // Récupérer l'utilisateur via l'email
-        $user = User::where('email', $request->email)->first();
+        $request->validate([
+            'email'=>'required|email',
+            'password'=>'required|min:4'
+        ]);
 
-        // Vérifier si l'utilisateur existe
-        if (!$user) {
-            return back()->with('error', 'Cet e-mail n’est pas enregistré.');
+        $creds = [
+            'email'=>$request->input('email'),
+            'password'=>$request->input('password')
+        ];
+
+        if(Auth::attempt($creds)){
+            $request->session()->regenerate();
+            return redirect()->intended(route('account.home'));
+        }else{
+            return redirect()->route('login')->withErrors(['invalid'=>'Email ou mot de passe incorrect !']);
         }
-
-        // Vérifier si le mot de passe correspond
-        if (!Hash::check($request->password, $user->password)) {
-            return back()->with('error', 'Mot de passe incorrect.');
-        }
-
-        // Authentification réussie
-        return redirect('/myAccount');
     }
     public function register(Request $request)
     {

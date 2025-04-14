@@ -27,6 +27,11 @@
                 {{ session('error') }}
                 </div>
             @endif
+            @if ($errors->has('required'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('required') }}
+                </div>
+            @endif
             <form action="/login" method="POST">
                 @csrf
                 <div class="mb-3">

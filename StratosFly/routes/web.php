@@ -19,7 +19,21 @@ Route::post('/billets', [VolController::class, 'liste_filtree'])->name('vols.fil
 
 // Partie Utilisateur
 
-Route::get('/account', [AccountController::class, 'index']);
+Route::get('/account', [AccountController::class, 'index'])->middleware('auth')->name('account.home');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+Route::get('/accountCreation', function () {
+    return view('admin.accountCreation');
+});
+
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+Route::post('/accountCreation', [LoginController::class, 'register'])->name('register');
+Route::post('/reserver', [ReservationController::class, 'ajoutPanier'])->name('reserver');
+
+
+Route::delete('/logout', [AccountController::class, 'logout'])->name('logout');
+
 
 // Partie Reservation
 Route::get('/reserver', [ReservationController::class, 'index']);
@@ -38,13 +52,4 @@ Route::get('/admin/edit', function (){
 Route::post('/admin/add', [VolController::class,'ajout_vol'])->name('vols.ajout');
 Route::post('/admin/delete', [VolController::class,'supprimer_vol'])->name('vols.supprime');
 
-Route::get('/login', function () {
-    return view('admin.login');
-});
 
-Route::get('/accountCreation', function () {
-    return view('admin.accountCreation');
-});
-
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
-Route::post('/accountCreation', [LoginController::class, 'register'])->name('register');
