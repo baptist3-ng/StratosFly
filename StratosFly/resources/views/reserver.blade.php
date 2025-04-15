@@ -12,13 +12,18 @@
             <div class="d-none d-md-block divider-lg custom-color"></div>
         </div>
     </div>
-    <form action="">
+    
+
+        @if($panier->vols->isEmpty())
+            <p>Votre panier est vide.</p>
+        @else
         <!-- Pour chaque vol du panier  -->
+        @foreach ($panier->vols as $vol)
         <div class="row justify-content-center">
             <div class="col-md-7 border border-1 bg-body-tertiary rounded-start-3">
                 <div class="row mt-3 ms-1">
                     <div class="col-6 fs-1">
-                        <p>Ville A <i class="bi bi-arrow-right"></i> Ville B</p>
+                        <p>{{ $vol->aeroportDepart->ville }} <i class="bi bi-arrow-right"></i> {{ $vol->aeroportArrivee->ville }}</p>
                     </div>
                 </div>
                 <div class="row ms-1 mb-2">
@@ -30,22 +35,28 @@
                     <div class="col-5 card">
                         <div class="card-title fs-3 mt-3 mb-0"><i class="bi bi-airplane-fill me-2"></i>Aéroports</div>
                         <div class="card-body">
-                            <p><strong><i class="bi bi-geo-alt me-1"></i>Départ : </strong>Aéroport fqkjvvfrhiurvh</p>
-                            <p><strong><i class="bi bi-geo-alt me-1"></i>Arrivée :</strong> Aéroport fqkjvvfrhiurvh</p>
+                            <p><strong><i class="bi bi-geo-alt me-1"></i>Départ : </strong>{{ $vol->aeroportDepart->nom }}</p>
+                            <p><strong><i class="bi bi-geo-alt me-1"></i>Arrivée :</strong> {{ $vol->aeroportArrivee->nom }}</p>
                         </div>
                     </div>
                     <div class="col-5 card">
                         <div class="card-title mt-3 mb-0"><i class="bi bi-calendar3 me-2"></i> Dates</div>
-                        <div class="card-body">
-                            <p><strong>Départ le</strong> 11/20/20 à 12h36.</p>
-                            <p><strong>Arrivée le</strong> 11/29/30 à 15h37.</p>
+                        <div class="card-body my-3">
+                            <p>
+                                <strong>Départ le </strong> {{ \Carbon\Carbon::parse($vol->date_depart)->format('d/m/Y') }} à 
+                                {{ \Carbon\Carbon::parse($vol->date_depart)->format('H\hi') }}
+                            </p>
+                            <p>
+                                <strong>Arrivée le  </strong> {{ \Carbon\Carbon::parse($vol->date_arrivee)->format('d/m/Y') }} à 
+                                {{ \Carbon\Carbon::parse($vol->date_arrivee)->format('H\hi') }}
+                            </p>
                         </div>
                     </div>
                     <div class="col-5 card mt-5 mb-5">
                         <div class="card-title mt-3 mb-0"><i class="bi bi-currency-exchange me-2"></i> Prix </div>
                         <div class="card-body">
-                            <p><strong>Prix du billet :</strong> 136€*</p>
-                            <p><strong>Places disponibles :</strong> 111.</p>
+                            <p><strong>Prix du billet :</strong> {{$vol->prix}}€*</p>
+                            <p><strong>Places disponibles :</strong> {{ $vol->nb_places }}.</p>
                         </div>
                     </div>
                     <div class="col-5"></div>
@@ -114,14 +125,20 @@
                 </div>
             </div>
             <div class="col-md-1">
-                <input type="hidden" name="panier_vol_id" value="1"> <!-- Remplacez 1 par l'ID dynamique du vol -->
-                <!-- Bouton croix pour supprimer le vol -->
-                <button type="submit" class="btn btn-link border border-1 px-2" aria-label="Supprimer le vol">
-                <i class="bi bi-x-lg" style="font-size: 1.5rem;"></i>
-                </button>
+                <form action="{{ route('delete') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="panier_vol_id" value="{{ $vol->id }}">
+                    <button type="submit" class="btn btn-link border border-1 px-2" aria-label="Supprimer le vol">
+                        <i class="bi bi-x-lg" style="font-size: 1.5rem;"></i>
+                    </button>
+                </form>
             </div>
         </div>
-    </form>
+        
+        @endforeach
+    @endif
+
+
 </div>
 
 

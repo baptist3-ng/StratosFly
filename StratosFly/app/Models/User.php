@@ -52,8 +52,8 @@ class User extends Authenticatable
     public function passager(){
         return $this->belongsTo(Passager::class);
     }
-    public function paniers()
+    public function panier()
     {
-        return $this->hasOne(Panier::class, 'panier_id');
+        return $this->hasOne(Panier::class);
     }
 }

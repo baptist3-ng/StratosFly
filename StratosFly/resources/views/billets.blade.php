@@ -155,6 +155,7 @@
                                 @else
                                     <form action="{{ route("reserver") }}" method="POST">
                                     @csrf
+                                        <input type="hidden" name="vol_id" value="{{ $vol->id }}">
                                         <input type="submit" class="btn custom-color btn-md" value="RESERVER">
                                     </form>
                                 @endif

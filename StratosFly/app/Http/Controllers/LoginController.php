@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Panier;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,13 +50,20 @@ class LoginController extends Controller
         }
 
         // Création du compte
-        User::insert([
+        $user = User::create([
             'name' => $request->input('name'),
             'prenom' => $request->input('prenom'),
             'email' => $email,
             'password' => Hash::make($request->input('password')),
             'genre' => $request->genre,
         ]);
+
+        // Création du Panier de l'user
+        if($user){
+            $panier = new Panier();
+            $panier->user()->associate($user);
+            $panier->save();
+        }
 
         // Redirection vers la page de compte (ou de login)
         return redirect('/login')->with('success', 'Compte créé avec succès ! Connectez-vous.');

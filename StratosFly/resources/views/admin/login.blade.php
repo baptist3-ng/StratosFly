@@ -22,9 +22,10 @@
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
         ">
             <h3 style="text-align: center; margin-bottom: 1.5rem;">Connexion</h3>
-            @if (session('error'))
+            
+            @if ($errors->has('invalid'))
                 <div class="alert alert-danger">
-                {{ session('error') }}
+                    {{ $errors->first('invalid') }}
                 </div>
             @endif
             @if ($errors->has('required'))
