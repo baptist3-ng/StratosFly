@@ -36,7 +36,7 @@ Route::delete('/logout', [AccountController::class, 'logout'])->name('logout');
 
 
 // Partie Reservation
-Route::get('/reserver', [ReservationController::class, 'index'])->name('getPanier');
+Route::get('/reserver', [ReservationController::class, 'index'])->middleware('auth')->name('getPanier');
 
 
 // Partie Administration
