@@ -5,6 +5,27 @@
 @section('content')
 
 
+<div class="container">
+    <div class="row text-center fs-5 rounded-4 align-items-center bg-light mt-md-4">
+        <div class="col-3 custom-color py-3 rounded-4">
+            Panier
+        </div>
+        <div class="col-1">
+            >>>
+        </div>
+        <div class="col-3">
+            Voyageurs
+        </div>
+        <div class="col-1">
+            >>>
+        </div>
+        <div class="col-3">
+            Confirmation
+        </div>
+    </div>
+</div>
+
+
 <div class="container-fluid my-5">
     <div class="row">
         <div class="col-md-5 ms-md-5 mb-4">
