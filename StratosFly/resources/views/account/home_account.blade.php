@@ -45,7 +45,7 @@
             <div class="card text-center shadow-sm border-1">
                 <div class="card-body py-5">
                     <i class="bi bi-cart fs-1 mb-3"></i>
-                    <h3 class="card-title">Mon Panier</h3>
+                    <h3 class="card-title"><a href="/panier" class="text-reset text-decoration-none">Mon Panier</a></h3>
                 </div>
             </div>
         </div>

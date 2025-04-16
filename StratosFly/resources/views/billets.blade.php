@@ -153,7 +153,7 @@
                                 @if ($vol->nb_places == 0)
                                     <input type="submit" class="btn btn-md" disabled value="RESERVER">
                                 @else
-                                    <form action="{{ route("reserver") }}" method="POST">
+                                    <form action="{{ route("ajout.panier") }}" method="POST">
                                     @csrf
                                         <input type="hidden" name="vol_id" value="{{ $vol->id }}">
                                         <input type="submit" class="btn custom-color btn-md" value="RESERVER">

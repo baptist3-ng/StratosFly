@@ -29,19 +29,20 @@ Route::get('/accountCreation', function () {
 
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/accountCreation', [LoginController::class, 'register'])->name('register');
-Route::post('/reserver', [ReservationController::class, 'ajoutPanier'])->name('reserver');
-Route::post('/delete', [ReservationController::class, 'supprimerPanier'])->name('delete');
-
 Route::delete('/logout', [AccountController::class, 'logout'])->name('logout');
 
 
+// Panier
+Route::post('/panier', [ReservationController::class, 'ajoutPanier'])->middleware('auth')->name('ajout.panier');
+Route::post('/delete', [ReservationController::class, 'supprimerPanier'])->middleware('auth')->name('delete');
+
+
+
 // Partie Reservation
-Route::get('/reserver', [ReservationController::class, 'index'])->middleware('auth')->name('getPanier');
-Route::get('/reservation', [ReservationController::class, 'getVoyageur']);
-Route::post('/reservation', [ReservationController::class, 'sendForm'])->name('sendForm');
-Route::get('/confirmation', function () {
-    return view('account.confirmation');
-});
+Route::get('/panier', [ReservationController::class, 'index'])->middleware('auth')->name('getPanier');
+Route::get('/reservation', [ReservationController::class, 'getVoyageur'])->middleware('auth')->name('reservation');
+Route::post('/reservation', [ReservationController::class, 'sendForm'])->middleware('auth')->name('sendForm');
+Route::get('/confirmation', [ReservationController::class, 'getConfirmation'])->middleware('auth')->name('confirmation');
 
 
 // Partie Administration

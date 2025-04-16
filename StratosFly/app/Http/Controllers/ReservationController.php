@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Panier;
 use App\Models\Passager;
 use App\Models\Reservation;
+use App\Models\Vol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +14,7 @@ class ReservationController extends Controller
 {
     public function index(){
         $panier = Auth::user()->panier;
-        return view('reserver',['panier'=>$panier]);
+        return view('account.panier',['panier'=>$panier]);
     }
 
     // Fonction pour afficher dans Voyageurs
@@ -22,9 +23,17 @@ class ReservationController extends Controller
         return view('account.reservation',['panier'=>$panier]); 
     }
 
+    // Fonction pour générer un id random
+    public function generateRandom(){
+        $date = date("Ymd");
+        $rand = random_int(1000, 9999);
+        return $date . $rand;
+    }
+
     // Fonction pour reserver
     public function sendForm(Request $request){
         $vols_ids = $request->input('vols_ids'); // Je récupére les vols
+        $reservations = [];
 
         foreach ($vols_ids as $vol_id) {
             // Pour 1 passager
@@ -50,11 +59,18 @@ class ReservationController extends Controller
                 }
             }
 
+            // Vérifie si on a assez de places
+            $vol = Vol::find($vol_id);
+            if ($vol->nb_places < $nb_passagers) {
+                return redirect()->route('reservation')->withErrors(['insufisant'=>'Veuillez vérifier le nombre de places disponibles !']);
+            }
+
             // Création de la reservation
             $reservation = new Reservation();
             $reservation->email = Auth::user()->email;
             $reservation->vol_id = $vol_id;
             $reservation->nb_passagers = $nb_passagers;
+            $reservation->id_random = $this->generateRandom();
             $reservation->save();
 
             // Création et ajout des passagers
@@ -67,10 +83,23 @@ class ReservationController extends Controller
                 $passager->save();
 
                 $reservation->passager()->attach($passager);
+                $vol->nb_places--;
+                $vol->save();
             }
+
+            $reservations[] = $reservation; // Ajout de la réservation
         }
 
-        return redirect()->route('getBillets');
+        //dd($reservations);
+
+
+        return redirect()->route('confirmation')->with('reservations', $reservations);
+    }
+
+    public function getConfirmation(){
+        $reservations = session('reservations');
+
+        return view('account.confirmation', ['reservations'=>$reservations]);
     }
 
     public function ajoutPanier(Request $request){
