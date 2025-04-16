@@ -33,7 +33,7 @@
             <div class="d-none d-md-block divider-lg custom-color"></div>
         </div>
         <div class="col-md-6 d-flex justify-content-end align-items-center mb-4">
-            <a href="#" class="btn btn-success btn-lg py-3 px-4 d-inline-flex align-items-center" role="button">
+            <a href="/reservation" class="btn btn-success btn-lg py-3 px-4 d-inline-flex align-items-center" role="button">
                 <i class="bi bi-arrow-right-circle me-2"></i>Continuer
             </a>
         </div>

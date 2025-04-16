@@ -13,7 +13,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/billets', [VolController::class, 'liste_vols']);
+Route::get('/billets', [VolController::class, 'liste_vols'])->name('getBillets');
 Route::post('/billets', [VolController::class, 'liste_filtree'])->name('vols.filter');
 
 
@@ -37,8 +37,10 @@ Route::delete('/logout', [AccountController::class, 'logout'])->name('logout');
 
 // Partie Reservation
 Route::get('/reserver', [ReservationController::class, 'index'])->middleware('auth')->name('getPanier');
-Route::get('/reservation', function () {
-    return view('account.reservation');
+Route::get('/reservation', [ReservationController::class, 'getVoyageur']);
+Route::post('/reservation', [ReservationController::class, 'sendForm'])->name('sendForm');
+Route::get('/confirmation', function () {
+    return view('account.confirmation');
 });
 
 

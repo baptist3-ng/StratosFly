@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row text-center fs-5 rounded-4 align-items-center bg-light mt-md-4">
         <div class="col-3">
-            Panier
+            <a href="/reserver" class="text-reset text-decoration-none">Panier</a>
         </div>
         <div class="col-1">
             >>>
@@ -27,7 +27,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6 ms-md-5 mt-md-4 fs-1">
+        <div class="col-md-5 ms-md-5 mt-md-4 fs-1">
             <i class="bi bi-person-fill me-2"></i>Passagers :
             <div class="d-none d-md-block divider-lg custom-color"></div>
         </div>
@@ -35,10 +35,13 @@
 </div>
 
 <div class="container">
-    <form action="">
+    <form action="{{ route('sendForm') }}" method="POST">
+    @foreach ($panier->vols as $vol)
+    @csrf
+        <input type="hidden" name="vols_ids[]" value="{{ $vol->id }}"> <!-- récupérer les vols -->
         <div class="row">
             <div class="col fw-bold fs-4 mt-md-4">
-                Vol : Ville A -> Ville B
+                Vol : {{ $vol->aeroportDepart->ville }} -> {{ $vol->aeroportArrivee->ville }}
             </div>
         </div>
         <div class="row border-bottom border-start border-end bg-light mb-4">
@@ -61,13 +64,21 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-5">
+                    <div class="col-4">
                         <label class="form-label me-3" for="nom1">Nom</label>
-                        <input class="form-control" id="nom1" name="nom1" type="text">
+                        <input class="form-control" id="nom1" name="{{$vol->id}}_nom1" type="text">
                     </div>
-                    <div class="col-5">
+                    <div class="col-4">
                         <label class="form-label me-3" for="prenom1">Prénom</label>
-                        <input class="form-control" id="prenom1" name="prenom1" type="text">
+                        <input class="form-control" id="prenom1" name="{{$vol->id}}_prenom1" type="text">
+                    </div>
+                    <div class="col-2">
+                        <label for="select1" class="form-label">Genre</label>
+                        <select id="select5" class="form-select" name="{{$vol->id}}_p1_genre">
+                            <option value="H">H</option>
+                            <option value="F">F</option>
+                            <option value="Autre">Autre</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
@@ -76,30 +87,46 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-5">
-                        <label class="form-label me-3" for="nom1">Nom</label>
-                        <input class="form-control" id="nom1" name="nom1" type="text">
+                    <div class="col-4">
+                        <label class="form-label me-3" for="nom2">Nom</label>
+                        <input class="form-control" id="nom2" name="{{$vol->id}}_nom2" type="text">
                     </div>
-                    <div class="col-5">
-                        <label class="form-label me-3" for="prenom1">Prénom</label>
-                        <input class="form-control" id="prenom1" name="prenom1" type="text">
+                    <div class="col-4">
+                        <label class="form-label me-3" for="prenom2">Prénom</label>
+                        <input class="form-control" id="prenom2" name="{{$vol->id}}_prenom2" type="text">
+                    </div>
+                    <div class="col-2">
+                        <label for="select2" class="form-label">Genre</label>
+                        <select id="select5" class="form-select" name="{{$vol->id}}_p2_genre">
+                            <option value="H">H</option>
+                            <option value="F">F</option>
+                            <option value="Autre">Autre</option>
+                        </select>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 mb-md-4">
                 <div class="row">
                     <div class="col">
                         <p class="fs-5 fw-bold mt-3">Passager 3</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-5">
-                        <label class="form-label me-3" for="nom1">Nom</label>
-                        <input class="form-control" id="nom1" name="nom1" type="text">
+                    <div class="col-4">
+                        <label class="form-label me-3" for="nom3">Nom</label>
+                        <input class="form-control" id="nom3" name="{{$vol->id}}_nom3" type="text">
                     </div>
-                    <div class="col-5">
-                        <label class="form-label me-3" for="prenom1">Prénom</label>
-                        <input class="form-control" id="prenom1" name="prenom1" type="text">
+                    <div class="col-4">
+                        <label class="form-label me-3" for="prenom3">Prénom</label>
+                        <input class="form-control" id="prenom3" name="{{$vol->id}}_prenom3" type="text">
+                    </div>
+                    <div class="col-2">
+                        <label for="select3" class="form-label">Genre</label>
+                        <select id="select5" class="form-select" name="{{$vol->id}}_p3_genre">
+                            <option value="H">H</option>
+                            <option value="F">F</option>
+                            <option value="Autre">Autre</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
@@ -108,13 +135,21 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-5">
-                        <label class="form-label me-3" for="nom1">Nom</label>
-                        <input class="form-control" id="nom1" name="nom1" type="text">
+                    <div class="col-4">
+                        <label class="form-label me-3" for="nom4">Nom</label>
+                        <input class="form-control" id="nom4" name="{{$vol->id}}_nom4" type="text">
                     </div>
-                    <div class="col-5">
-                        <label class="form-label me-3" for="prenom1">Prénom</label>
-                        <input class="form-control" id="prenom1" name="prenom1" type="text">
+                    <div class="col-4">
+                        <label class="form-label me-3" for="prenom4">Prénom</label>
+                        <input class="form-control" id="prenom4" name="{{$vol->id}}_prenom4" type="text">
+                    </div>
+                    <div class="col-2">
+                        <label for="select4" class="form-label">Genre</label>
+                        <select id="select5" class="form-select" name="{{$vol->id}}_p4_genre">
+                            <option value="H">H</option>
+                            <option value="F">F</option>
+                            <option value="Autre">Autre</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
@@ -123,18 +158,35 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-5">
-                        <label class="form-label me-3" for="nom1">Nom</label>
-                        <input class="form-control" id="nom1" name="nom1" type="text">
+                    <div class="col-4">
+                        <label class="form-label me-3" for="nom5">Nom</label>
+                        <input class="form-control" id="nom5" name="{{$vol->id}}_nom5" type="text">
                     </div>
-                    <div class="col-5">
-                        <label class="form-label me-3" for="prenom1">Prénom</label>
-                        <input class="form-control" id="prenom1" name="prenom1" type="text">
+                    <div class="col-4">
+                        <label class="form-label me-3" for="prenom5">Prénom</label>
+                        <input class="form-control" id="prenom5" name="{{$vol->id}}_prenom5" type="text">
+                    </div>
+                    <div class="col-2">
+                        <label for="select5" class="form-label">Genre</label>
+                        <select id="select5" class="form-select" name="{{$vol->id}}_p5_genre">
+                            <option value="H">H</option>
+                            <option value="F">F</option>
+                            <option value="Autre">Autre</option>
+                        </select>
                     </div>
                 </div>
             </div>
+        </div>    
+    @endforeach
+
+    <div class="row">
+        <div class="offset-md-6 col-md-6 d-flex justify-content-end">
+            <button type="submit" class="btn btn-lg custom-color my-md-4 px-5">Réserver</button>
         </div>
+    </div>
     </form>
+
+
 </div>
 
 
