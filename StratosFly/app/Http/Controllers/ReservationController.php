@@ -53,7 +53,7 @@ class ReservationController extends Controller
 
             // Compte les passagers
             $nb_passagers = 1;
-            for ($i=2; $i < 5; $i++) { 
+            for ($i=2; $i <= 5; $i++) { 
                 if($request->filled("{$vol_id}_nom{$i}")){
                     $nb_passagers++;
                 }

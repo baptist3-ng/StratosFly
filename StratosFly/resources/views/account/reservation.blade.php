@@ -75,9 +75,9 @@
                     <div class="col-2">
                         <label for="select1" class="form-label">Genre</label>
                         <select id="select5" class="form-select" name="{{$vol->id}}_p1_genre">
-                            <option value="H">H</option>
-                            <option value="F">F</option>
-                            <option value="Autre">Autre</option>
+                            <option value="M">H</option>
+                            <option value="MME">F</option>
+                            <option value="NP">Autre</option>
                         </select>
                     </div>
                 </div>
@@ -98,9 +98,9 @@
                     <div class="col-2">
                         <label for="select2" class="form-label">Genre</label>
                         <select id="select5" class="form-select" name="{{$vol->id}}_p2_genre">
-                            <option value="H">H</option>
-                            <option value="F">F</option>
-                            <option value="Autre">Autre</option>
+                            <option value="M">H</option>
+                            <option value="MME">F</option>
+                            <option value="NP">Autre</option>
                         </select>
                     </div>
                 </div>
@@ -123,9 +123,9 @@
                     <div class="col-2">
                         <label for="select3" class="form-label">Genre</label>
                         <select id="select5" class="form-select" name="{{$vol->id}}_p3_genre">
-                            <option value="H">H</option>
-                            <option value="F">F</option>
-                            <option value="Autre">Autre</option>
+                            <option value="M">H</option>
+                            <option value="MME">F</option>
+                            <option value="NP">Autre</option>
                         </select>
                     </div>
                 </div>
@@ -146,9 +146,9 @@
                     <div class="col-2">
                         <label for="select4" class="form-label">Genre</label>
                         <select id="select5" class="form-select" name="{{$vol->id}}_p4_genre">
-                            <option value="H">H</option>
-                            <option value="F">F</option>
-                            <option value="Autre">Autre</option>
+                            <option value="M">H</option>
+                            <option value="MME">F</option>
+                            <option value="NP">Autre</option>
                         </select>
                     </div>
                 </div>
@@ -169,9 +169,9 @@
                     <div class="col-2">
                         <label for="select5" class="form-label">Genre</label>
                         <select id="select5" class="form-select" name="{{$vol->id}}_p5_genre">
-                            <option value="H">H</option>
-                            <option value="F">F</option>
-                            <option value="Autre">Autre</option>
+                            <option value="M">H</option>
+                            <option value="MME">F</option>
+                            <option value="NP">Autre</option>
                         </select>
                     </div>
                 </div>

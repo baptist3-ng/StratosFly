@@ -25,26 +25,62 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <p>Merci d'avoir réserver avec StratosFly.</p>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center mt-md-5 mb-md-4 fs-1">
+            <p class="text-primary">Merci d'avoir réserver avec StratosFly !</p>
+        </div>
     </div>
-    <div class="row">
-        <p>Résumé de votre réservation :</p>
+    <div class="row mt-2 mb-md-5">
+        <div class="col-md-6 ms-md-5">
+        <p class="fs-1 fw-semibold"><i class="bi bi-card-text me-2"></i> Détails réservation :</p>
+        <div class="d-none d-md-block divider-lg custom-color"></div>
+        </div>
     </div>
-    @foreach ($reservations as $reservation)
-    <p>Id: {{ $reservation->id_random }}</p>
-    <p>Email: {{ $reservation->email }}</p>
-    <p>Vol: {{ $reservation->vol->aeroportDepart->ville }}->{{ $reservation->vol->aeroportArrivee->ville }}</p>
-    <p>Nombre de passagers: {{ $reservation->nb_passagers }}</p>
-    <p>Liste des passagers:</p>
-    @foreach ($reservation->passager as $passager)
-        <p>{{ $passager->nom }}</p>
-        <p>{{ $passager->prenom }}</p>
-    @endforeach
-    
-    @endforeach
 </div>
+
+<div class="container">
+    <div class="row justify-content-center mb-md-5">
+        @foreach ($reservations as $reservation)
+        <div class="row bg-light mb-5">
+            <div class="col-md-6">
+                <div class="row pt-3 mb-3 mt-2">
+                    <p class="fs-3"><i class="bi bi-airplane-fill me-2"></i><strong>Vol</strong> : {{ $reservation->vol->aeroportDepart->ville }}<i class="bi bi-arrow-right mx-2"></i>{{ $reservation->vol->aeroportArrivee->ville }}</p>
+                </div>
+                <div class="row ms-2">
+                    <p><strong>ID réservation</strong> : {{ $reservation->id_random }}</p>
+                </div>
+                <div class="row ms-2">
+                    <p><strong>Email</strong> : {{ $reservation->email }}</p>
+                </div>
+                <div class="row ms-2">
+                    <p><strong>Prix du billet</strong> : {{$reservation->vol->prix}}€</p>
+                </div>
+                <div class="row ms-2">
+                    <p><strong>Prix total TTC</strong>: {{$reservation->vol->prix * $reservation->nb_passagers}}€</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row mb-3 mt-2">
+                    <p class="fs-3 pt-3"><i class="bi bi-people-fill me-2"></i>Voyageurs :</p>
+                </div>
+                <div class="row ms-2">
+                    <p><strong>Nombre de passagers</strong> : {{ $reservation->nb_passagers }}</p>
+                </div>
+                <div class="row ms-2">
+                    <p><strong>Liste des passagers</strong>:</p>
+                    <ul class="ms-3">
+                        @foreach ($reservation->passager as $passager)
+                        <li>{{ $passager->genre }}. {{ $passager->nom }}, {{ $passager->prenom }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+
 
 
 @endsection
