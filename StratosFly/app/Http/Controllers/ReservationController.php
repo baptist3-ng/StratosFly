@@ -92,6 +92,9 @@ class ReservationController extends Controller
 
         //dd($reservations);
 
+        $panier = Auth::user()->panier;
+        $panier->vols()->detach();
+
 
         return redirect()->route('confirmation')->with('reservations', $reservations);
     }
