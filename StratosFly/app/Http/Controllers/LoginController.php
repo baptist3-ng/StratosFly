@@ -5,23 +5,29 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function indexLogin(){
+        return view("admin.login");
+    }
+    
+    public function indexRegister(){
+        return view("admin.accountCreation");
+    }
     public function authenticate(Request $request)
     {
         // Récupérer l'utilisateur via l'email
         $user = User::where('email', $request->email)->first();
 
         // Vérifier si l'utilisateur existe
-        if (!$user) {
-            return back()->with('error', 'Cet e-mail n’est pas enregistré.');
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return back()->with('error', 'Cet e-mail ou ce mot de passe est incorrect.');
         }
 
-        // Vérifier si le mot de passe correspond
-        if (!Hash::check($request->password, $user->password)) {
-            return back()->with('error', 'Mot de passe incorrect.');
+        // Vérifier si l'utilisateur est un admin
+        if($user -> role == "Admin"){
+            return redirect("/adminAction");
         }
 
         // Authentification réussie

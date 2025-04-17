@@ -7,6 +7,7 @@ use App\Http\Controllers\VolController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('home');
@@ -38,13 +39,16 @@ Route::get('/admin/edit', function (){
 Route::post('/admin/add', [VolController::class,'ajout_vol'])->name('vols.ajout');
 Route::post('/admin/delete', [VolController::class,'supprimer_vol'])->name('vols.supprime');
 
-Route::get('/login', function () {
-    return view('admin.login');
-});
+Route::get('/login', [LoginController::class, 'indexLogin']);
 
-Route::get('/accountCreation', function () {
-    return view('admin.accountCreation');
-});
+Route::get('/accountCreation', [LoginController::class, 'indexRegister']);
 
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/accountCreation', [LoginController::class, 'register'])->name('register');
+
+Route::get('/adminAction', [AdminController::class, 'index'])->name('admin.adminAction');
+
+Route::post('/admin/flights/create', [AdminController::class,'registerFlight'])->name('vols.add');
+Route::post('/admin/flights/update', [AdminController::class,'updateFlight'])->name('vols.update');
+Route::post('/admin/flights/delete', [AdminController::class,'deleteFlight'])->name('vols.delete');
+Route::post('/admin/flights/info', [AdminController::class,'showFlightInfo'])->name('vols.info');
