@@ -19,7 +19,7 @@
         <div class="col-1">
             >>>
         </div>
-        <div class="col-3 custom-color py-3 rounded-4">
+        <div class="col-4 custom-color py-3 rounded-4">
             Confirmation
         </div>
     </div>
@@ -42,7 +42,7 @@
 <div class="container">
     <div class="row justify-content-center mb-md-5">
         @foreach ($reservations as $reservation)
-        <div class="row bg-light mb-5">
+        <div class="row bg-light mb-5 border">
             <div class="col-md-6">
                 <div class="row pt-3 mb-3 mt-2">
                     <p class="fs-3"><i class="bi bi-airplane-fill me-2"></i><strong>Vol</strong> : {{ $reservation->vol->aeroportDepart->ville }}<i class="bi bi-arrow-right mx-2"></i>{{ $reservation->vol->aeroportArrivee->ville }}</p>

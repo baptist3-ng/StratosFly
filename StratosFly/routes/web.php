@@ -33,7 +33,7 @@ Route::delete('/logout', [AccountController::class, 'logout'])->name('logout');
 
 
 // Panier
-Route::post('/panier', [ReservationController::class, 'ajoutPanier'])->middleware('auth')->name('ajout.panier');
+Route::post('/panier', [ReservationController::class, 'ajoutPanier'])->name('ajout.panier');
 Route::post('/delete', [ReservationController::class, 'supprimerPanier'])->middleware('auth')->name('delete');
 
 

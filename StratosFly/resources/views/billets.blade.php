@@ -125,7 +125,9 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-md-1 text-center">
-                            <p class="mb-0">ID : {{ $vol->id }}</p>
+                            <p class="mb-0"><strong>{{ $vol->aeroportDepart->ville }}</strong></p>
+                            <i class="bi bi-arrow-left-right"></i>
+                            <p class="mb-0"><strong>{{ $vol->aeroportArrivee->ville }}</strong></p>
                         </div>
                         <div class="col-md-4">
                             <p class="mb-0"><strong>{{ $vol->aeroportDepart->nom }}</strong></p>

@@ -34,7 +34,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return redirect()->intended(route('account.home'));
         }else{
-            return redirect()->route('login')->withErrors(['invalid'=>'Email ou mot de passe incorrect !']);
+            return redirect()->route('login')->with('invalidLogin','Email ou mot de passe incorrect !');
         }
     }
     public function register(Request $request)
@@ -66,6 +66,6 @@ class LoginController extends Controller
         }
 
         // Redirection vers la page de compte (ou de login)
-        return redirect('/login')->with('success', 'Compte créé avec succès ! Connectez-vous.');
+        return redirect('/login')->with('accountCreated', 'Compte créé avec succès ! Vous pouvez désormais vous connecter.');
     }
 }

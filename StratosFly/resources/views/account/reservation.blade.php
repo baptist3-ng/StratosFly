@@ -28,7 +28,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-5 ms-md-5 mt-md-4 fs-1">
-            <i class="bi bi-person-fill me-2"></i>Passagers :
+            <i class="bi bi-people-fill me-2"></i></i>Passagers :
             <div class="d-none d-md-block divider-lg custom-color"></div>
         </div>
     </div>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p class="fs-5 fw-bold mt-3">Passager 1</p>
+                        <p class="fs-5 fw-bold mt-3"><i class="bi bi-person-vcard-fill me-2"></i>Passager 1</p>
                     </div>
                 </div>
                 <div class="row">
@@ -83,7 +83,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p class="fs-5 fw-bold mt-3">Passager 2</p>
+                        <p class="fs-5 fw-bold mt-3"><i class="bi bi-person-vcard-fill me-2"></i>Passager 2</p>
                     </div>
                 </div>
                 <div class="row">
@@ -108,7 +108,7 @@
             <div class="col-md-6 mb-md-4">
                 <div class="row">
                     <div class="col">
-                        <p class="fs-5 fw-bold mt-3">Passager 3</p>
+                        <p class="fs-5 fw-bold mt-3"><i class="bi bi-person-vcard-fill me-2"></i>Passager 3</p>
                     </div>
                 </div>
                 <div class="row">
@@ -131,7 +131,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p class="fs-5 fw-bold mt-3">Passager 4</p>
+                        <p class="fs-5 fw-bold mt-3"><i class="bi bi-person-vcard-fill me-2"></i>Passager 4</p>
                     </div>
                 </div>
                 <div class="row">
@@ -154,7 +154,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p class="fs-5 fw-bold mt-3">Passager 5</p>
+                        <p class="fs-5 fw-bold mt-3"><i class="bi bi-person-vcard-fill me-2"></i>Passager 5</p>
                     </div>
                 </div>
                 <div class="row">
@@ -181,7 +181,7 @@
 
     <div class="row">
         <div class="offset-md-6 col-md-6 d-flex justify-content-end">
-            <button type="submit" class="btn btn-lg custom-color my-md-4 px-5">Réserver</button>
+            <button type="submit" class="btn btn-lg custom-color my-md-4 px-5 fs-4">Réserver<i class="bi bi-check2-all ms-3"></i></button>
         </div>
     </div>
     </form>

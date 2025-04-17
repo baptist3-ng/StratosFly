@@ -114,13 +114,14 @@ class ReservationController extends Controller
             // Ajouter dans la table pivot + Vérification doublon
             if (!$panier->vols->contains($vol_id)) {
                 $panier->vols()->attach($vol_id);
+            }else{
+                return redirect()->route('getPanier')->with('failAdd','Ce vol est déjà dans votre panier !');
             }
 
-            //return view('/reserver', ['panier'=>$panier]);
-            return redirect()->route('getPanier');
+            return redirect()->route('getPanier')->with('successAdd','Vol ajouté au panier !');
         }else{
             session(['url.intended' => '/billets']);
-            return redirect()->route('login')->withErrors(['required'=>'Merci de bien vouloir vous connecter pour réserver.']);
+            return redirect()->route('login')->with('loginRequired','Merci de bien vouloir vous connecter pour réserver.');
         }
     }
 
@@ -130,6 +131,6 @@ class ReservationController extends Controller
         $panier = Auth::user()->panier;// relation // Je récupère le panier du l'user
             
         $panier->vols()->detach($vol_id);
-        return redirect()->route('getPanier');
+        return redirect()->route('getPanier')->with('successDel','Vol supprimé !');
     }
 }
