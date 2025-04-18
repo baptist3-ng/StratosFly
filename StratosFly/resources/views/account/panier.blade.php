@@ -91,14 +91,13 @@
     
 
         @if($panier->vols->isEmpty())
-            <div class="container">
-                <div class="row justify-content-center mt-md-4">
-                    <div class="col-md-10 alert alert-warning text-center ">
+            <div class="container pb-md-5">
+                <div class="row justify-content-center mt-md-4 pb-md-5">
+                    <div class="col-md-10 alert alert-warning text-center mt-4">
                         <span class="fs-3"><i class="bi bi-bag-x me-md-4"></i> Votre panier est vide !</span>
                     </div>
                 </div>
             </div>
-            <!-- Bannière Promo -->
 
         @else
         <!-- Pour chaque vol du panier  -->

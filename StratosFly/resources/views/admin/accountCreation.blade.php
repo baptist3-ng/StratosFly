@@ -55,9 +55,9 @@
                     <label for="genre" class="form-label">Genre</label>
                     <select class="form-control" id="genre" name="genre" required>
                         <option value="">Choisir...</option>
-                        <option value="Homme">Homme</option>
-                        <option value="Femme">Femme</option>
-                        <option value="Autre">Autre</option>
+                        <option value="M">Homme</option>
+                        <option value="MME">Femme</option>
+                        <option value="NP">Autre</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Créer mon compte</button>

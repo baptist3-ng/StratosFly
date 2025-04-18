@@ -9,7 +9,6 @@ class AccountController extends Controller
 {
     public function index(){
         $user = Auth::user();
-
         return view('account.home_account', ['user'=>$user]);
     }
 

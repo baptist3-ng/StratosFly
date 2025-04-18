@@ -66,11 +66,11 @@
                 <div class="row">
                     <div class="col-4">
                         <label class="form-label me-3" for="nom1">Nom</label>
-                        <input class="form-control" id="nom1" name="{{$vol->id}}_nom1" type="text">
+                        <input class="form-control @error($vol->id . '_nom1') is-invalid @enderror" @error($vol->id . '_nom1') placeholder="Le nom est requis." @enderror id="nom1" name="{{$vol->id}}_nom1" type="text">
                     </div>
                     <div class="col-4">
                         <label class="form-label me-3" for="prenom1">Prénom</label>
-                        <input class="form-control" id="prenom1" name="{{$vol->id}}_prenom1" type="text">
+                        <input class="form-control @error($vol->id . '_nom1') is-invalid @enderror" @error($vol->id . '_nom1') placeholder="Le prénom est requis." @enderror id="prenom1" name="{{$vol->id}}_prenom1" type="text">
                     </div>
                     <div class="col-2">
                         <label for="select1" class="form-label">Genre</label>

@@ -55,7 +55,7 @@ class LoginController extends Controller
             'prenom' => $request->input('prenom'),
             'email' => $email,
             'password' => Hash::make($request->input('password')),
-            'genre' => $request->genre,
+            'genre' => $request->input('genre'),
         ]);
 
         // Création du Panier de l'user
