@@ -21,7 +21,7 @@
                 <ul class="navbar-nav ms-auto fs-4 pe-5">
                     <li class="nav-item mx-lg-3"><a class="nav-link active" href="/billets">Billets</a></li>
                     <li class="nav-item mx-lg-3"><a class="nav-link active" href="#contact">Contact</a></li>
-                    <li class="nav-item mx-lg-3"><a class="nav-link active" href="/login">Mon compte</a></li>
+                    <li class="nav-item mx-lg-3"><a class="nav-link active" href="/account">Mon compte</a></li>
                 </ul>
             </div>
         </div>

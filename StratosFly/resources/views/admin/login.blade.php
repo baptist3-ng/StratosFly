@@ -22,17 +22,24 @@
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
         ">
             <h3 style="text-align: center; margin-bottom: 1.5rem;">Connexion</h3>
-            @if (session('error'))
-                <div class="alert alert-danger">
-                {{ session('error') }}
+            
+            
+            @if (session('loginRequired'))
+                <div class="alert alert-warning" role="alert">
+                    {{ session('loginRequired') }}
                 </div>
             @endif
-            @if (session('success'))
-                <div class="alert alert-success">
-                {{ session('success') }}
+            @if (session('invalidLogin'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('invalidLogin') }}
                 </div>
             @endif
-            <form action="/login" method="POST">
+            @if (session('accountCreated'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('accountCreated') }}
+                </div>
+            @endif
+            <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
