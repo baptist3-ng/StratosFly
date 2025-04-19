@@ -12,6 +12,21 @@
     {{ session('success') }}
     </div>
 @endif
+@if(session('vol'))
+    @php $vol = session('vol'); @endphp
+
+    <div class="alert alert-info">
+        <h5>Informations sur le vol #{{ $vol->id }}</h5>
+        <ul class="mb-0">
+            <li><strong>Aéroport de départ :</strong> {{ $vol->aeroport_depart_id }}</li>
+            <li><strong>Aéroport d’arrivée :</strong> {{ $vol->aeroport_arrivee_id }}</li>
+            <li><strong>Date de départ :</strong> {{ $vol->date_depart }}</li>
+            <li><strong>Date d’arrivée :</strong> {{ $vol->date_arrivee }}</li>
+            <li><strong>Nombre de places :</strong> {{ $vol->nb_places }}</li>
+            <li><strong>Prix :</strong> {{ $vol->prix }} €</li>
+        </ul>
+    </div>
+@endif
 <div class="container-fluid">
     <div class="row vh-100">
         {{-- Sidebar --}}
@@ -31,7 +46,7 @@
             <div id="programmer" class="card mb-4 form-section">
                 <div class="card-header fw-bold">Programmer un vol</div>
                 <div class="card-body">
-                <form action="/flights/create" method="POST">
+                <form action="{{ route('vols.add') }}" method="POST">
                 @csrf
 
                 <div class="mb-3">
@@ -151,10 +166,9 @@
             <div id="visualiser" class="card mb-4 form-section d-none">
                 <div class="card-header fw-bold">Visualiser les réservations</div>
                 <div class="card-body">
-                    <form action="/reservations/show" method="GET">
-                        <input type="text" class="form-control mb-3" name="vol_id" placeholder="ID du vol">
+                    <form action="{{ route('reservations.all') }}" method="GET">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-info text-white">Voir</button>
+                            <button type="submit" class="btn btn-info text-white">Voir toutes les réservations</button>
                         </div>
                     </form>
                 </div>

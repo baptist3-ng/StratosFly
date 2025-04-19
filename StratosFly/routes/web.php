@@ -71,4 +71,5 @@ Route::get('/adminAction', [AdminController::class, 'index'])->name('admin.admin
 Route::post('/admin/flights/create', [AdminController::class,'registerFlight'])->name('vols.add');
 Route::post('/admin/flights/update', [AdminController::class,'updateFlight'])->name('vols.update');
 Route::post('/admin/flights/delete', [AdminController::class,'deleteFlight'])->name('vols.delete');
-Route::post('/admin/flights/info', [AdminController::class,'showFlightInfo'])->name('vols.info');
+Route::get('/admin/reservations/all', [AdminController::class, 'showAllReservations'])->name('reservations.all');
+Route::get('/admin/flights/info', [AdminController::class,'showFlightInfo'])->name('vols.info');

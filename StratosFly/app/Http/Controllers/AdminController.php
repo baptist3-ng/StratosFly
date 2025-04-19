@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vol;
 use App\Models\Aeroport;
+use App\Models\Reservation;
+use App\Models\Passager;
 
 class AdminController extends Controller
 {
@@ -89,7 +91,13 @@ class AdminController extends Controller
     }
 
 
-    //Emplacement pour la fonction d'affichage des réservations
+    public function showAllReservations()
+    {
+        // Récupère toutes les réservations avec leurs passagers liés
+        $reservations = Reservation::with(['passagers'])->get();
+    
+        return view('admin.reservationsList', ['reservations' => $reservations]);
+    }
 
     public function showFlightInfo(Request $request)
     {
