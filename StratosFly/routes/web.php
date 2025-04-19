@@ -59,12 +59,12 @@ Route::get('/admin/edit', function (){
 Route::post('/admin/add', [VolController::class,'ajout_vol'])->name('vols.ajout');
 Route::post('/admin/delete', [VolController::class,'supprimer_vol'])->name('vols.supprime');
 
-Route::get('/login', [LoginController::class, 'indexLogin']);
+// Route::get('/login', [LoginController::class, 'indexLogin']);
 
-Route::get('/accountCreation', [LoginController::class, 'indexRegister']);
+// Route::get('/accountCreation', [LoginController::class, 'indexRegister']);
 
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
-Route::post('/accountCreation', [LoginController::class, 'register'])->name('register');
+// Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+// Route::post('/accountCreation', [LoginController::class, 'register'])->name('register');
 
 Route::get('/adminAction', [AdminController::class, 'index'])->name('admin.adminAction');
 
