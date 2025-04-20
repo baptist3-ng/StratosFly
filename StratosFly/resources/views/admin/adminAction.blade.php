@@ -98,7 +98,7 @@
             <div id="modifier" class="card mb-4 form-section d-none">
                 <div class="card-header fw-bold">Modifier un vol</div>
                 <div class="card-body">
-                    <form action="/flights/update" method="POST">
+                    <form action="{{ route('vols.update') }} " method="POST">
                         @csrf
                         <div class="mb-3">
                             <label>ID du vol</label>
@@ -152,7 +152,7 @@
             <div id="supprimer" class="card mb-4 form-section d-none">
                 <div class="card-header fw-bold">Supprimer un vol</div>
                 <div class="card-body">
-                    <form action="/flights/delete" method="POST">
+                    <form action="{{ route('vols.delete') }}" method="POST">
                         @csrf
                         <input type="text" class="form-control mb-3" name="id" placeholder="ID du vol à supprimer">
                         <div class="text-center">
@@ -178,7 +178,7 @@
             <div id="info" class="card mb-4 form-section d-none">
                 <div class="card-header fw-bold">Informations sur un vol</div>
                 <div class="card-body">
-                    <form action="/flights/info" method="GET">
+                    <form action="{{ route('vols.info') }}" method="GET">
                         <input type="text" class="form-control mb-3" name="id" placeholder="ID du vol">
                         <div class="text-center">
                             <button type="submit" class="btn btn-secondary">Afficher</button>
