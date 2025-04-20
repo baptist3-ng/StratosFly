@@ -44,20 +44,20 @@ class AdminController extends Controller
 
         return redirect()->route('admin.adminAction')->with('success','Le vol a bien été programmé !');
     }
-
-    public function updateFlight(Request $request, $id)
+    public function updateFlight(Request $request)
     {
         $request->validate([
-            'aeroport_depart_id' => 'required|exists:aeroports,id',
-            'aeroport_arrivee_id' => 'required|exists:aeroports,id',
-            'date_depart' => 'required|date',
-            'date_arrivee' => 'required|date|after:date_depart',
-            'nb_places' => 'required|integer|min:1',
-            'prix' => 'required|numeric|min:0',
+            'id' => 'required|exists:vols,id',
+            'nouvel_aeroport_depart_id' => 'required|exists:aeroports,id',
+            'nouvel_aeroport_arrivee_id' => 'required|exists:aeroports,id',
+            'nouvelle_date_depart' => 'required|date',
+            'nouvelle_date_arrivee' => 'required|date|after:nouvelle_date_depart',
+            'nouveau_nb_places' => 'required|integer|min:1',
+            'nouveau_prix' => 'required|numeric|min:0',
         ]);
 
         // Rechercher le vol par son ID
-        $vol = Vol::find($id);
+        $vol = Vol::find($request->id);
 
         // Verifier si le vol existe
         if (!$vol) {
