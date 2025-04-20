@@ -13,8 +13,9 @@ class AdminController extends Controller
     public function index()
     {
         $aeroports = Aeroport::all(); // récupère tous les aéroports
+        $vols = Vol::all();
         
-        return view('admin.adminAction',['aeroports' => $aeroports]);
+        return view('admin.adminAction',['aeroports' => $aeroports, 'vols'=>$vols]);
     }
 
     public function registerFlight(Request $request)
@@ -48,41 +49,57 @@ class AdminController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:vols,id',
-            'nouvel_aeroport_depart_id' => 'required|exists:aeroports,id',
-            'nouvel_aeroport_arrivee_id' => 'required|exists:aeroports,id',
-            'nouvelle_date_depart' => 'required|date',
-            'nouvelle_date_arrivee' => 'required|date|after:nouvelle_date_depart',
-            'nouveau_nb_places' => 'required|integer|min:1',
-            'nouveau_prix' => 'required|numeric|min:0',
+            'nouvel_aeroport_depart_id' => 'nullable',
+            'nouvel_aeroport_arrivee_id' => 'nullable',
+            'nouvelle_date_depart' => 'nullable',
+            'nouvelle_date_arrivee' => 'nullable',
+            'nouveau_nb_places' => 'nullable|integer|min:1',
+            'nouveau_prix' => 'nullable|integer|min:10',
         ]);
 
         // Rechercher le vol par son ID
-        $vol = Vol::find($request->id);
+        $vol = Vol::find($request->input('id'));
 
         // Verifier si le vol existe
         if (!$vol) {
-            return redirect()->back()->with('error', 'Vol introuvable.');
+            return redirect()->back()->with('volNotFound', 'Vol introuvable.');
         }
 
-        //Vol trouvé, mise à jour
-        $vol->update([
-            'aeroport_depart_id' => $request->nouvel_aeroport_depart_id,
-            'aeroport_arrivee_id' => $request->nouvel_aeroport_arrivee_id,
-            'date_depart' => $request->nouvelle_date_depart,
-            'date_arrivee' => $request->nouvelle_date_arrivee,
-            'nb_places' => $request->nouveau_nb_places,
-            'prix' => $request->nouveau_prix,
-        ]);
+        if ($request->filled('nouvel_aeroport_depart_id')) {
+            $vol->aeroport_depart_id = $request->input('nouvel_aeroport_depart_id');
+        }
+
+        if ($request->filled('nouvel_aeroport_arrivee_id')) {
+            $vol->aeroport_arrivee_id = $request->input('nouvel_aeroport_arrivee_id');
+        }
+
+        if ($request->filled('nouvelle_date_depart')) {
+            $vol->date_depart = $request->input('nouvelle_date_depart');
+        }
+
+        if ($request->filled('nouvelle_date_arrivee')) {
+            $vol->date_arrivee = $request->input('nouvelle_date_arrivee');
+        }
+
+        if ($request->filled('nouveau_nb_places')) {
+            $vol->nb_places = $request->input('nouveau_nb_places');
+        }
+
+        if ($request->filled('nouveau_prix')) {
+            $vol->prix = $request->input('nouveau_prix');
+        }
+
+        $vol->save();
 
         return redirect()->route('admin.adminAction')->with('success', 'Vol modifié avec succès !');
     }
 
     public function deleteFlight(Request $request)
     {
-        $vol = Vol::find($request->id);
+        $vol = Vol::find($request->input('id'));
 
         if (!$vol) {
-            return redirect()->back()->with('error', 'Vol introuvable.');
+            return redirect()->back()->with('volNotFound', 'Vol introuvable.');
         }
 
         $vol->delete();

@@ -2,39 +2,15 @@
 @section('title', 'Actions Admin')
 
 @section('content')
-@if (session('error'))
-    <div class="alert alert-danger">
-    {{ session('error') }}
-    </div>
-@endif
-@if (session('success'))
-    <div class="alert alert-success">
-    {{ session('success') }}
-    </div>
-@endif
-@if(session('vol'))
-    @php $vol = session('vol'); @endphp
 
-    <div class="alert alert-info">
-        <h5>Informations sur le vol #{{ $vol->id }}</h5>
-        <ul class="mb-0">
-            <li><strong>Aéroport de départ :</strong> {{ $vol->aeroport_depart_id }}</li>
-            <li><strong>Aéroport d’arrivée :</strong> {{ $vol->aeroport_arrivee_id }}</li>
-            <li><strong>Date de départ :</strong> {{ $vol->date_depart }}</li>
-            <li><strong>Date d’arrivée :</strong> {{ $vol->date_arrivee }}</li>
-            <li><strong>Nombre de places :</strong> {{ $vol->nb_places }}</li>
-            <li><strong>Prix :</strong> {{ $vol->prix }} €</li>
-        </ul>
-    </div>
-@endif
 <div class="container-fluid">
     <div class="row vh-100">
         {{-- Sidebar --}}
         <div class="col-md-3 bg-light border-end p-3">
             <ul class="nav flex-column ">
                 <li class="nav-item"><a class="nav-link text-dark fw-bold border-bottom" href="#" onclick="showForm('programmer')">Programmer un vol</a></li>
-                <li class="nav-item"><a class="nav-link text-dark fw-bold border-bottom" href="#" onclick="showForm('modifier')">Modifier un vol</a></li>
-                <li class="nav-item"><a class="nav-link text-dark fw-bold border-bottom" href="#" onclick="showForm('supprimer')">Supprimer un vol</a></li>
+                <li class="nav-item"><a class="nav-link text-dark fw-bold border-bottom" href="#" onclick="showForm('modifier')"><i class="bi bi-tools me-2"></i>Modifier un vol</a></li>
+                <li class="nav-item"><a class="nav-link text-dark fw-bold border-bottom" href="#" onclick="showForm('supprimer')"><i class="bi bi-trash3-fill me-2"></i>Supprimer un vol</a></li>
                 <li class="nav-item"><a class="nav-link text-dark fw-bold border-bottom" href="#" onclick="showForm('visualiser')">Visualiser réservations</a></li>
                 <li class="nav-item"><a class="nav-link text-dark fw-bold border-bottom" href="#" onclick="showForm('info')">Informations vol</a></li>
             </ul>
@@ -96,17 +72,38 @@
 
             {{-- Modifier un vol --}}
             <div id="modifier" class="card mb-4 form-section d-none">
-                <div class="card-header fw-bold">Modifier un vol</div>
+                @if (session('volNotFound'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('volNotFound') }}
+                    </div>
+                @endif
+                @if (session('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @error('id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+                <div class="card-header fw-bold fs-3"><i class="bi bi-tools me-2"></i>Modifier un vol</div>
                 <div class="card-body">
                     <form action="{{ route('vols.update') }} " method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label>ID du vol</label>
-                            <input type="number" name="id" class="form-control" required>
+                            <label class="form-label"><i class="bi bi-key me-2"></i>ID du vol</label>
+                            <select name="id" class="form-control">
+                                <option disabled selected>Sélectionnez un vol</option>
+                                @foreach($vols as $vol)
+                                    <option value="{{ $vol->id }}">{{ $vol->aeroportDepart->ville . "->" . $vol->aeroportArrivee->ville . " ID : " . $vol->id }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
-                        <label>Aéroport de départ</label>
+                        <label class="form-label"><i class="bi bi-airplane me-2"></i>Aéroport de départ</label>
                         <select name="nouvel_aeroport_depart_id" class="form-control">
+                            <option disabled selected>Sélectionnez un aéroport</option>
                             @foreach($aeroports as $aeroport)
                                 <option value="{{ $aeroport->id }}">{{ $aeroport->nom }}</option>
                             @endforeach
@@ -114,8 +111,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label>Aéroport d’arrivée</label>
+                        <label class="form-label"><i class="bi bi-airplane-fill me-2"></i>Aéroport d’arrivée</label>
                         <select name="nouvel_aeroport_arrivee_id" class="form-control">
+                            <option disabled selected>Sélectionnez un aéroport</option>
                             @foreach($aeroports as $aeroport)
                                 <option value="{{ $aeroport->id }}">{{ $aeroport->nom }}</option>
                             @endforeach
@@ -123,22 +121,22 @@
                     </div>
 
                     <div class="mb-3">
-                        <label>Date de départ</label>
+                        <label class="form-label"><i class="bi bi-calendar3 me-2"></i>Date de départ</label>
                         <input type="datetime-local" name="nouvelle_date_depart" class="form-control">
                     </div>
 
                     <div class="mb-3">
-                        <label>Date d’arrivée</label>
+                        <label class="form-label"><i class="bi bi-calendar3 me-2"></i>Date d’arrivée</label>
                         <input type="datetime-local" name="nouvelle_date_arrivee" class="form-control">
                     </div>
 
                     <div class="mb-3">
-                        <label>Nombre de places</label>
+                        <label class="form-label">	<i class="bi bi-people me-2"></i>Nombre de places</label>
                         <input type="number" name="nouveau_nb_places" class="form-control">
                     </div>
 
                     <div class="mb-3">
-                        <label>Prix (€)</label>
+                        <label class="form-label"><i class="bi bi-currency-exchange me-2"></i>Prix (€)</label>
                         <input type="number" name="nouveau_prix" class="form-control">
                     </div>
                         <div class="text-center mt-4">
@@ -150,13 +148,19 @@
 
             {{-- Supprimer un vol --}}
             <div id="supprimer" class="card mb-4 form-section d-none">
-                <div class="card-header fw-bold">Supprimer un vol</div>
+                <div class="card-header fw-bold fs-3"><i class="bi bi-trash3-fill me-2"></i>Supprimer un vol</div>
                 <div class="card-body">
                     <form action="{{ route('vols.delete') }}" method="POST">
                         @csrf
-                        <input type="text" class="form-control mb-3" name="id" placeholder="ID du vol à supprimer">
+                        <label class="form-label"><i class="bi bi-key me-2"></i>ID du vol</label>
+                        <select name="id" class="form-control">
+                            <option disabled selected>Sélectionnez un vol</option>
+                            @foreach($vols as $vol)
+                                <option value="{{ $vol->id }}">{{ $vol->aeroportDepart->ville . "->" . $vol->aeroportArrivee->ville . " ID : " . $vol->id}}</option>
+                            @endforeach
+                        </select>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                            <button type="submit" class="btn btn-danger mt-3">Supprimer</button>
                         </div>
                     </form>
                 </div>
