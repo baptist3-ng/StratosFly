@@ -111,7 +111,7 @@ class AdminController extends Controller
     public function showAllReservations()
     {
         // Récupère toutes les réservations avec leurs passagers liés
-        $reservations = Reservation::with(['passagers'])->get();
+        $reservations = Reservation::all();
     
         return view('admin.reservationsList', ['reservations' => $reservations]);
     }
@@ -120,7 +120,7 @@ class AdminController extends Controller
     {
         
         // Rechercher le vol par son ID
-        $vol = Vol::find($request->id);
+        $vol = Vol::find($request->input('id'));
 
         // Verifier si le vol existe
         if (!$vol) {

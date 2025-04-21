@@ -82,7 +82,7 @@ class ReservationController extends Controller
                 $passager->email = Auth::user()->email;
                 $passager->save();
 
-                $reservation->passager()->attach($passager);
+                $reservation->passagers()->attach($passager);
                 $vol->nb_places--;
                 $vol->save();
             }
