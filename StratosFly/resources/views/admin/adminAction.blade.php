@@ -3,8 +3,6 @@
 
 @section('content')
 
-
-
 <div class="container-fluid">
     <div class="row">
         {{-- Sidebar --}}
@@ -15,6 +13,15 @@
                 <li class="nav-item my-2"><a class="nav-link text-dark fw-bold border-bottom" href="#supprimer"><i class="bi bi-trash3-fill me-2"></i>Supprimer un vol</a></li>
                 <li class="nav-item my-2"><a class="nav-link text-dark fw-bold border-bottom" href="#visualiser"><i class="bi bi-ticket-detailed me-2"></i>Visualiser réservations</a></li>
                 <li class="nav-item my-2"><a class="nav-link text-dark fw-bold border-bottom" href="#info"><i class="bi bi-info-circle-fill me-2"></i>Informations vol</a></li>
+                <li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        @method("delete")
+                        <button type="submit" class="btn btn-danger px-4 mt-md-4 ms-md-2">
+                            <i class="bi bi-box-arrow-right me-2"></i> LOGOUT
+                        </button>
+                    </form>
+                </li>
             </ul>
         </div>
 

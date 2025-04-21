@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Aeroport;
-use App\Models\Vol;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VolController;
 use App\Http\Controllers\LoginController;
@@ -48,10 +46,10 @@ Route::get('/confirmation', [ReservationController::class, 'getConfirmation'])->
 
 // Partie Administration
 
-Route::get('/adminAction', [AdminController::class, 'index'])->name('admin.adminAction');
+Route::get('/adminAction', [AdminController::class, 'index'])->middleware('auth')->name('admin.adminAction');
 
-Route::post('/admin/flights/create', [AdminController::class,'registerFlight'])->name('vols.add');
-Route::post('/admin/flights/update', [AdminController::class,'updateFlight'])->name('vols.update');
-Route::post('/admin/flights/delete', [AdminController::class,'deleteFlight'])->name('vols.delete');
-Route::get('/admin/reservations/all', [AdminController::class, 'showAllReservations'])->name('reservations.all');
-Route::get('/admin/flights/info', [AdminController::class,'showFlightInfo'])->name('vols.info');
+Route::post('/admin/flights/create', [AdminController::class,'registerFlight'])->middleware('auth')->name('vols.add');
+Route::post('/admin/flights/update', [AdminController::class,'updateFlight'])->middleware('auth')->name('vols.update');
+Route::post('/admin/flights/delete', [AdminController::class,'deleteFlight'])->middleware('auth')->name('vols.delete');
+Route::get('/admin/reservations/all', [AdminController::class, 'showAllReservations'])->middleware('auth')->name('reservations.all');
+Route::get('/admin/flights/info', [AdminController::class,'showFlightInfo'])->middleware('auth')->name('vols.info');

@@ -7,11 +7,16 @@ use App\Models\Vol;
 use App\Models\Aeroport;
 use App\Models\Reservation;
 use App\Models\Passager;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->role !== 'Admin') {
+            echo "Acces refusé ! Espace réservé aux Administrateurs.";
+            return;
+        }
         $aeroports = Aeroport::all(); // récupère tous les aéroports
         $vols = Vol::all();
         
@@ -114,6 +119,10 @@ class AdminController extends Controller
 
     public function showAllReservations()
     {
+        if (Auth::user()->role !== 'Admin') {
+            echo "Acces refusé ! Espace réservé aux Administrateurs.";
+            return;
+        }
         // Récupère toutes les réservations avec leurs passagers liés
         $reservations = Reservation::all();
     
@@ -122,6 +131,11 @@ class AdminController extends Controller
 
     public function showFlightInfo(Request $request)
     {
+        if (Auth::user()->role !== 'Admin') {
+            echo "Acces refusé ! Espace réservé aux Administrateurs.";
+            return;
+        }
+
         $aeroports = Aeroport::all(); // récupère tous les aéroports
         $vols = Vol::all();
 
