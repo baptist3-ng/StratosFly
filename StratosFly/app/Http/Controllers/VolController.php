@@ -58,46 +58,4 @@ class VolController extends Controller
         
         return view('billets', ['vols'=> $vols, 'aeroports'=> $aeroports, 'billets'=>'billets']);
     }
-
-
-    // Partie Administration
-    public function ajout_vol(Request $request)
-    {
-        $request->validate([
-            'aeroport_depart_id'=>'required|exists:aeroports,id',
-            'aeroport_arrivee_id'=>'required|exists:aeroports,id|different:aeroport_depart_id',
-            'date_depart'=>'required|date',
-            'date_arrivee'=>'required|date|after:date_depart', //Logique pure
-            'nb_places'=>'required|integer|min:1',
-            'prix'=>'required|integer|min:10'
-        ]);
-
-        $created = Vol::create($request->all()); // assigne tous les attributs du form aux colonnes correspondantes
-        // Il faut mettre protected fillable et harmoniser les noms
-        // Il faut aussi un champ timestamp quand on créer la table
-
-        if ($created) {
-            return redirect()->route('admin.edit')->with('success', 'Le vol a été ajouté avec succès.');
-        } else {
-            return redirect()->route('admin.edit')->with('error', 'Erreur lors de l\'ajout  du vol.');
-        }
-
-    }
-
-    public function supprimer_vol(Request $request){
-        // Je vérifie si le vol existe
-        $request->validate(['id'=>'required|integer|exists:vols,id']); 
-
-        $id_vol = $request->input('id');
-        
-        $deleted = Vol::where('id','=', $id_vol)->delete();
-
-        // On verfie si il n'y a pas eu d'erreur(s) lors de la suppression
-        // Elle renvoie le nombre de vols supprimés
-        if ($deleted) {
-            return redirect()->route('admin.edit')->with('success', 'Le vol a été supprimé avec succès.');
-        } else {
-            return redirect()->route('admin.edit')->with('error', 'Erreur lors de la suppression du vol.');
-        }
-    }
 }

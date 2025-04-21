@@ -49,16 +49,6 @@ Route::get('/confirmation', [ReservationController::class, 'getConfirmation'])->
 // Partie Administration
 
 
-Route::get('/admin/edit', function (){
-    $aeroports = Aeroport::all();
-    $vols = Vol::all();
-
-    return view('admin.edit', ['aeroports'=> $aeroports, 'vols'=> $vols]);
-})->name('admin.edit'); // name sert d'allias
-
-Route::post('/admin/add', [VolController::class,'ajout_vol'])->name('vols.ajout');
-Route::post('/admin/delete', [VolController::class,'supprimer_vol'])->name('vols.supprime');
-
 // Route::get('/login', [LoginController::class, 'indexLogin']);
 
 // Route::get('/accountCreation', [LoginController::class, 'indexRegister']);

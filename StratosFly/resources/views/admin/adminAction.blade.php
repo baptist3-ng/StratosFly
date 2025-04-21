@@ -198,10 +198,53 @@
                                 <option value="{{ $vol->id }}">{{ $vol->aeroportDepart->ville . "->" . $vol->aeroportArrivee->ville . " ID : " . $vol->id}}</option>
                             @endforeach
                         </select>
-                        <div class="text-center">
+                        <div class="text-center my-4">
                             <button type="submit" class="btn btn-secondary">Afficher</button>
                         </div>
                     </form>
+                    @if (isset($vol_return))
+                    <div class="container-fluid">
+                        <div class="row justify-content-center mb-5">
+                            <div class="col-md-12 border border-1 bg-body-tertiary rounded-3">
+                                <div class="row mt-3 ms-1">
+                                    <div class="col-md-6 fs-1">
+                                        <p>{{ $vol_return->aeroportDepart->ville }} <i class="bi bi-arrow-right"></i> {{ $vol_return->aeroportArrivee->ville }}</p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-evenly mb-5">
+                                    <div class="col-md-5 card">
+                                        <div class="card-title fs-3 mt-3 mb-0"><i class="bi bi-airplane-fill me-2"></i>Aéroports</div>
+                                        <div class="card-body">
+                                            <p><strong><i class="bi bi-geo-alt me-1"></i>Départ : </strong>{{ $vol_return->aeroportDepart->nom }}</p>
+                                            <p><strong><i class="bi bi-geo-alt me-1"></i>Arrivée :</strong> {{ $vol_return->aeroportArrivee->nom }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 card my-3 my-md-0">
+                                        <div class="card-title mt-md-3 mb-md-0"><i class="bi bi-calendar3 me-2"></i> Dates</div>
+                                        <div class="card-body ">
+                                            <p>
+                                                <strong>Départ le </strong> {{ \Carbon\Carbon::parse($vol_return->date_depart)->format('d/m/Y') }} à 
+                                                {{ \Carbon\Carbon::parse($vol_return->date_depart)->format('H\hi') }}
+                                            </p>
+                                            <p>
+                                                <strong>Arrivée le  </strong> {{ \Carbon\Carbon::parse($vol_return->date_arrivee)->format('d/m/Y') }} à 
+                                                {{ \Carbon\Carbon::parse($vol_return->date_arrivee)->format('H\hi') }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 card">
+                                        <div class="card-title mt-3 mb-0"><i class="bi bi-currency-exchange me-2"></i> Prix </div>
+                                        <div class="card-body">
+                                            <p><strong>Prix du billet :</strong> {{$vol_return->prix}}€*</p>
+                                            <p><strong>Places disponibles :</strong> {{ $vol_return->nb_places }}.</p>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
 

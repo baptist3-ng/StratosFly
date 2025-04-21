@@ -118,16 +118,18 @@ class AdminController extends Controller
 
     public function showFlightInfo(Request $request)
     {
-        
+        $aeroports = Aeroport::all(); // récupère tous les aéroports
+        $vols = Vol::all();
+
         // Rechercher le vol par son ID
         $vol = Vol::find($request->input('id'));
 
         // Verifier si le vol existe
         if (!$vol) {
-            return redirect()->back()->with('error', 'Vol introuvable.');
+            return redirect()->back()->with('volNotFound', 'Vol introuvable.');
         }
 
         // Vol trouvé, afficher les informations
-        return redirect()->route('admin.adminAction')->with('vol', $vol);
+        return view('admin.adminAction',['vol_return'=>$vol, 'aeroports'=>$aeroports, 'vols'=>$vols]);
     }
 }

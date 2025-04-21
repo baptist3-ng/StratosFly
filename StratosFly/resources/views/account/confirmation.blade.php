@@ -70,7 +70,7 @@
                 <div class="row ms-2">
                     <p><strong>Liste des passagers</strong>:</p>
                     <ul class="ms-3">
-                        @foreach ($reservation->passager as $passager)
+                        @foreach ($reservation->passagers as $passager)
                         <li>{{ $passager->genre }}. {{ $passager->nom }}, {{ $passager->prenom }}</li>
                         @endforeach
                     </ul>
