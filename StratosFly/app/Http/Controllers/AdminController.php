@@ -43,7 +43,7 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Une erreur est survenue lors de la programmation du vol.');
         }
 
-        return redirect()->route('admin.adminAction')->with('success','Le vol a bien été programmé !');
+        return redirect()->route('admin.adminAction')->with('volCreated','Le vol a bien été programmé !');
     }
     public function updateFlight(Request $request)
     {
@@ -91,7 +91,7 @@ class AdminController extends Controller
 
         $vol->save();
 
-        return redirect()->route('admin.adminAction')->with('success', 'Vol modifié avec succès !');
+        return redirect()->route('admin.adminAction')->with('volModified', 'Vol modifié avec succès !');
     }
 
     public function deleteFlight(Request $request)
@@ -102,9 +102,13 @@ class AdminController extends Controller
             return redirect()->back()->with('volNotFound', 'Vol introuvable.');
         }
 
+        if ($vol->reservation()->count() > 0) {
+            return redirect()->back()->with('error', 'Impossible de supprimer : des réservations sont encore liées à ce vol.');
+        }
+        
         $vol->delete();
 
-        return redirect()->route('admin.adminAction')->with('success', 'Vol supprimé avec succès !');
+        return redirect()->route('admin.adminAction')->with('volDeleted', 'Vol supprimé avec succès !');
     }
 
 

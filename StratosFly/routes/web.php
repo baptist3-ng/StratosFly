@@ -48,14 +48,6 @@ Route::get('/confirmation', [ReservationController::class, 'getConfirmation'])->
 
 // Partie Administration
 
-
-// Route::get('/login', [LoginController::class, 'indexLogin']);
-
-// Route::get('/accountCreation', [LoginController::class, 'indexRegister']);
-
-// Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
-// Route::post('/accountCreation', [LoginController::class, 'register'])->name('register');
-
 Route::get('/adminAction', [AdminController::class, 'index'])->name('admin.adminAction');
 
 Route::post('/admin/flights/create', [AdminController::class,'registerFlight'])->name('vols.add');

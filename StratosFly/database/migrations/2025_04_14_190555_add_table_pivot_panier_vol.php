@@ -20,7 +20,7 @@ return new class extends Migration
         // Création de la table panier_vol car N:N
         Schema::create('panier_vol', function (Blueprint $table) {
             $table->foreignId('panier_id')->constrained('paniers');
-            $table->foreignId('vol_id')->constrained('vols'); 
+            $table->foreignId('vol_id')->constrained('vols')->onDelete('cascade'); 
             $table->primary(['panier_id', 'vol_id']);
             $table->timestamps();
         });

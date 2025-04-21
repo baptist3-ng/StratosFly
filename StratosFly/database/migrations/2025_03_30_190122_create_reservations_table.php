@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->string('email');
-            $table->foreignId('vol_id');
+            $table->foreignId('vol_id')->constrained('vols')->onDelete('cascade');
             $table->integer('nb_passagers');
             $table->integer('id_random')->nullable();
             $table->timestamps();

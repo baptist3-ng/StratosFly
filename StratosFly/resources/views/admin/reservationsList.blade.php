@@ -4,11 +4,19 @@
 
 @section('content')
 <div class="container-fluid">
-<a href="{{ route('admin.adminAction') }}" class="btn btn-secondary mb-3">Retour à l'administration</a>
-    <h2 class="mb-4">Liste des réservations</h2>
+    <div class="row justify-content-end mt-4">
+        <div class="col-md-3 text-center">
+            <a href="{{ route('admin.adminAction') }}" class="btn btn-secondary my-3 custom-color fs-5 px-4 py-3"><i class="bi bi-arrow-left-circle me-2"></i>Retour à l'administration</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="fs-2 fw-bold"><i class="bi bi-list-ul me-2"></i>Liste des réservations</p>
+        </div>
+    </div>
 
     @foreach($reservations as $reservation)
-        <div class="card mb-3">
+        <div class="card my-3">
             <div class="card-header">
                 Réservation #{{ $reservation->id }} — Vol ID : {{ $reservation->vol_id }} — Email : {{ $reservation->email }}
             </div>

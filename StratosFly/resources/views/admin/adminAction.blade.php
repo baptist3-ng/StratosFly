@@ -20,8 +20,19 @@
 
         {{-- Content --}}
         <div class="col-md-9 p-5">
+            @if (session('error'))
+            <div class="alert alert-danger text-center">
+                {{ session('error') }}
+            </div>
+            
+            @endif
             {{-- Programmer un vol --}}
             <div id="programmer" class="card mb-5 form-section">
+                @if (session('volCreated'))
+                <div class="alert alert-success text-center" role="alert">
+                    {{ session('volCreated') }}
+                </div>
+                @endif
                 <div class="card-header fw-bold fs-3"><i class="bi bi-plus-lg me-2"></i>Programmer un vol</div>
                 <div class="card-body">
                 <form action="{{ route('vols.add') }}" method="POST">
@@ -77,21 +88,11 @@
 
             {{-- Modifier un vol --}}
             <div id="modifier" class="card my-5 form-section">
-                @if (session('volNotFound'))
-                    <div class="alert alert-danger" role="alert">
-                        {{ session('volNotFound') }}
+                @if (session('volModified'))
+                    <div class="alert alert-success text-center" role="alert">
+                        {{ session('volModified') }}
                     </div>
                 @endif
-                @if (session('success'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                @error('id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
                 <div class="card-header fw-bold fs-3"><i class="bi bi-tools me-2"></i>Modifier un vol</div>
                 <div class="card-body">
                     <form action="{{ route('vols.update') }} " method="POST">
@@ -154,6 +155,11 @@
 
             {{-- Supprimer un vol --}}
             <div id="supprimer" class="card my-5 form-section">
+                @if (session('volDeleted'))
+                <div class="alert alert-success text-center">
+                    {{ session('volDeleted') }}
+                </div>
+                @endif
                 <div class="card-header fw-bold fs-3"><i class="bi bi-trash3-fill me-2"></i>Supprimer un vol</div>
                 <div class="card-body">
                     <form action="{{ route('vols.delete') }}" method="POST">
@@ -251,6 +257,24 @@
         </div>
     </div>
 </div>
+
+@if(session('volCreated'))
+    <script>
+        window.location.hash = "programmer";
+    </script>
+@elseif(session('volModified'))
+    <script>
+        window.location.hash = "modifier";
+    </script>
+@elseif(session('volDeleted'))
+    <script>
+        window.location.hash = "supprimer";
+    </script>
+@elseif(isset($vol_return))
+    <script>
+        window.location.hash = "info";
+    </script>
+@endif
 
 
 @endsection
