@@ -18,6 +18,10 @@ class LoginController extends Controller
         }
     }
 
+    public function getAccountCreation(){
+        return view('admin.accountCreation');
+    }
+
     public function authenticate(Request $request)
     {
         $request->validate([

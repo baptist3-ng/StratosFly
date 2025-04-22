@@ -17,7 +17,8 @@
             </div>
         </div>
         <div class="row">
-            <form action="" class="d-lg-flex justify-content-evenly">
+            <form action="{{ route('vols.filter') }}" method="POST" class="d-lg-flex justify-content-evenly">
+            @csrf    
                 <div class="col-lg-2 py-lg-4 py-2 col-12">
                     <select id="trajet" name="trajet" class="p-lg-3 form-select ">
                         <option value="aller-retour" selected>Aller-Retour</option>
@@ -26,21 +27,19 @@
                     </select>
                 </div>
                 <div class="col-lg-3 py-lg-4 py-2 col-12">
-                    <select id="depart" name="depart" class="p-lg-3 form-select text-truncate">
-                        <option value="default" disabled selected>Depart de </option>
-                        <option value="a-depart-1">Aéroport Francisco Sá Carneiro, Portugal.</option>
-                        <option value="a-depart-2">Aéroport international de Budapest Ferenc Liszt, Hongrie.</option>
-                        <option value="a-depart-3">Aéroport Roissy Charles de Gaulle, France.</option>
-                        <option value="a-depart-4">Aéroport international de Santiago du Chili, Chili.</option>  
+                    <select id="depart" name="lieu-depart" class="p-lg-3 form-select text-truncate">
+                        <option value="default" disabled selected>Départ de </option>
+                        @foreach ($aeroports as $aeroport)
+                        <option value="{{ $aeroport->id }}">{{ $aeroport->nom }}</option>
+                        @endforeach   
                     </select>
                 </div>
                 <div class="col-lg-3 py-lg-4 py-2 col-12">
-                    <select id="arrivee" name="arrivee" class="p-lg-3 form-select text-truncate">
-                        <option value="default" disabled selected>Depart de </option>
-                        <option value="a-arrivee-1">Aéroport Francisco Sá Carneiro, Portugal.</option>
-                        <option value="a-arrivee-2">Aéroport international de Budapest Ferenc Liszt, Hongrie.</option>
-                        <option value="a-arrivee-3">Aéroport Roissy Charles de Gaulle, France.</option>
-                        <option value="a-arrivee-4">Aéroport international de Santiago du Chili, Chili.</option>
+                    <select id="arrivee" name="lieu-arrivee" class="p-lg-3 form-select text-truncate">
+                        <option value="default" disabled selected>Arrivée à </option>
+                        @foreach ($aeroports as $aeroport)
+                        <option value="{{ $aeroport->id }}">{{ $aeroport->nom }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-lg-2 py-lg-4 py-2 col-12">

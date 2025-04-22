@@ -20,7 +20,7 @@ class AdminController extends Controller
         $aeroports = Aeroport::all(); // récupère tous les aéroports
         $vols = Vol::all();
         
-        return view('admin.adminAction',['aeroports' => $aeroports, 'vols'=>$vols]);
+        return view('admin.admin',['aeroports' => $aeroports, 'vols'=>$vols]);
     }
 
     public function registerFlight(Request $request)
@@ -48,7 +48,7 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Une erreur est survenue lors de la programmation du vol.');
         }
 
-        return redirect()->route('admin.adminAction')->with('volCreated','Le vol a bien été programmé !');
+        return redirect()->route('admin.admin')->with('volCreated','Le vol a bien été programmé !');
     }
     public function updateFlight(Request $request)
     {
@@ -96,7 +96,7 @@ class AdminController extends Controller
 
         $vol->save();
 
-        return redirect()->route('admin.adminAction')->with('volModified', 'Vol modifié avec succès !');
+        return redirect()->route('admin.admin')->with('volModified', 'Vol modifié avec succès !');
     }
 
     public function deleteFlight(Request $request)
@@ -113,7 +113,7 @@ class AdminController extends Controller
         
         $vol->delete();
 
-        return redirect()->route('admin.adminAction')->with('volDeleted', 'Vol supprimé avec succès !');
+        return redirect()->route('admin.admin')->with('volDeleted', 'Vol supprimé avec succès !');
     }
 
 
@@ -148,6 +148,6 @@ class AdminController extends Controller
         }
 
         // Vol trouvé, afficher les informations
-        return view('admin.adminAction',['vol_return'=>$vol, 'aeroports'=>$aeroports, 'vols'=>$vols]);
+        return view('admin.admin',['vol_return'=>$vol, 'aeroports'=>$aeroports, 'vols'=>$vols]);
     }
 }
