@@ -4,10 +4,10 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row text-center fs-5 rounded-4 align-items-center bg-light mt-md-4">
-        <div class="col-3">
-            <a href="/panier" class="text-reset text-decoration-none">Panier</a>
+<div class="container d-sm-block d-none">
+    <div class="row text-center fs-5 rounded-4 align-items-center mt-4 justify-content-center">
+        <div class="col-2">
+            Panier
         </div>
         <div class="col-1">
             >>>
@@ -18,7 +18,7 @@
         <div class="col-1">
             >>>
         </div>
-        <div class="col-3">
+        <div class="col-2">
             Confirmation
         </div>
     </div>
@@ -27,7 +27,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-5 ms-md-5 mt-md-4 fs-1">
+        <div class="col-md-5 ms-md-5 mt-4 fs-1 mb-3 mb-md-0">
             <i class="bi bi-people-fill me-2"></i></i>Passagers :
             <div class="d-none d-md-block divider-lg custom-color"></div>
         </div>
@@ -39,15 +39,13 @@
     @foreach ($panier->vols as $vol)
     @csrf
         <input type="hidden" name="vols_ids[]" value="{{ $vol->id }}"> <!-- récupérer les vols -->
-        <div class="row">
-            <div class="col fw-bold fs-4 mt-md-4">
+        <div class="row border bg-light mb-4 mt-4">
+            <div class="fw-bold fs-4 mt-md-4 mb-3">
                 Vol : {{ $vol->aeroportDepart->ville }} -> {{ $vol->aeroportArrivee->ville }}
             </div>
-        </div>
-        <div class="row border-bottom border-start border-end bg-light mb-4">
             <div class="col-md-6">
-                <div class="row mt-md-4 mb-md-2">
-                    <div class="col-11">
+                <div class="row mt-4 mb-md-2">
+                    <div class="col-12">
                         <div class="alert alert-info d-flex" role="alert">
                             <div class="col-md-1">
                                 <i class="bi bi-info-circle-fill me-2 fs-5"></i>
@@ -105,7 +103,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-md-4">
+            <div class="col-md-6 mb-4">
                 <div class="row">
                     <div class="col">
                         <p class="fs-5 fw-bold mt-3"><i class="bi bi-person-vcard-fill me-2"></i>Passager 3</p>
@@ -181,7 +179,7 @@
 
     <div class="row">
         <div class="offset-md-6 col-md-6 d-flex justify-content-end">
-            <button type="submit" class="btn btn-lg custom-color my-md-4 px-5 fs-4">Réserver<i class="bi bi-check2-all ms-3"></i></button>
+            <button type="submit" class="btn btn-lg custom-color my-4 px-5 fs-4">Réserver<i class="bi bi-check2-all ms-3"></i></button>
         </div>
     </div>
     </form>

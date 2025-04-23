@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vol extends Model
 {
-    // Les attributs qui vont êtres modifiés/créés
-    // On utilise mass assignement (voir doc)
     protected $fillable = [
         'aeroport_depart_id', 
         'aeroport_arrivee_id', 

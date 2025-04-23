@@ -15,9 +15,9 @@ class AeroportsSeeder extends Seeder
     {
         Aeroport::insert([
                 ['nom' => 'Aéroport Francisco Sá Carneiro, Portugal.', 'ville' => 'Porto', 'created_at' => now(),'updated_at' => now()],
-                ['nom' => 'Aéroport international de Budapest Ferenc Liszt, Hongrie.', 'ville' => 'Budapest' ,'created_at' => now(),'updated_at' => now()],
+                ['nom' => 'Aéroport Ferenc Liszt, Hongrie.', 'ville' => 'Budapest' ,'created_at' => now(),'updated_at' => now()],
                 ['nom' => 'Aéroport Roissy Charles de Gaulle, France.', 'ville' => 'Roissy', 'created_at'=> now(),'updated_at'=> now()],
-                ['nom' => 'Aéroport international de Santiago du Chili, Chili.', 'ville' => 'Santiago', 'created_at'=> now(),'updated_at'=> now()],
+                ['nom' => 'Aéroport Santiago do Chili, Chili.', 'ville' => 'Santiago', 'created_at'=> now(),'updated_at'=> now()],
             ]);
     }
 }

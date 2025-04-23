@@ -27,7 +27,7 @@ class AdminController extends Controller
     {
         $request->validate([
             'aeroport_depart_id' => 'required|exists:aeroports,id',
-            'aeroport_arrivee_id' => 'required|exists:aeroports,id',
+            'aeroport_arrivee_id' => 'required|exists:aeroports,id|different:aeroport_depart_id',
             'date_depart' => 'required|date',
             'date_arrivee' => 'required|date|after:date_depart',
             'nb_places' => 'required|integer|min:1',

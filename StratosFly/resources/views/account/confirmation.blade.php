@@ -5,10 +5,10 @@
 @section('content')
 
 
-<div class="container">
-    <div class="row text-center fs-5 rounded-4 align-items-center bg-light mt-md-4">
-        <div class="col-3">
-            <a href="/panier" class="text-reset text-decoration-none">Panier</a>
+<div class="container d-sm-block d-none">
+    <div class="row text-center fs-5 rounded-4 align-items-center mt-4 justify-content-center">
+        <div class="col-2">
+            Panier
         </div>
         <div class="col-1">
             >>>
@@ -19,7 +19,7 @@
         <div class="col-1">
             >>>
         </div>
-        <div class="col-4 custom-color py-3 rounded-4">
+        <div class="col-3 custom-color py-3 rounded-4">
             Confirmation
         </div>
     </div>
@@ -27,8 +27,15 @@
 
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-8 text-center mt-md-5 mb-md-4 fs-1">
-            <p class="text-primary">Merci d'avoir réserver avec StratosFly !</p>
+        <div class="col-md-9 text-center mt-5 mb-md-4 fs-1">
+            <p class="text-primary">Merci d'avoir réservé avec StratosFly !</p>
+        </div>
+    </div>
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-6">
+            <div class="alert alert-success text-center" role="alert">
+                Un mail de confirmation vous a été envoyé !
+            </div>
         </div>
     </div>
     <div class="row mt-2 mb-md-5">
