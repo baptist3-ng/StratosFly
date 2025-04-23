@@ -30,6 +30,9 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/accountCreation', [LoginController::class, 'register'])->name('register');
 Route::delete('/logout', [AccountController::class, 'logout'])->name('logout');
 
+Route::get('/informations', [AccountController::class, 'showInfos'])->name('user.infos')->middleware('auth');
+Route::get('/informations/edit', [AccountController::class, 'edit'])->name('user.edit')->middleware('auth');
+Route::post('/informations/update', [AccountController::class, 'update'])->name('user.update')->middleware('auth');
 
 // Panier
 Route::post('/panier', [ReservationController::class, 'ajoutPanier'])->name('ajout.panier');
