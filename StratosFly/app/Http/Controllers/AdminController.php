@@ -36,12 +36,13 @@ class AdminController extends Controller
 
         // Création du vol
         $vol = Vol::create([
-            'aeroport_depart_id' => $request->aeroport_depart_id,
-            'aeroport_arrivee_id' => $request->aeroport_arrivee_id,
-            'date_depart' => $request->date_depart,
-            'date_arrivee' => $request->date_arrivee,
-            'nb_places' => $request->nb_places,
-            'prix' => $request->prix,
+            'aeroport_depart_id' => $request->input('aeroport_depart_id'),
+            'aeroport_arrivee_id' => $request->input('aeroport_arrivee_id'),
+            'date_depart' => $request->input('date_depart'),
+            'date_arrivee' => $request->input('date_arrivee'),
+            'nb_places' => $request->input('nb_places'),
+            'places_totales' =>$request->input('nb_places'),
+            'prix' => $request->input('prix'),
         ]);
 
         if (!$vol) {
@@ -86,8 +87,13 @@ class AdminController extends Controller
             $vol->date_arrivee = $request->input('nouvelle_date_arrivee');
         }
 
+        // Places totales
         if ($request->filled('nouveau_nb_places')) {
-            $vol->nb_places = $request->input('nouveau_nb_places');
+            // Donc le nb de places dispos change
+            $vol->nb_places = $request->input('nouveau_nb_places') - $vol->places_totales + $vol->nb_places;
+            
+            // Changements nb places totales
+            $vol->places_totales = $request->input('nouveau_nb_places');
         }
 
         if ($request->filled('nouveau_prix')) {

@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <div class="row justify-content-end mt-4">
         <div class="col-md-3 text-center">
-            <a href="{{ route('admin.adminAction') }}" class="btn btn-secondary my-3 custom-color fs-5 px-4 py-3"><i class="bi bi-arrow-left-circle me-2"></i>Retour à l'administration</a>
+            <a href="{{ route('admin.admin') }}" class="btn btn-secondary my-3 custom-color fs-5 px-4 py-3"><i class="bi bi-arrow-left-circle me-2"></i>Retour à l'administration</a>
         </div>
     </div>
     <div class="row">
@@ -15,6 +15,13 @@
         </div>
     </div>
 
+    @if ($reservations->isEmpty())
+        <div class="row border border-3 border-danger rounded-4 bg-light py-5 mb-5">
+            <div class="col text-center">
+                <div class="text-danger fs-5">Aucunes réservations.</div>
+            </div>
+        </div>
+    @else
     @foreach($reservations as $reservation)
         <div class="card my-3">
             <div class="card-header">
@@ -31,5 +38,6 @@
             </div>
         </div>
     @endforeach
+    @endif
 </div>
 @endsection

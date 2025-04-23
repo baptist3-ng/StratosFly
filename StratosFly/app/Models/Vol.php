@@ -14,6 +14,7 @@ class Vol extends Model
         'date_depart', 
         'date_arrivee', 
         'nb_places', 
+        'places_totales',
         'prix'
     ];
 

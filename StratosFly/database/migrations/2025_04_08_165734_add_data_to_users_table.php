@@ -18,18 +18,6 @@ return new class extends Migration
             //$table->foreignId('passager_id')->constrained('passagers');
             $table->string('genre');
         });
-
-        // Ajouter un admin par défaut
-        DB::table('users')->insert([
-            'name' => 'admin',
-            'prenom'=>'admin',
-            'genre'=>'M',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('admin123'),
-            'role' => 'Admin',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
     }
 
     /**

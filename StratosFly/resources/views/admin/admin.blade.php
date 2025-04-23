@@ -248,6 +248,7 @@
                                     <div class="col-md-3 card">
                                         <div class="card-title mt-3 mb-0"><i class="bi bi-currency-exchange me-2"></i> Prix </div>
                                         <div class="card-body">
+                                            <p><strong>Passagers pour ce vol:</strong> {{ $vol_return->places_totales - $vol_return->nb_places }}.</p>
                                             <p><strong>Prix du billet :</strong> {{$vol_return->prix}}€*</p>
                                             <p><strong>Places disponibles :</strong> {{ $vol_return->nb_places }}.</p>
                                         </div>
