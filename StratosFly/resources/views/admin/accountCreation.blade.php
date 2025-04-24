@@ -21,7 +21,7 @@
             width: 100%;
             box-shadow: 0 0 18px rgba(0,0,0,0.25);
         ">
-            <h3 style="text-align: center; margin-bottom: 1.5rem;">Création de compte</h3>
+            <h3 style="text-align: center; margin-bottom: 1.5rem;"><i class="bi bi-plus-lg me-2"></i>Création de compte</h3>
             @if (session('error'))
                 <div class="alert alert-danger">
                     {{ session('error') }}
@@ -36,23 +36,23 @@
             <form action="/accountCreation" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nom</label>
+                    <label for="name" class="form-label"><i class="bi bi-person-vcard-fill me-2"></i>Nom</label>
                     <input type="text" class="form-control" id="name" placeholder="Entrez votre nom" name="name" required>
                 </div>
                 <div class="mb-3">
-                    <label for="prenom" class="form-label">Prénom</label>
+                    <label for="prenom" class="form-label"><i class="bi bi-person-vcard me-2"></i>Prénom</label>
                     <input type="text" class="form-control" id="prenom" placeholder="Entrez votre prénom" name="prenom" required>
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label"><i class="bi bi-envelope-fill me-2"></i>Email</label>
                     <input type="email" class="form-control" id="email" placeholder="Entrez votre email" name="email" required>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Mot de passe</label>
+                    <label for="password" class="form-label"><i class="bi bi-key-fill me-2"></i>Mot de passe</label>
                     <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" required>
                 </div>
                 <div class="mb-3">
-                    <label for="genre" class="form-label">Genre</label>
+                    <label for="genre" class="form-label"><i class="bi bi-gender-trans me-2"></i>Genre</label>
                     <select class="form-control" id="genre" name="genre" required>
                         <option value="">Choisir...</option>
                         <option value="M">Homme</option>

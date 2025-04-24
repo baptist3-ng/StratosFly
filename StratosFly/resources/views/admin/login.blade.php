@@ -21,7 +21,7 @@
             width: 100%;
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
         ">
-            <h3 style="text-align: center; margin-bottom: 1.5rem;">Connexion</h3>
+            <h3 style="text-align: center; margin-bottom: 1.5rem;"><i class="bi bi-person-fill me-2"></i>Connexion</h3>
             
             
             @if (session('loginRequired'))
@@ -42,11 +42,11 @@
             <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label"><i class="bi bi-envelope-fill me-2"></i>Email</label>
                     <input type="email" class="form-control" id="email" placeholder="Entrez votre email" name="email" required>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Mot de passe</label>
+                    <label for="password" class="form-label"><i class="bi bi-key-fill me-2"></i>Mot de passe</label>
                     <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Se connecter</button>
