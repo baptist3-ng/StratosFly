@@ -27,7 +27,7 @@ class AccountController extends Controller
     public function edit()
     {
         $user = Auth::user();
-        return view('account.edit_informations', compact('user'));
+        return view('account.edit_informations', ['user' => $user]);
     }
     public function update(Request $request)
     {
@@ -35,21 +35,21 @@ class AccountController extends Controller
             'name' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . auth()->id(),
-            'genre' => 'required|string|in:Homme,Femme,Autre',
+            'genre' => 'required|string',
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
         $user = Auth::user();
 
         $user->update([
-            'name' => $request->name,
-            'prenom' => $request->prenom,
-            'email' => $request->email,
-            'genre' => $request->genre,
+            'name' => $request->input('name'),
+            'prenom' => $request->input('prenom'),
+            'email' => $request->input('email'),
+            'genre' => $request->input('genre'),
         ]);
 
         if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
+            $user->password = Hash::make($request->input('password'));
         }
 
         $user->save();

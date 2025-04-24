@@ -34,6 +34,7 @@ Route::get('/informations', [AccountController::class, 'showInfos'])->name('user
 Route::get('/informations/edit', [AccountController::class, 'edit'])->name('user.edit')->middleware('auth');
 Route::post('/informations/update', [AccountController::class, 'update'])->name('user.update')->middleware('auth');
 
+
 // Panier
 Route::post('/panier', [ReservationController::class, 'ajoutPanier'])->name('ajout.panier');
 Route::post('/delete', [ReservationController::class, 'supprimerPanier'])->middleware('auth')->name('delete');

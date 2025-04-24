@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('content')
-<div class="container mt-5">
+<div class="container my-5">
     <div class="card shadow-sm p-4">
         <h2 class="mb-4">Modifier mes informations</h2>
 
@@ -36,9 +36,9 @@
             <div class="mb-3">
                 <label for="genre" class="form-label">Genre</label>
                 <select name="genre" class="form-control" required>
-                    <option value="Homme" {{ $user->genre == 'Homme' ? 'selected' : '' }}>Homme</option>
-                    <option value="Femme" {{ $user->genre == 'Femme' ? 'selected' : '' }}>Femme</option>
-                    <option value="Autre" {{ $user->genre == 'Autre' ? 'selected' : '' }}>Autre</option>
+                    <option value="M" {{ $user->genre == 'M' ? 'selected' : '' }}>Homme</option>
+                    <option value="MME" {{ $user->genre == 'MME' ? 'selected' : '' }}>Femme</option>
+                    <option value="NP" {{ $user->genre == 'NP' ? 'selected' : '' }}>Autre</option>
                 </select>
             </div>
 

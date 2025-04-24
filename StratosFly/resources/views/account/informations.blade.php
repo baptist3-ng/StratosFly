@@ -8,7 +8,7 @@
         {{ session('success') }}
     </div>
 @endif
-<div class="container mt-5">
+<div class="container my-5">
     <div class="card shadow-sm p-4">
         <h2 class="mb-4"><i class="bi bi-info-circle"> Mes Informations</i></h2>
 
