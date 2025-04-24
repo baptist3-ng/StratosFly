@@ -4,162 +4,196 @@
 
 @section('content')
 
-
-<div class="container d-sm-block d-none">
-    <div class="row text-center fs-5 rounded-4 align-items-center bg-light mt-4">
-        <div class="col-3 custom-color py-3 rounded-4">
-            Panier
-        </div>
-        <div class="col-1">
-            >>>
-        </div>
-        <div class="col-3">
-            Voyageurs
-        </div>
-        <div class="col-1">
-            >>>
-        </div>
-        <div class="col-3">
-            Confirmation
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<div class="container-fluid my-5">
-@if (session('failAdd'))
-    <div class="container">
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-4">
-                <div class="alert alert-warning text-center" role="alert">
-                    {{ session('failAdd') }}
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
-@if (session('successAdd'))
-    <div class="container">
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-4">
-                <div class="alert alert-success text-center" role="alert">
-                    {{ session('successAdd') }}
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
-@if (session('successDel'))
-    <div class="container">
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-4">
-                <div class="alert alert-warning text-center" role="alert">
-                    {{ session('successDel') }}
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-5 ms-md-5 mb-4">
-            <p class="fs-1 fw-semibold"><i class="bi bi-basket2-fill"></i> Votre panier : </p>
-            <div class="divider-lg custom-color"></div>
+        <div class="col-lg-8 bg-light">
+            <div class="row justify-content-evenly">
+                {{-- Partie Panier gauche --}}
+                <div class="col-11 col-lg-9">
+                    <div class="row shadow-lg align-items-center rounded-3 my-4 mx-4 mx-md-0">
+                        <div class="col-2 col-sm-1 bg-dark text-center py-3 rounded-start px-2">
+                            <i class="bi bi-info-circle text-light fs-3"></i>
+                        </div>
+                        <div class="col-10 col-sm-11">
+                            <small>N'oubliez pas de personaliser vos cadeaux ! Découvrez ci-dessous nos options</small>
+                        </div>
+                    </div>
+                    <div class="row d-block d-lg-none">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary w-100 rounded-4 custom-color py-2"><small>Continuer la réservation</small></button>
+                        </div>
+                        <div class="col-12 text-center mt-3">
+                            <small><a style="text-underline-offset: 0.3em;" class="text-dark" href="#">Continuer mes achats</a></small>
+                        </div>
+                    </div>
+                    <div class="row my-lg-5 my-4 align-items-end">
+                        <div class="col-6 fw-semibold fs-5">
+                            Mon Panier <sup class="fw-normal">({{ $panier->vols->count() }})</sup>
+                        </div>
+                        <div class="col-6 text-end d-none d-lg-block">
+                            <small><a style="text-underline-offset: 0.3em;" class="text-dark" href="/billets">Continuer mes achats</a></small>
+                        </div>
+                    </div>
+                    {{-- Foreach --}}@foreach($panier->vols as $vol)
+                    <div class="row mb-5">
+                        <div class="col">
+                            <div class="card border-0">
+                                <div class="card-title py-2 mx-3 border-bottom">
+                                {{ $vol->aeroportDepart->ville }} <i class="bi bi-arrow-left-right mx-2"></i> {{ $vol->aeroportArrivee->ville }}
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="fw-bold fs-5">Itinéraire</p>
+                                            <p class="text-truncate"><i class="bi bi-arrow-up-right mx-2"></i><small>{{ $vol->aeroportDepart->nom }}</small></p>
+                                            <p class="text-truncate"><i class="bi bi-arrow-down-right mx-2"></i><small>{{ $vol->aeroportArrivee->nom }}</small></p>
+                                            <div class="row">
+                                                <div class="col">
+                                                <p class="fw-bold fs-5">Dates</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p><i class="bi bi-calendar3 mx-2"></i>: <small>{{ \Carbon\Carbon::parse($vol->date_depart)->format('d/m/Y') }}</small> <i class="bi bi-clock ms-3 me-1"></i>: <small>{{ \Carbon\Carbon::parse($vol->date_depart)->format('H\hi') }}</small></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p><i class="bi bi-calendar3 mx-2"></i>: <small>{{ \Carbon\Carbon::parse($vol->date_arrivee)->format('d/m/Y') }}</small> <i class="bi bi-clock ms-3 me-1"></i>: <small>{{ \Carbon\Carbon::parse($vol->date_arrivee)->format('H\hi') }}</small></p>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p class="fw-bold fs-5">Billeterie</p>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <p><i class="bi bi-currency-exchange me-2"></i>{{$vol->prix}}€ </p>
+                                                        </div>
+                                                        <div class="col-8 text-end">
+                                                            <small>(Tarif par personne)</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <p class="d-block d-sm-block d-lg-none d-xl-block"><i class="bi bi-ticket-fill me-2"></i>Places disponibles</p>
+                                                            <p class="d-none d-lg-block d-xl-none"><i class="bi bi-ticket-fill me-2"></i>Places disp.</p>
+                                                        </div>
+                                                        <div class="col-3 text-end">
+                                                            {{ $vol->nb_places }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row g-1 mt-sm-5">
+                                                        <div class="col-6 mt-sm-4 mt-3">
+                                                            <button type="submit" class="btn border w-100 rounded-0 custom-color"><i class="bi bi-heart me-2"></i>Favoris</button>
+                                                        </div>
+                                                        <div class="col-6 mt-sm-4 mt-3">
+                                                            <form action="{{ route('delete') }}" method="POST">
+                                                            @csrf
+                                                                <input type="hidden" name="panier_vol_id" value="{{ $vol->id }}">
+                                                                <button type="submit" class="btn border w-100 rounded-0 border-danger text-danger"><i class="bi bi-x-circle me-2"></i>Retirer</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- FIN Foreach --}}@endforeach
+                </div>
+                {{-- FIN Partie Panier gauche --}}
+            </div>
         </div>
-        @if($panier->vols->isEmpty())
-        <div class="col-md-6 d-flex justify-content-end align-items-center mb-4">
-            <a href="/billets" class="btn btn-lg custom-color border py-3 px-4 d-inline-flex align-items-center" role="button">
-                <i class="bi bi-plus-circle me-2"></i>Ajouter un vol
-            </a>
-            <a href="/reservation" class="disabled btn  btn-lg py-3 px-4 d-inline-flex align-items-center" role="button">
-                <span class="fw-bold">Continuer</span><i class="bi bi-arrow-right-circle ms-2"></i>
-            </a>
+        <div class="col-lg-4 mb-5">
+            <div class="row justify-content-evenly">
+                <div class="col-11 col-lg-9">
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <small>Sous-total</small>
+                        </div>
+                        <div class="col-6 text-end">
+                            <small>{{ $total }},00€</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <small>Baggages</small>
+                        </div>
+                        <div class="col-6 text-end">
+                            <small>0,00€</small>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <h6>Total</h6>
+                        </div>
+                        <div class="col-6 text-end">
+                            <h6>{{ $total }},00€</h6>
+                        </div>
+                    </div>
+                    <div class="row mt-3 border-bottom pb-4">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary w-100 rounded-4 custom-color py-2"><small>Continuer la réservation</small></button>
+                        </div>
+                    </div>
+                    <div class="row mt-4 justify-content-between align-items-center">
+                        <div class="col-1">
+                            <i class="bi bi-credit-card fs-4"></i>
+                        </div>
+                        <div class="col-10 ps-4">
+                            <h6>Paiement sécurisé</h6>
+                            <small>Carte de crédit, Paypal et BTC.</small>
+                        </div>
+                        <div class="col-1 d-sm-block d-lg-none d-xl-block">
+                            <i class="bi bi-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="row mt-4 justify-content-between align-items-center">
+                        <div class="col-1">
+                            <i class="bi bi-puzzle fs-4"></i>
+                        </div>
+                        <div class="col-10 ps-4">
+                            <h6>Réservation Flexible</h6>
+                            <small>Modifiez ou annulez votre vol sans frais jusqu'à 24 heures.</small>
+                        </div>
+                        <div class="col-1 d-sm-block d-lg-none d-xl-block">
+                            <i class="bi bi-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="row mt-4 justify-content-between align-items-center">
+                        <div class="col-1">
+                            <i class="bi bi-at fs-4"></i>
+                        </div>
+                        <div class="col-10 ps-4">
+                            <h6>Enregistrement en ligne</h6>
+                            <small>Enregistrez-vous en ligne jusqu'à 24 heures avant le départ.</small>
+                        </div>
+                        <div class="col-1 d-sm-block d-lg-none d-xl-block">
+                            <i class="bi bi-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="row mt-4 justify-content-between align-items-center">
+                        <div class="col-1 ">
+                            <i class="bi bi-headset fs-4"></i>
+                        </div>
+                        <div class="col-10 ps-4">
+                            <h6>Service client</h6>
+                            <small>Notre équipe est à votre disposition pour vous 24/7.</small>
+                        </div>
+                        <div class="col-1 d-sm-block d-lg-none d-xl-block">
+                            <i class="bi bi-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        @else
-        <div class="col-md-6 d-flex justify-content-end align-items-center mb-4">
-            <a href="/billets" class=" me-4 btn btn-lg  border py-3 px-4 d-inline-flex align-items-center" role="button">
-                <i class="bi bi-plus-circle me-2"></i>Ajouter un vol
-            </a>
-            <a href="/reservation" class="btn custom-color btn-lg py-3 px-4 d-inline-flex align-items-center" role="button">
-                <span class="fw-bold">Continuer</span><i class="bi bi-arrow-right-circle ms-2"></i>
-            </a>
-        </div>
-        @endif
     </div>
-    
-
-        @if($panier->vols->isEmpty())
-            <div class="container pb-md-5">
-                <div class="row justify-content-center mt-md-4 pb-md-5">
-                    <div class="col-md-10 alert alert-warning text-center mt-4">
-                        <span class="fs-3"><i class="bi bi-bag-x me-md-4"></i> Votre panier est vide !</span>
-                    </div>
-                </div>
-            </div>
-
-        @else
-        <!-- Pour chaque vol du panier  -->
-        @foreach ($panier->vols as $vol)
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-10 border border-1 bg-body-tertiary rounded-3">
-                <div class="row mt-3 ms-1">
-                    <div class="col-md-6 fs-1">
-                        <p>{{ $vol->aeroportDepart->ville }} <i class="bi bi-arrow-right"></i> {{ $vol->aeroportArrivee->ville }}</p>
-                    </div>
-                    <div class="col-md-6 d-flex justify-content-end">
-                        <form action="{{ route('delete') }}" method="POST">
-                        @csrf
-                            <input type="hidden" name="panier_vol_id" value="{{ $vol->id }}">
-                            <button type="submit" class="btn btn-danger border border-1 px-2 mt-md-3 me-md-4" aria-label="Supprimer le vol">
-                                <i class="bi bi-x-lg me-2"></i>Supprimer
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <div class="row ms-1 mb-2">
-                    <div class="col-md-6 fs-2">
-                        <p><i class="bi bi-info-circle"></i> Informations</p>
-                    </div>
-                </div>
-                <div class="row justify-content-evenly mb-5">
-                    <div class="col-lg-5 card mb-4 mb-lg-0 col-9">
-                        <div class="card-title fs-3 mt-3 mb-0"><i class="bi bi-airplane-fill me-2"></i>Aéroports</div>
-                        <div class="card-body">
-                            <p><strong><i class="bi bi-geo-alt me-1"></i>Départ : </strong>{{ $vol->aeroportDepart->nom }}</p>
-                            <p><strong><i class="bi bi-geo-alt me-1"></i>Arrivée :</strong> {{ $vol->aeroportArrivee->nom }}</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 card mb-4 mb-lg-0 col-9">
-                        <div class="card-title mt-3 mb-md-0"><i class="bi bi-calendar3 me-2"></i> Dates</div>
-                        <div class="card-body ">
-                            <p>
-                                <strong>Départ le </strong> {{ \Carbon\Carbon::parse($vol->date_depart)->format('d/m/Y') }} à 
-                                {{ \Carbon\Carbon::parse($vol->date_depart)->format('H\hi') }}
-                            </p>
-                            <p>
-                                <strong>Arrivée le  </strong> {{ \Carbon\Carbon::parse($vol->date_arrivee)->format('d/m/Y') }} à 
-                                {{ \Carbon\Carbon::parse($vol->date_arrivee)->format('H\hi') }}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 card mb-4 mb-lg-0 col-9">
-                        <div class="card-title mt-3 mb-0"><i class="bi bi-currency-exchange me-2"></i> Prix </div>
-                        <div class="card-body">
-                            <p><strong>Prix du billet :</strong> {{$vol->prix}}€*</p>
-                            <p><strong>Places disponibles :</strong> {{ $vol->nb_places }}.</p>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        @endforeach
-
-    @endif
-
-
 </div>
 
 

@@ -14,7 +14,13 @@ class ReservationController extends Controller
 {
     public function index(){
         $panier = Auth::user()->panier;
-        return view('account.panier',['panier'=>$panier]);
+        $total = 0;
+
+        // Prix total du panier
+        foreach($panier->vols as $vol){
+            $total += $vol->prix;
+        }
+        return view('account.panier',['panier'=>$panier, 'total'=>$total]);
     }
 
     // Fonction pour afficher dans Voyageurs
