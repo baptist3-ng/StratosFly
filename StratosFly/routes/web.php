@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VolController;
 use App\Http\Controllers\LoginController;
@@ -7,27 +8,23 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AdminController;
 
-Route::get('/', function () {
-    return view('home');
-});
+// Accueil
+Route::get('/', [HomeController::class, 'index']);
 
-
+// Partie vols
 Route::get('/billets', [VolController::class, 'liste_vols'])->name('getBillets');
 Route::post('/billets', [VolController::class, 'liste_filtree'])->name('vols.filter');
 
 
 // Partie Utilisateur
-
 Route::get('/account', [AccountController::class, 'index'])->middleware('auth')->name('account.home');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
-
-Route::get('/accountCreation', function () {
-    return view('admin.accountCreation');
-});
-
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+
+Route::get('/accountCreation', [LoginController::class, 'getAccountCreation']);
 Route::post('/accountCreation', [LoginController::class, 'register'])->name('register');
+
 Route::delete('/logout', [AccountController::class, 'logout'])->name('logout');
 
 Route::get('/informations', [AccountController::class, 'showInfos'])->name('user.infos')->middleware('auth');
@@ -50,7 +47,7 @@ Route::get('/confirmation', [ReservationController::class, 'getConfirmation'])->
 
 // Partie Administration
 
-Route::get('/adminAction', [AdminController::class, 'index'])->middleware('auth')->name('admin.adminAction');
+Route::get('/admin', [AdminController::class, 'index'])->middleware('auth')->name('admin.admin');
 
 Route::post('/admin/flights/create', [AdminController::class,'registerFlight'])->middleware('auth')->name('vols.add');
 Route::post('/admin/flights/update', [AdminController::class,'updateFlight'])->middleware('auth')->name('vols.update');

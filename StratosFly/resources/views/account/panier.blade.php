@@ -5,8 +5,8 @@
 @section('content')
 
 
-<div class="container">
-    <div class="row text-center fs-5 rounded-4 align-items-center bg-light mt-md-4">
+<div class="container d-sm-block d-none">
+    <div class="row text-center fs-5 rounded-4 align-items-center bg-light mt-4">
         <div class="col-3 custom-color py-3 rounded-4">
             Panier
         </div>
@@ -66,11 +66,11 @@
     <div class="row">
         <div class="col-md-5 ms-md-5 mb-4">
             <p class="fs-1 fw-semibold"><i class="bi bi-basket2-fill"></i> Votre panier : </p>
-            <div class="d-none d-md-block divider-lg custom-color"></div>
+            <div class="divider-lg custom-color"></div>
         </div>
         @if($panier->vols->isEmpty())
         <div class="col-md-6 d-flex justify-content-end align-items-center mb-4">
-            <a href="/billets" class=" me-4 btn btn-lg custom-color  border py-3 px-4 d-inline-flex align-items-center" role="button">
+            <a href="/billets" class="btn btn-lg custom-color border py-3 px-4 d-inline-flex align-items-center" role="button">
                 <i class="bi bi-plus-circle me-2"></i>Ajouter un vol
             </a>
             <a href="/reservation" class="disabled btn  btn-lg py-3 px-4 d-inline-flex align-items-center" role="button">
@@ -124,15 +124,15 @@
                     </div>
                 </div>
                 <div class="row justify-content-evenly mb-5">
-                    <div class="col-md-5 card">
+                    <div class="col-lg-5 card mb-4 mb-lg-0 col-9">
                         <div class="card-title fs-3 mt-3 mb-0"><i class="bi bi-airplane-fill me-2"></i>Aéroports</div>
                         <div class="card-body">
                             <p><strong><i class="bi bi-geo-alt me-1"></i>Départ : </strong>{{ $vol->aeroportDepart->nom }}</p>
                             <p><strong><i class="bi bi-geo-alt me-1"></i>Arrivée :</strong> {{ $vol->aeroportArrivee->nom }}</p>
                         </div>
                     </div>
-                    <div class="col-md-3 card my-3 my-md-0">
-                        <div class="card-title mt-md-3 mb-md-0"><i class="bi bi-calendar3 me-2"></i> Dates</div>
+                    <div class="col-lg-3 card mb-4 mb-lg-0 col-9">
+                        <div class="card-title mt-3 mb-md-0"><i class="bi bi-calendar3 me-2"></i> Dates</div>
                         <div class="card-body ">
                             <p>
                                 <strong>Départ le </strong> {{ \Carbon\Carbon::parse($vol->date_depart)->format('d/m/Y') }} à 
@@ -144,7 +144,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-3 card">
+                    <div class="col-lg-3 card mb-4 mb-lg-0 col-9">
                         <div class="card-title mt-3 mb-0"><i class="bi bi-currency-exchange me-2"></i> Prix </div>
                         <div class="card-body">
                             <p><strong>Prix du billet :</strong> {{$vol->prix}}€*</p>

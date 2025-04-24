@@ -20,14 +20,14 @@ class AdminController extends Controller
         $aeroports = Aeroport::all(); // récupère tous les aéroports
         $vols = Vol::all();
         
-        return view('admin.adminAction',['aeroports' => $aeroports, 'vols'=>$vols]);
+        return view('admin.admin',['aeroports' => $aeroports, 'vols'=>$vols]);
     }
 
     public function registerFlight(Request $request)
     {
         $request->validate([
             'aeroport_depart_id' => 'required|exists:aeroports,id',
-            'aeroport_arrivee_id' => 'required|exists:aeroports,id',
+            'aeroport_arrivee_id' => 'required|exists:aeroports,id|different:aeroport_depart_id',
             'date_depart' => 'required|date',
             'date_arrivee' => 'required|date|after:date_depart',
             'nb_places' => 'required|integer|min:1',
@@ -36,19 +36,20 @@ class AdminController extends Controller
 
         // Création du vol
         $vol = Vol::create([
-            'aeroport_depart_id' => $request->aeroport_depart_id,
-            'aeroport_arrivee_id' => $request->aeroport_arrivee_id,
-            'date_depart' => $request->date_depart,
-            'date_arrivee' => $request->date_arrivee,
-            'nb_places' => $request->nb_places,
-            'prix' => $request->prix,
+            'aeroport_depart_id' => $request->input('aeroport_depart_id'),
+            'aeroport_arrivee_id' => $request->input('aeroport_arrivee_id'),
+            'date_depart' => $request->input('date_depart'),
+            'date_arrivee' => $request->input('date_arrivee'),
+            'nb_places' => $request->input('nb_places'),
+            'places_totales' =>$request->input('nb_places'),
+            'prix' => $request->input('prix'),
         ]);
 
         if (!$vol) {
             return redirect()->back()->with('error', 'Une erreur est survenue lors de la programmation du vol.');
         }
 
-        return redirect()->route('admin.adminAction')->with('volCreated','Le vol a bien été programmé !');
+        return redirect()->route('admin.admin')->with('volCreated','Le vol a bien été programmé !');
     }
     public function updateFlight(Request $request)
     {
@@ -86,8 +87,13 @@ class AdminController extends Controller
             $vol->date_arrivee = $request->input('nouvelle_date_arrivee');
         }
 
+        // Places totales
         if ($request->filled('nouveau_nb_places')) {
-            $vol->nb_places = $request->input('nouveau_nb_places');
+            // Donc le nb de places dispos change
+            $vol->nb_places = $request->input('nouveau_nb_places') - $vol->places_totales + $vol->nb_places;
+            
+            // Changements nb places totales
+            $vol->places_totales = $request->input('nouveau_nb_places');
         }
 
         if ($request->filled('nouveau_prix')) {
@@ -96,7 +102,7 @@ class AdminController extends Controller
 
         $vol->save();
 
-        return redirect()->route('admin.adminAction')->with('volModified', 'Vol modifié avec succès !');
+        return redirect()->route('admin.admin')->with('volModified', 'Vol modifié avec succès !');
     }
 
     public function deleteFlight(Request $request)
@@ -113,7 +119,7 @@ class AdminController extends Controller
         
         $vol->delete();
 
-        return redirect()->route('admin.adminAction')->with('volDeleted', 'Vol supprimé avec succès !');
+        return redirect()->route('admin.admin')->with('volDeleted', 'Vol supprimé avec succès !');
     }
 
 
@@ -148,6 +154,6 @@ class AdminController extends Controller
         }
 
         // Vol trouvé, afficher les informations
-        return view('admin.adminAction',['vol_return'=>$vol, 'aeroports'=>$aeroports, 'vols'=>$vols]);
+        return view('admin.admin',['vol_return'=>$vol, 'aeroports'=>$aeroports, 'vols'=>$vols]);
     }
 }

@@ -122,14 +122,16 @@
     @else
         @foreach ($vols as $vol)
             <div class="card mb-3 shadow-sm">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-md-1 text-center">
-                            <p class="mb-0"><strong>{{ $vol->aeroportDepart->ville }}</strong></p>
-                            <i class="bi bi-arrow-left-right"></i>
-                            <p class="mb-0"><strong>{{ $vol->aeroportArrivee->ville }}</strong></p>
+                <div class="card-title">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class=" ms-4 mt-3 mb-0"><strong>{{ $vol->aeroportDepart->ville }}</strong><i class="bi bi-arrow-left-right mx-4"></i><strong>{{ $vol->aeroportArrivee->ville }}</strong></p>
                         </div>
-                        <div class="col-md-4">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row align-items-top justify-content-evenly">
+                        <div class="col-md-4 ">
                             <p class="mb-0"><strong>{{ $vol->aeroportDepart->nom }}</strong></p>
                             <p class="mb-0 text-muted">Départ le
                             <b>{{ \Carbon\Carbon::parse($vol->date_depart)->format('d/m/Y') }}</b>
@@ -137,28 +139,31 @@
                                     {{ \Carbon\Carbon::parse($vol->date_depart)->format('H\hi') }}
                             </p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-3 mt-md-0">
                             <p class="mb-0"><strong>{{ $vol->aeroportArrivee->nom }}</strong></p>
                             <p class="mb-0 text-muted">Arrivée le 
                                     <b>{{ \Carbon\Carbon::parse($vol->date_arrivee)->format('d/m/Y') }}</b>
                              <br>à 
                                     {{ \Carbon\Carbon::parse($vol->date_arrivee)->format('H\hi') }}</p>
                         </div>
-                        <div class="col-md-3">
-                            <div class="d-flex justify-content-between align-items-center">
+                        <div class="row d-lg-none border-top mt-4">
+
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="d-flex justify-content-between align-items-center fs-5">
                                 @if ($vol->nb_places == 0)
-                                    <p class="mb-0 text-danger fw-bold">Complet</p>
+                                    <p class="mb-0 mt-4 mt-lg-0 text-danger fw-bold">Complet</p>
                                 @else
-                                    <p class="mb-0 text-success fw-bold">{{ $vol->nb_places }} places</p>
+                                    <p class="mb-0 mt-4 mt-lg-0 text-success fw-bold">{{ $vol->nb_places }} places</p>
                                 @endif
-                                <p class="mb-0 fw-bold">{{ $vol->prix }} €*</p>
+                                <p class="mb-0 mt-4 mt-lg-0 fw-bold">{{ $vol->prix }} €*</p>
                                 @if ($vol->nb_places == 0)
-                                    <input type="submit" class="btn btn-md" disabled value="RESERVER">
+                                    <input type="submit" class="mt-4 mt-lg-0 btn btn-md" disabled value="RESERVER">
                                 @else
                                     <form action="{{ route("ajout.panier") }}" method="POST">
                                     @csrf
                                         <input type="hidden" name="vol_id" value="{{ $vol->id }}">
-                                        <input type="submit" class="btn custom-color btn-md" value="RESERVER">
+                                        <input type="submit" class="mt-4 mt-lg-0 btn custom-color btn-md" value="RESERVER">
                                     </form>
                                 @endif
                             </div>
@@ -170,6 +175,7 @@
     @endif
 
     </div>
+
 </section>
 
 

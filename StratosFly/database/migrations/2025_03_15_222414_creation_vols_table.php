@@ -20,7 +20,9 @@ return new class extends Migration
             $table->dateTime("date_depart");
             $table->dateTime("date_arrivee");
             $table->integer("nb_places");
+            $table->integer('places_totales');
             $table->integer("prix");
+            $table->timestamps();
         });
     }
 
