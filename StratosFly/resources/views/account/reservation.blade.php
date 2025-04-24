@@ -7,7 +7,7 @@
 <div class="container d-sm-block d-none">
     <div class="row text-center fs-5 rounded-4 align-items-center mt-4 justify-content-center">
         <div class="col-2">
-            Panier
+            <a href="/panier" class="text-reset text-decoration-none">Panier</a>
         </div>
         <div class="col-1">
             >>>
@@ -84,7 +84,7 @@
                         <p class="fs-5 fw-bold mt-3"><i class="bi bi-person-vcard-fill me-2"></i>Passager 2</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mb-5">
                     <div class="col-4">
                         <label class="form-label me-3" for="nom2">Nom</label>
                         <input class="form-control" id="nom2" name="{{$vol->id}}_nom2" type="text">

@@ -124,14 +124,14 @@
                     </div>
                 </div>
                 <div class="row justify-content-evenly mb-5">
-                    <div class="col-lg-5 card">
+                    <div class="col-lg-5 card mb-4 mb-lg-0 col-9">
                         <div class="card-title fs-3 mt-3 mb-0"><i class="bi bi-airplane-fill me-2"></i>Aéroports</div>
                         <div class="card-body">
                             <p><strong><i class="bi bi-geo-alt me-1"></i>Départ : </strong>{{ $vol->aeroportDepart->nom }}</p>
                             <p><strong><i class="bi bi-geo-alt me-1"></i>Arrivée :</strong> {{ $vol->aeroportArrivee->nom }}</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 card my-3 my-md-0">
+                    <div class="col-lg-3 card mb-4 mb-lg-0 col-9">
                         <div class="card-title mt-3 mb-md-0"><i class="bi bi-calendar3 me-2"></i> Dates</div>
                         <div class="card-body ">
                             <p>
@@ -144,7 +144,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-lg-3 card">
+                    <div class="col-lg-3 card mb-4 mb-lg-0 col-9">
                         <div class="card-title mt-3 mb-0"><i class="bi bi-currency-exchange me-2"></i> Prix </div>
                         <div class="card-body">
                             <p><strong>Prix du billet :</strong> {{$vol->prix}}€*</p>

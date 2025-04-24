@@ -7,11 +7,11 @@
 @auth
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-9 fs-1 ms-5 mt-3 fw-bold">
-            Bienvenue {{ " " . $user->genre . " " . $user->name . ", " . $user->prenom}} 
+    <div class="row justify-content-evenly">
+        <div class="col-sm-7 fs-1 ms-md-5 mt-3 fw-bold">
+            Bienvenue {{ " " . $user->genre . ". " . $user->name }} 
         </div>
-        <div class="col-md-2 mt-4 ms-md-5">
+        <div class="col-sm-3 mt-4 ms-md-5">
         <form action="{{ route('logout') }}" method="POST">
             @csrf
             @method("delete")
@@ -20,7 +20,6 @@
             </button>
         </form>
         </div>
-
     </div>
 </div>
 
