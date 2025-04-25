@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
+
 class ReservationController extends Controller
 {
     public function index(){
@@ -23,11 +24,64 @@ class ReservationController extends Controller
         return view('account.panier',['panier'=>$panier, 'total'=>$total]);
     }
 
-    // Fonction pour afficher dans Voyageurs
-    public function getVoyageur(){
+    // Fonction pour afficher dans Informations
+    public function getInfos(){
         $panier = Auth::user()->panier;
-        return view('account.reservation',['panier'=>$panier]); 
+        $total = 0;
+
+        // Prix total du panier
+        foreach($panier->vols as $vol){
+            $total += $vol->prix;
+        }
+        return view('account.infos',['panier'=>$panier, 'total'=>$total]);
     }
+
+    public function getPassagers(){
+        return redirect()->route('panier.infos');
+    }
+
+    // Fonction pour sendInfos
+    public function sendInfos(Request $request){
+        $panier = Auth::user()->panier;
+        $vols_ids = $request->input('vols_ids'); // Je récupére les vols
+        $details_vols = []; // Tableau associatif
+        $prix_hors_baggages = 0;
+        $prix_baggages = 0;
+        $total = 0;
+
+        foreach($vols_ids as $vol_id){
+            $vol = Vol::find($vol_id);
+            $prix_billet = $vol->prix;
+
+            $nb_billets = $request->input("{$vol_id}_nb_billets");
+            $nb_baggages = $request->input("{$vol_id}_nb_baggages");
+            $prix = $prix_billet * $nb_billets + 35 * $nb_baggages;
+
+            $prix_hors_baggages += $prix_billet * $nb_billets;
+
+            $prix_baggages += $nb_baggages * 35;
+
+            $total += $prix;
+
+            $details_vols[$vol_id] = [
+                'vol'=>$vol,
+                'nb_billets'=>$nb_billets,
+                'nb_baggages'=>$nb_baggages,
+                'prix'=>$prix
+            ];
+        }
+
+        // Stockage en session
+        session([
+            'details_vols' => $details_vols,
+            'prix_baggages' => $prix_baggages,
+            'prix_hors_baggages' => $prix_hors_baggages,
+            'total' => $total
+        ]);
+
+        return view('account.passagers', ['details_vols'=>$details_vols,'total'=>$total,'panier'=>$panier, 'prix_baggages'=>$prix_baggages,'prix_hors_baggages'=>$prix_hors_baggages]);
+    }
+
 
     // Fonction pour générer un id random
     public function generateRandom(){
@@ -38,71 +92,80 @@ class ReservationController extends Controller
 
     // Fonction pour reserver
     public function sendForm(Request $request){
-        $vols_ids = $request->input('vols_ids'); // Je récupére les vols
+        $details_vols = session('details_vols'); // Je récupère en session
         $reservations = [];
 
-        foreach ($vols_ids as $vol_id) {
-            // Pour 1 passager
+        foreach ($details_vols as $vol_id => $details) {
+            for($i = 1; $i <= $details['nb_billets']; $i++)
             $request->validate([
-                "{$vol_id}_nom1" => 'required|string|min:2',
-                "{$vol_id}_prenom1" => 'required|string|min:2',
-                "{$vol_id}_nom2" => 'nullable|string|min:2',
-                "{$vol_id}_prenom2" => 'nullable|string|min:2',
-                "{$vol_id}_nom3" => 'nullable|string|min:2',
-                "{$vol_id}_prenom3" => 'nullable|string|min:2',
-                "{$vol_id}_nom4" => 'nullable|string|min:2',
-                "{$vol_id}_prenom4" => 'nullable|string|min:2',
-                "{$vol_id}_nom5" => 'nullable|string|min:2',
-                "{$vol_id}_prenom5" => 'nullable|string|min:2',
+                "{$vol_id}_nom{$i}" => 'required|string|min:2',
+                "{$vol_id}_prenom{$i}" => 'required|string|min:2',
             ]);
 
-
-            // Compte les passagers
-            $nb_passagers = 1;
-            for ($i=2; $i <= 5; $i++) { 
-                if($request->filled("{$vol_id}_nom{$i}")){
-                    $nb_passagers++;
-                }
-            }
-
             // Vérifie si on a assez de places
-            $vol = Vol::find($vol_id);
-            if ($vol->nb_places < $nb_passagers) {
+            $vol = $details['vol'];
+            if ($vol->nb_places < $details['nb_billets']) {
                 return redirect()->route('reservation')->withErrors(['insufisant'=>'Veuillez vérifier le nombre de places disponibles !']);
             }
 
-            // Création de la reservation
-            $reservation = new Reservation();
-            $reservation->email = Auth::user()->email;
-            $reservation->vol_id = $vol_id;
-            $reservation->nb_passagers = $nb_passagers;
-            $reservation->id_random = $this->generateRandom();
-            $reservation->save();
-
-            // Création et ajout des passagers
-            for ($i=1; $i <= $nb_passagers; $i++) { 
-                $passager = new Passager();
-                $passager->nom = $request->input("{$vol_id}_nom{$i}");
-                $passager->prenom = $request->input("{$vol_id}_prenom{$i}");
-                $passager->genre = $request->input("{$vol_id}_p{$i}_genre");
-                $passager->email = Auth::user()->email;
-                $passager->save();
-
-                $reservation->passagers()->attach($passager);
-                $vol->nb_places--;
-                $vol->save();
+            // Les passagers du vols
+            $passagers = [];
+            for($i = 1; $i <= $details['nb_billets']; $i++){
+                $passagers[] = [
+                    'nom'=>$request->input("{$vol_id}_nom{$i}"),
+                    'prenom'=>$request->input("{$vol_id}_prenom{$i}"),
+                    'genre'=>$request->input("{$vol_id}_p{$i}_genre")
+                ];
             }
 
-            $reservations[] = $reservation; // Ajout de la réservation
+            $reservations[] = [
+                'vol_id'=>$vol_id,
+                'nb_passagers'=>$details['nb_billets'],
+                'id_random'=>$this->generateRandom(),
+                'passagers'=>$passagers
+            ];
+
+
+            // // Création de la reservation
+            // $reservation = new Reservation();
+            // $reservation->email = Auth::user()->email;
+            // $reservation->vol_id = $vol_id;
+            // $reservation->nb_passagers = $details['nb_billets'];
+            // $reservation->id_random = $this->generateRandom();
+            // $reservation->save();
+
+            // // Création et ajout des passagers
+            // for ($i=1; $i <= $details['nb_billets']; $i++) { 
+            //     $passager = new Passager();
+            //     $passager->nom = $request->input("{$vol_id}_nom{$i}");
+            //     $passager->prenom = $request->input("{$vol_id}_prenom{$i}");
+            //     $passager->genre = $request->input("{$vol_id}_p{$i}_genre");
+            //     $passager->email = Auth::user()->email;
+            //     $passager->save();
+
+            //     $reservation->passagers()->attach($passager);
+            //     $vol->nb_places--;
+            //     $vol->save();
+            // }
+
+             
         }
+        
+        session(['reservations' => $reservations]); // Stocke dans la session
 
-        //dd($reservations);
+        return redirect()->route('panier.paiement');
+    }
 
+    public function getPaiement(){
         $panier = Auth::user()->panier;
-        $panier->vols()->detach();
 
+        // On récupère dans la session
+        $details_vols = session('details_vols');
+        $total = session('total');
+        $prix_baggages = session('prix_baggages');
+        $prix_hors_baggages = session('prix_hors_baggages');
 
-        return redirect()->route('confirmation')->with('reservations', $reservations);
+        return view('account.paiement',['details_vols'=>$details_vols,'total'=>$total,'panier'=>$panier, 'prix_baggages'=>$prix_baggages,'prix_hors_baggages'=>$prix_hors_baggages]);
     }
 
     public function getConfirmation(){

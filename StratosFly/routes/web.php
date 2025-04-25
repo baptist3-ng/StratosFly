@@ -40,9 +40,12 @@ Route::post('/delete', [ReservationController::class, 'supprimerPanier'])->middl
 
 // Partie Reservation
 Route::get('/panier', [ReservationController::class, 'index'])->middleware('auth')->name('getPanier');
-Route::get('/reservation', [ReservationController::class, 'getVoyageur'])->middleware('auth')->name('reservation');
-Route::post('/reservation', [ReservationController::class, 'sendForm'])->middleware('auth')->name('sendForm');
-Route::get('/confirmation', [ReservationController::class, 'getConfirmation'])->middleware('auth')->name('confirmation');
+Route::get('/panier/infos', [ReservationController::class, 'getInfos'])->middleware('auth')->name('panier.infos');
+Route::get('/panier/passagers', [ReservationController::class, 'getPassagers']);
+Route::post('/panier/passagers', [ReservationController::class, 'sendInfos'])->middleware('auth')->name('sendInfos');
+Route::get('/panier/paiement', [ReservationController::class, 'getPaiement'])->name('panier.paiement');
+Route::post('/panier/paiement', [ReservationController::class, 'sendForm'])->middleware('auth')->name('sendForm');
+
 
 
 // Partie Administration

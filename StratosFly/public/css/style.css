@@ -3,7 +3,7 @@
     color: white;
 };
 
-/* Partie avec les cards*/
+/* Partie avec les cards, modif pour rendre + beau*/
 
 .card {
     border: none;
@@ -47,4 +47,9 @@
     height: 4px;
     background-color: #ccc;
     margin: 10px 0;
+}
+
+.btn-orange {
+    background-color: #fd7e14; /* Orange */
+    border-color: #fd7e14; /* Assure que la bordure est aussi orange */
 }

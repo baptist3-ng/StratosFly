@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'StratosFly - Reserver')
+@section('title', 'StratosFly - Panier')
 
 @section('content')
 
@@ -136,28 +136,38 @@
         <div class="col-lg-4 mb-5">
             <div class="row justify-content-evenly">
                 <div class="col-11 col-lg-9">
-                    <div class="row mt-3">
+                <div class="row mt-5 mb-2">
                         <div class="col-6">
-                            <small>Sous-total</small>
+                            Sous-total
                         </div>
                         <div class="col-6 text-end">
-                            <small>{{ $total }},00€</small>
+                            {{ $total }},00€
                         </div>
                     </div>
-                    <div class="row">
+                    @foreach($panier->vols as $vol)
+                    <div class="row justify-content-end">
+                        <div class="col-9 col-lg-8">
+                            <small>{{ $vol->aeroportDepart->ville }} <i class="bi bi-arrow-left-right mx-2"></i> {{ $vol->aeroportArrivee->ville }}</small>
+                        </div>
+                        <div class="col-3 text-end">
+                            <small>{{ $vol->prix }},00€</small>
+                        </div>
+                    </div>
+                    @endforeach
+                    <div class="row mt-2">
                         <div class="col-6">
-                            <small>Baggages</small>
+                            Baggages
                         </div>
                         <div class="col-6 text-end">
-                            <small>0,00€</small>
+                            0,00€
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-6">
-                            <h6>Total</h6>
+                            Total
                         </div>
                         <div class="col-6 text-end">
-                            <h6>{{ $total }},00€</h6>
+                            {{ $total }},00€
                         </div>
                     </div>
                     <div class="row mt-3 border-bottom pb-4">
@@ -165,7 +175,7 @@
                             @if ($panier->vols->isEmpty())
                                 <button type="submit" disabled class="btn w-100 rounded-5 py-2"><small>Continuer la réservation</small></button>
                             @else
-                                <a type="submit" href="/reservation" class="btn w-100 rounded-5 custom-color py-2"><small>Continuer la réservation</small></a>
+                                <a type="submit" href="/panier/infos" class="btn w-100 rounded-5 custom-color py-2"><small>Continuer la réservation</small></a>
                             @endif
                         </div>
                         <div class="col-12 mt-2">
