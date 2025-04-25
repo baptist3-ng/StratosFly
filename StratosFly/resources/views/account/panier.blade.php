@@ -34,6 +34,7 @@
                             <small><a style="text-underline-offset: 0.3em;" class="text-dark" href="/billets">Continuer mes achats</a></small>
                         </div>
                     </div>
+                    @if (!$panier->vols->isEmpty())
                     {{-- Foreach --}}@foreach($panier->vols as $vol)
                     <div class="row mb-5">
                         <div class="col">
@@ -106,6 +107,28 @@
                         </div>
                     </div>
                     {{-- FIN Foreach --}}@endforeach
+                    @else
+                    <div class="row">
+                        <div class="col text-center">
+                            <div class="card border-0">
+                                <img src="images/panier_vide.avif" class="img-fluid d-block mx-auto mt-5" alt="" style="max-width: 350px;">
+                                <div class="card-body fs-3 mt-5">
+                                    <div class="row">
+                                        <div class="col fst-italic">
+                                            Votre panier est vide... et le monde vous attends !
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center my-3">
+                                        <div class="col-12 col-md-6 col-lg-12 col-xl-8 col-xxl-6">
+                                            <a href="/billets" class="btn border border-2 rounded-5 w-100 fs-5 mt-5">Découvrez nos offres <i class="bi bi-arrow-right-circle ms-5"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    
                 </div>
                 {{-- FIN Partie Panier gauche --}}
             </div>
@@ -139,8 +162,16 @@
                     </div>
                     <div class="row mt-3 border-bottom pb-4">
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary w-100 rounded-4 custom-color py-2"><small>Continuer la réservation</small></button>
+                            @if ($panier->vols->isEmpty())
+                                <button type="submit" disabled class="btn w-100 rounded-5 py-2"><small>Continuer la réservation</small></button>
+                            @else
+                                <a type="submit" href="/reservation" class="btn w-100 rounded-5 custom-color py-2"><small>Continuer la réservation</small></a>
+                            @endif
                         </div>
+                        <div class="col-12 mt-2">
+                            <button type="submit" class="btn btn-primary w-100 rounded-5 fs-5 fw-bold"><i class="bi bi-paypal me-2"></i>PayPal</button>
+                        </div>
+                        
                     </div>
                     <div class="row mt-4 justify-content-between align-items-center">
                         <div class="col-1">
