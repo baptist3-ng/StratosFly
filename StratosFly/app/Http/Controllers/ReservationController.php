@@ -37,15 +37,19 @@ class ReservationController extends Controller
     }
 
     public function getPassagers(){
-        // On récupère dans la session
-        $details_vols = session('details_vols');
-        $total = session('total');
-        $prix_baggages = session('prix_baggages');
-        $prix_hors_baggages = session('prix_hors_baggages');
-        $panier = Auth::user()->panier;
-        
-        return view('account.passagers', ['details_vols'=>$details_vols,'total'=>$total,'panier'=>$panier, 'prix_baggages'=>$prix_baggages,'prix_hors_baggages'=>$prix_hors_baggages]);
+        if(session()->has('details_vols')){
+            // On récupère dans la session
+            $details_vols = session('details_vols');
+            $total = session('total');
+            $prix_baggages = session('prix_baggages');
+            $prix_hors_baggages = session('prix_hors_baggages');
+            $panier = Auth::user()->panier;
+            
+            return view('account.passagers', ['details_vols'=>$details_vols,'total'=>$total,'panier'=>$panier, 'prix_baggages'=>$prix_baggages,'prix_hors_baggages'=>$prix_hors_baggages]);
 
+        }else{
+            return redirect()->route('getPanier');
+        }
     }
 
     // Fonction pour sendInfos
@@ -141,15 +145,19 @@ class ReservationController extends Controller
     }
 
     public function getPaiement(){
-        $panier = Auth::user()->panier;
+        if(session()->has('details_vols')){
+            $panier = Auth::user()->panier;
 
-        // On récupère dans la session
-        $details_vols = session('details_vols');
-        $total = session('total');
-        $prix_baggages = session('prix_baggages');
-        $prix_hors_baggages = session('prix_hors_baggages');
+            // On récupère dans la session
+            $details_vols = session('details_vols');
+            $total = session('total');
+            $prix_baggages = session('prix_baggages');
+            $prix_hors_baggages = session('prix_hors_baggages');
 
-        return view('account.paiement',['details_vols'=>$details_vols,'total'=>$total,'panier'=>$panier, 'prix_baggages'=>$prix_baggages,'prix_hors_baggages'=>$prix_hors_baggages]);
+            return view('account.paiement',['details_vols'=>$details_vols,'total'=>$total,'panier'=>$panier, 'prix_baggages'=>$prix_baggages,'prix_hors_baggages'=>$prix_hors_baggages]);
+        }else{
+            return redirect()->route('getPanier');
+        }
     }
 
     public function sendPayment(Request $request){
