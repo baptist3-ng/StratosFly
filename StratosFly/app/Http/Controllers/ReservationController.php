@@ -203,7 +203,7 @@ class ReservationController extends Controller
         $prix_hors_baggages = session('prix_hors_baggages');
 
         // Vide la session car j'en ai plus besoin
-        session()->flush();
+        session()->forget(['reservations', 'details_vols', 'total', 'prix_baggages', 'prix_hors_baggages']);
 
         //return redirect()->route('panier.confirmation');
         return view('account.confirmation', ['reservations'=>$reservations,'details_vols'=>$details_vols,'total'=>$total,'prix_baggages'=>$prix_baggages,'prix_hors_baggages'=>$prix_hors_baggages]);
