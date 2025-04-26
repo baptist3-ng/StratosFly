@@ -1,5 +1,5 @@
 @extends('templateAdmin')
-@section('title', 'Actions Admin')
+@section('title', 'StratosFly - Actions Admin')
 
 @section('content')
 

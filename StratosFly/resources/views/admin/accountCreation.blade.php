@@ -1,5 +1,5 @@
 @extends('template')
-@section('title', 'Creation de compte')
+@section('title', 'StratosFly - Creation de compte')
 
 @section('content')
     <div style="

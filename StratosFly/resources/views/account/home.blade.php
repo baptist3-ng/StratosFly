@@ -9,7 +9,11 @@
 <div class="container-fluid">
     <div class="row justify-content-evenly">
         <div class="col-sm-7 fs-1 ms-md-5 mt-3 fw-bold">
-            Bienvenue {{ " " . $user->genre . ". " . $user->name }} 
+            @if ($user->genre == "NP")
+                Bienvenue, {{$user->name }}
+            @else
+            Bienvenue, {{ " " . $user->genre . ". " . $user->name }} 
+            @endif
         </div>
         <div class="col-sm-3 mt-4 ms-md-5">
         <form action="{{ route('logout') }}" method="POST">

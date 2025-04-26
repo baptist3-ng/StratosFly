@@ -1,5 +1,7 @@
 @extends('template')
 
+@section('title', 'StratosFly - Modifier mes informations')
+
 @section('content')
 <div class="container my-5">
     <div class="card shadow-sm p-4">

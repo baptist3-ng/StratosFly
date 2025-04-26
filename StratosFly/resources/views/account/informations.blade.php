@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'Mes Informations')
+@section('title', 'StratosFly - Mes Informations')
 
 @section('content')
 @if (session('success'))
