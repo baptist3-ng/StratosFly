@@ -15,7 +15,7 @@
                             <i class="bi bi-info-circle text-light fs-3"></i>
                         </div>
                         <div class="col-10 col-sm-11">
-                            <small>N'oubliez pas de personaliser vos cadeaux ! Découvrez ci-dessous nos options</small>
+                            <small>N'oubliez pas de personaliser vos billets ! Découvrez ci-dessous nos options</small>
                         </div>
                     </div>
                     <div class="row d-block d-lg-none">

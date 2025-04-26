@@ -196,18 +196,21 @@ class ReservationController extends Controller
         $panier = Auth::user()->panier;
         $panier->vols()->detach();
 
-        return redirect()->route('panier.confirmation');
-    }
-
-    public function getConfirmation(){
-        $reservations = session('reservations');
         // On récupère dans la session
         $details_vols = session('details_vols');
         $total = session('total');
         $prix_baggages = session('prix_baggages');
         $prix_hors_baggages = session('prix_hors_baggages');
 
+        // Vide la session car j'en ai plus besoin
+        session()->flush();
+
+        //return redirect()->route('panier.confirmation');
         return view('account.confirmation', ['reservations'=>$reservations,'details_vols'=>$details_vols,'total'=>$total,'prix_baggages'=>$prix_baggages,'prix_hors_baggages'=>$prix_hors_baggages]);
+    }
+
+    public function getConfirmation(){
+        return redirect()->route('getPanier');
     }
 
     public function ajoutPanier(Request $request){
