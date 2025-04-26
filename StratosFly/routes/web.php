@@ -45,7 +45,8 @@ Route::get('/panier/passagers', [ReservationController::class, 'getPassagers']);
 Route::post('/panier/passagers', [ReservationController::class, 'sendInfos'])->middleware('auth')->name('sendInfos');
 Route::get('/panier/paiement', [ReservationController::class, 'getPaiement'])->name('panier.paiement');
 Route::post('/panier/paiement', [ReservationController::class, 'sendForm'])->middleware('auth')->name('sendForm');
-
+Route::get('/panier/confirmation', [ReservationController::class, 'getConfirmation'])->middleware('auth')->name('panier.confirmation');
+Route::post('/panier/confirmation', [ReservationController::class, 'sendPayment'])->middleware('auth')->name('sendPayment');
 
 
 // Partie Administration

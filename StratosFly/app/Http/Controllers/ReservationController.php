@@ -37,7 +37,15 @@ class ReservationController extends Controller
     }
 
     public function getPassagers(){
-        return redirect()->route('panier.infos');
+        // On récupère dans la session
+        $details_vols = session('details_vols');
+        $total = session('total');
+        $prix_baggages = session('prix_baggages');
+        $prix_hors_baggages = session('prix_hors_baggages');
+        $panier = Auth::user()->panier;
+        
+        return view('account.passagers', ['details_vols'=>$details_vols,'total'=>$total,'panier'=>$panier, 'prix_baggages'=>$prix_baggages,'prix_hors_baggages'=>$prix_hors_baggages]);
+
     }
 
     // Fonction pour sendInfos
@@ -124,30 +132,6 @@ class ReservationController extends Controller
                 'id_random'=>$this->generateRandom(),
                 'passagers'=>$passagers
             ];
-
-
-            // // Création de la reservation
-            // $reservation = new Reservation();
-            // $reservation->email = Auth::user()->email;
-            // $reservation->vol_id = $vol_id;
-            // $reservation->nb_passagers = $details['nb_billets'];
-            // $reservation->id_random = $this->generateRandom();
-            // $reservation->save();
-
-            // // Création et ajout des passagers
-            // for ($i=1; $i <= $details['nb_billets']; $i++) { 
-            //     $passager = new Passager();
-            //     $passager->nom = $request->input("{$vol_id}_nom{$i}");
-            //     $passager->prenom = $request->input("{$vol_id}_prenom{$i}");
-            //     $passager->genre = $request->input("{$vol_id}_p{$i}_genre");
-            //     $passager->email = Auth::user()->email;
-            //     $passager->save();
-
-            //     $reservation->passagers()->attach($passager);
-            //     $vol->nb_places--;
-            //     $vol->save();
-            // }
-
              
         }
         
@@ -168,10 +152,62 @@ class ReservationController extends Controller
         return view('account.paiement',['details_vols'=>$details_vols,'total'=>$total,'panier'=>$panier, 'prix_baggages'=>$prix_baggages,'prix_hors_baggages'=>$prix_hors_baggages]);
     }
 
-    public function getConfirmation(){
+    public function sendPayment(Request $request){
+        $request->validate([
+            'nom'=>'required|string|min:2',
+            'prenom'=>'required|string|min:2',
+            'email'=>'required|email',
+            'chiffres'=>'required|digits:16',
+            'date'=>'required',
+            'cvv'=>'required|digits:3'
+        ]);
+
+        // Si le paiement réussi, on enregistre sur la table
         $reservations = session('reservations');
 
-        return view('account.confirmation', ['reservations'=>$reservations]);
+        foreach($reservations as $r){
+            $vol = Vol::find($r['vol_id']);
+
+            $reservation = new Reservation();
+            $reservation->email = Auth::user()->email;
+            $reservation->vol_id = $r['vol_id'];
+            $reservation->nb_passagers = $r['nb_passagers'];
+            $reservation->id_random = $r['id_random'];
+            $reservation->save();
+
+            // // Création et ajout des passagers
+            foreach($r['passagers'] as $p) { 
+                $passager = new Passager();
+                $passager->nom = $p['nom'];
+                $passager->prenom = $p['prenom'];
+                $passager->genre = $p['genre'];
+                $passager->email = Auth::user()->email;
+                $passager->save();
+
+                $reservation->passagers()->attach($passager);
+                
+            }
+
+            $vol->nb_places -= $r['nb_passagers'];
+            $vol->save();
+        }
+
+        // Clear le panier
+        $panier = Auth::user()->panier;
+        $panier->vols()->detach();
+
+        return redirect()->route('panier.confirmation');
+    }
+
+    public function getConfirmation(){
+        $reservations = session('reservations');
+        // On récupère dans la session
+        $details_vols = session('details_vols');
+        $total = session('total');
+        $prix_baggages = session('prix_baggages');
+        $prix_hors_baggages = session('prix_hors_baggages');
+
+        return view('account.confirmation', ['reservations'=>$reservations,'details_vols'=>$details_vols,'total'=>$total,'prix_baggages'=>$prix_baggages,'prix_hors_baggages'=>$prix_hors_baggages]);
     }
 
     public function ajoutPanier(Request $request){

@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="row bg-light py-4">
         <div class="col-1 offset-1">
-            <a href="/panier/infos" class="text-dark"><i class="bi bi-arrow-left fs-5"></i></a>
+            <a href="/panier/passagers" class="text-dark"><i class="bi bi-arrow-left fs-5"></i></a>
         </div>
     </div>
     <div class="row">
@@ -39,20 +39,22 @@
                                         <i class="bi bi-person-fill me-2"></i>Titulaire
                                         </div>
                                     </div>
+                                    <form action="{{ route('sendPayment') }}" method="POST">
+                                        @csrf
                                     <div class="row mt-3">
                                        <div class="col-5 offset-1">
                                             <label for="nom" class="form-label"><small>Nom</small></label>
-                                            <input id="nom" type="text" class="form-control">
+                                            <input name="nom" required id="nom" type="text" class="form-control">
                                        </div>
                                        <div class="col-5">
                                             <label for="prenom" class="form-label"><small>Prénom</small></label>
-                                            <input id="prenom" type="text" class="form-control">
+                                            <input name="prenom" required id="prenom" type="text" class="form-control">
                                        </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-10 offset-1">
                                             <label for="mail" class="form-label"><small>Email</small></label>
-                                            <input id="mail" type="text" class="form-control">
+                                            <input name="email" required id="mail" type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mt-3">
@@ -63,17 +65,17 @@
                                     <div class="row mt-3">
                                         <div class="col-10 offset-1">
                                             <label for="chiffres" class="form-label"><small>Numéro carte bancaire</small></label>
-                                            <input id="chiffres" type="text" class="form-control" placeholder="4974 6857 ...">
+                                            <input name="chiffres" required id="chiffres" type="text" class="form-control" placeholder="4974 6857 ...">
                                         </div>
                                     </div>
                                     <div class="row mt-3">
                                        <div class="col-5 offset-1">
                                             <label for="date" class="form-label"><small>Date d'expiration</small></label>
-                                            <input id="date" type="text" class="form-control" placeholder="05/27">
+                                            <input name="date" required id="date" type="text" class="form-control" placeholder="05/27">
                                        </div>
                                        <div class="col-5">
                                             <label for="cvv" class="form-label"><small>CVV</small></label>
-                                            <input id="cvv" type="text" class="form-control" placeholder="121">
+                                            <input name="cvv" required id="cvv" type="text" class="form-control" placeholder="121">
                                        </div>
                                     </div>
                                     <div class="row mt-4 justify-content-evenly">
@@ -193,7 +195,7 @@
                             @if ($panier->vols->isEmpty())
                                 <button type="submit" disabled class="btn w-100 rounded-5 py-2"><small>Continuer la réservation</small></button>
                             @else
-                                <button type="submit" class="btn w-100 rounded-5 custom-color py-2"><small>Continuer la réservation</small></button>
+                                <button type="submit" class="btn w-100 rounded-5 custom-color py-2"><small>Procéder au paiement</small></button>
                             @endif
                         </div>
                         <div class="col-12 mt-2">
