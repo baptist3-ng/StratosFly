@@ -1,32 +1,17 @@
 @extends('template')
 
-@section('title', 'StratosFly - Mon Compte')
+@section('title', 'StratosFly - Mon compte')
 
 @section('content')
 
 @auth
 
-<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
-
-<style>
-.text-outline {
-    color: white; /* Couleur intérieure */
-    -webkit-text-stroke: 2px black; /* Contour noir de 2px */
-    text-stroke: 2px black; /* Pour compatibilité étendue */
-}
-</style>
-
-<div class="container-fluid" style="background: url('/images/interieur_aeroport.jpg') center/cover no-repeat; min-height: 400px;">
-    <div class="row justify-content-evenly">
-        <div class="col-sm-7 fs-1 ms-md-5 mt-3 fw-bold text-outline " style="font-family: 'Courgette', cursive;">
-            @if ($user->genre == "NP")
-                Bienvenue, {{$user->name . "."}}
-            @else
-                Bienvenue, {{ $user->genre . ". " . $user->name . "."}} 
-            @endif
-            <p class="lead text-muted">Content de vous revoir sur StratosFly !</p>
+<div class="container-fluid">
+    <div class="row justify-content-between">
+        <div class="col-sm-5 fs-1 ms-md-5 mt-3 fw-bold text-center">
+            Bienvenue {{ " " . $user->genre . ". " . $user->name }} 
         </div>
-        <div class="col-sm-3 mt-4 text-end">
+        <div class="col-sm-3 mt-4 ms-md-5">
         <form action="{{ route('logout') }}" method="POST">
             @csrf
             @method("delete")
