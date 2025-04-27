@@ -16,7 +16,7 @@ Création d'un site web pour une compagnie aérienne.
 1. Clonez ce dépôt :
    ```bash
    git clone https://github.com/baptist3-ng/StratosFly.git
-   cd StratosFly
+   cd StratosFly/StratosFly/
    ```
 
 2. Installez les dépendances :
