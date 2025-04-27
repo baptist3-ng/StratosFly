@@ -48,6 +48,13 @@
 }
 
 .btn-orange {
+    color: white;
     background-color: #fd7e14; /* Orange */
+    border-color: #fd7e14; 
+}
+
+.btn-orange:hover {
+    color: orange;
+    background-color: white; /* Orange */
     border-color: #fd7e14; 
 }

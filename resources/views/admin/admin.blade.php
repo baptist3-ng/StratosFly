@@ -31,6 +31,11 @@
             <div class="alert alert-danger text-center">
                 {{ session('error') }}
             </div>
+            @endif
+            @if (session('CantReserve'))
+            <div class="alert alert-danger text-center">
+                {{ session('CantReserve') }}
+            </div>
             
             @endif
             {{-- Programmer un vol --}}

@@ -223,6 +223,9 @@ class ReservationController extends Controller
 
     public function ajoutPanier(Request $request){
         if(Auth::user()){
+            if (Auth::user()->role === 'Admin') {
+                return redirect()->route('admin.admin')->with('CantReserve', 'Erreur ! Pour pouvoir réserver, veuillez utiliser un utilisateur non admin.');
+            }
             $vol_id = $request->input('vol_id'); // Récupère l'id du vol
             
             $panier = Auth::user()->panier;// relation // Je récupère le panier du l'user

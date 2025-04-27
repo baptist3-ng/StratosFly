@@ -115,7 +115,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-10 offset-1 col-sm-12 offset-sm-0 mt-2">
-                                            <button type="button" class="btn btn-orange w-100 rounded-5 fs-5 fw-bold text-white"><i class="bi bi-currency-bitcoin me-2"></i>Bitcoin</button>
+                                            <button type="button" class="btn btn-orange w-100 rounded-5 fs-5 fw-bold"><i class="bi bi-currency-bitcoin me-2"></i>Bitcoin</button>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
