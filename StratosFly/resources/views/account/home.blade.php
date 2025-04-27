@@ -28,9 +28,9 @@
         <div class="col-md-5">
             <a href="/informations" class="text-reset text-decoration-none">
                 <div class="card text-center shadow-sm border-1 h-100">
-                    <div class="card-body py-5">
+                    <div class="card-body py-5 p-4">
                         <i class="bi bi-person-circle fs-1 mb-3"></i>
-                        <h3 class="card-title">Mes Informations</h3>
+                        <h3 class="card-title fw-bold fs-4">Mes Informations</h3>
                     </div>
                 </div>
             </a>
@@ -38,9 +38,9 @@
         <div class="col-md-5">
             <a href="/reservations" class="text-reset text-decoration-none">
                 <div class="card text-center shadow-sm border-1 h-100">
-                    <div class="card-body py-5">
+                    <div class="card-body py-5 p-4">
                         <i class="bi bi-calendar-check fs-1 mb-3"></i>
-                        <h3 class="card-title">Mes Réservations</h3>
+                        <h3 class="card-title fw-bold fs-4">Mes Réservations</h3>
                     </div>
                 </div>
             </a>
@@ -48,18 +48,18 @@
         <div class="col-md-5">
             <a href="/panier" class="text-reset text-decoration-none">
                 <div class="card text-center shadow-sm border-1 h-100">
-                    <div class="card-body py-5">
+                    <div class="card-body py-5 p-4">
                         <i class="bi bi-cart fs-1 mb-3"></i>
-                        <h3 class="card-title">Mon Panier</h3>
+                        <h3 class="card-title fw-bold fs-4">Mon Panier</h3>
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-md-5">
             <div class="card text-center shadow-sm border-1">
-                <div class="card-body py-5">
+                <div class="card-body py-5 p-4">
                     <i class="bi bi-life-preserver fs-1 mb-3"></i>
-                    <h3 class="card-title">Assistance</h3>
+                    <h3 class="card-title fw-bold fs-4">Assistance</h3>
                 </div>
             </div>
         </div>

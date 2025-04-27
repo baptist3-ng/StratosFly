@@ -20,7 +20,7 @@
                     </div>
                     <div class="row d-block d-lg-none">
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary w-100 rounded-4 custom-color py-2"><small>Continuer la réservation</small></button>
+                            <button type="submit" class="btn btn-primary w-100 rounded-4 btn-custom-color py-2"><small>Continuer la réservation</small></button>
                         </div>
                         <div class="col-12 text-center mt-3">
                             <small><a style="text-underline-offset: 0.3em;" class="text-dark" href="#">Continuer mes achats</a></small>
@@ -39,10 +39,10 @@
                     <div class="row mb-5">
                         <div class="col">
                             <div class="card border-0">
-                                <div class="card-title py-2 mx-3 border-bottom">
+                                <div class="card-title py-2 mx-3 border-bottom fs-4 fw-bold">
                                 {{ $vol->aeroportDepart->ville }} <i class="bi bi-arrow-left-right mx-2"></i> {{ $vol->aeroportArrivee->ville }}
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body p-4">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <p class="fw-bold fs-5">Itinéraire</p>
@@ -88,7 +88,7 @@
                                                     </div>
                                                     <div class="row g-1 mt-sm-5">
                                                         <div class="col-6 mt-sm-4 mt-3">
-                                                            <button type="submit" class="btn border w-100 rounded-0 custom-color"><i class="bi bi-heart me-2"></i>Favoris</button>
+                                                            <button type="submit" class="btn border w-100 rounded-0 btn-custom-color"><i class="bi bi-heart me-2"></i>Favoris</button>
                                                         </div>
                                                         <div class="col-6 mt-sm-4 mt-3">
                                                             <form action="{{ route('delete') }}" method="POST">
@@ -108,11 +108,11 @@
                     </div>
                     {{-- FIN Foreach --}}@endforeach
                     @else
-                    <div class="row">
+                    <div class="row mb-5">
                         <div class="col text-center">
                             <div class="card border-0">
                                 <img src="images/panier_vide.avif" class="img-fluid d-block mx-auto mt-5" alt="" style="max-width: 350px;">
-                                <div class="card-body fs-3 mt-5">
+                                <div class="card-body fs-3 mt-5 p-4">
                                     <div class="row">
                                         <div class="col fst-italic">
                                             Votre panier est vide... et le monde vous attends !
@@ -175,7 +175,7 @@
                             @if ($panier->vols->isEmpty())
                                 <button type="submit" disabled class="btn w-100 rounded-5 py-2"><small>Continuer la réservation</small></button>
                             @else
-                                <a type="submit" href="/panier/infos" class="btn w-100 rounded-5 custom-color py-2"><small>Continuer la réservation</small></a>
+                                <a type="submit" href="/panier/infos" class="btn w-100 rounded-5 btn-custom-color py-2"><small>Continuer la réservation</small></a>
                             @endif
                         </div>
                         <div class="col-12 mt-2">

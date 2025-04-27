@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container my-5">
-    <div class="card shadow-sm p-4">
+    <div class="card shadow-sm p-4 ">
         <h2 class="mb-4"><i class="bi bi-person-fill-gear me-2"></i>Modifier mes informations</h2>
 
         <form action="{{ route('user.update') }}" method="POST">

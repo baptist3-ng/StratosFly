@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 py-lg-4 py-2 col-12">
-                    <input type="submit" value="PARTIR" class="p-3 btn custom-color col-12">
+                    <input type="submit" value="PARTIR" class="p-3 btn btn-custom-color col-12">
                 </div>
             </form>
         </div>
@@ -73,8 +73,8 @@
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <img src="/images/porto.webp" class="card-img-top" alt="Portugal">
-                    <div class="card-body">
-                        <h5 class="card-title">Porto dès 59€* par personne !</h5>
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold fs-4">Porto dès 59€* par personne !</h5>
                         <p class="card-text">(*)Tarif par personne, hors taxes et frais. Offre soumise à conditions, voir détails sur notre site. Tarif applicable sur certaines dates et destinations uniquement.</p>
                     </div>
                 </div>
@@ -82,8 +82,8 @@
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <img src="/images/budapest-la-nuit.webp" class="card-img-top" alt="Budapest">
-                    <div class="card-body">
-                        <h5 class="card-title">Budapest dès 75€* par personne !</h5>
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold fs-4">Budapest dès 75€* par personne !</h5>
                         <p class="card-text">(*)Tarif par personne, hors taxes et frais. Offre soumise à conditions, voir détails sur notre site. Tarif applicable sur certaines dates et destinations uniquement.</p>
                     </div>
                 </div>
@@ -91,8 +91,8 @@
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <img src="/images/chili.jpg" class="card-img-top" alt="Chili">
-                    <div class="card-body">
-                        <h5 class="card-title">Le Chili dès 395€* par personne !</h5>
+                    <div class="card-body p-4">
+                        <h5 class="card-title fw-bold fs-4">Le Chili dès 395€* par personne !</h5>
                         <p class="card-text">(*)Tarif par personne, hors taxes et frais. Offre soumise à conditions, voir détails sur notre site. Tarif applicable sur certaines dates et destinations uniquement.</p>
                     </div>
                 </div>

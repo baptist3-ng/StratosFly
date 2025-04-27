@@ -98,7 +98,7 @@
 
                 <!-- Bouton rechercher -->
                 <div class="col-md-3 mt-3 pb-sm-0 pb-2"  id="billets">
-                    <button type="submit" class="btn custom-color w-100 py-2 py-sm-3 fs-3">Rechercher</button>
+                    <button type="submit" class="btn btn-custom-color w-100 py-2 py-sm-3 fs-3">Rechercher</button>
                 </div>
             </form>
         </div>
@@ -122,14 +122,14 @@
     @else
         @foreach ($vols as $vol)
             <div class="card mb-3 shadow-sm">
-                <div class="card-title">
+                <div class="card-title fw-bold fs-4">
                     <div class="row">
                         <div class="col-md-6">
                             <p class=" ms-4 mt-3 mb-0"><strong>{{ $vol->aeroportDepart->ville }}</strong><i class="bi bi-arrow-left-right mx-4"></i><strong>{{ $vol->aeroportArrivee->ville }}</strong></p>
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-4">
                     <div class="row align-items-top justify-content-evenly">
                         <div class="col-md-4 ">
                             <p class="mb-0"><strong>{{ $vol->aeroportDepart->nom }}</strong></p>
@@ -163,7 +163,7 @@
                                     <form action="{{ route("ajout.panier") }}" method="POST">
                                     @csrf
                                         <input type="hidden" name="vol_id" value="{{ $vol->id }}">
-                                        <input type="submit" class="mt-4 mt-lg-0 btn custom-color btn-md" value="RESERVER">
+                                        <input type="submit" class="mt-4 mt-lg-0 btn btn-custom-color btn-md" value="RESERVER">
                                     </form>
                                 @endif
                             </div>

@@ -72,7 +72,7 @@
                             @endforeach
                             <div class="row justify-content-end mb-4">
                                 <div class="col-12 col-sm-4">
-                                    <button type="submit" class="btn w-100 rounded-5 custom-color py-2"><small>Continuer</small></button>
+                                    <button type="submit" class="btn w-100 rounded-5 btn-custom-color py-2"><small>Continuer</small></button>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                             @if ($panier->vols->isEmpty())
                                 <button type="submit" disabled class="btn w-100 rounded-5 py-2"><small>Continuer la réservation</small></button>
                             @else
-                                <button type="submit" class="btn w-100 rounded-5 custom-color py-2"><small>Continuer la réservation</small></button>
+                                <button type="submit" class="btn w-100 rounded-5 btn-custom-color py-2"><small>Continuer la réservation</small></button>
                             @endif
                         </div>
                         <div class="col-12 mt-2">

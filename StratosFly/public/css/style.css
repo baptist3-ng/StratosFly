@@ -1,33 +1,30 @@
 .custom-color {
-    background-color: #09012F !important; /* Exemple de couleur */
+    background-color: #09012F ; 
     color: white;
-};
+}
+
+.btn-custom-color {
+    background-color: #09012F ; 
+    color: white;
+}
+
+.btn-custom-color:hover {
+    background-color: #09012fd3; 
+    color: #ffffff; 
+}
 
 /* Partie avec les cards, modif pour rendre + beau*/
 
-.card {
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-}
 .card-img-top {
     object-fit: cover;
     height: 300px;
 }
-.card-body {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 1.25rem;
-}
-.card-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
+
 .card-text {
     font-size: 0.9rem;
     color: #6c757d;
 }
 
-.rating { color: #000; }
 .card-custom {
     background-color: #f8f8f8;
     border-radius: 15px;
@@ -35,6 +32,7 @@
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .divider {
     width: 50px;
     height: 4px;
@@ -51,5 +49,5 @@
 
 .btn-orange {
     background-color: #fd7e14; /* Orange */
-    border-color: #fd7e14; /* Assure que la bordure est aussi orange */
+    border-color: #fd7e14; 
 }

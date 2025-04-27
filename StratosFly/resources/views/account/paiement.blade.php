@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="row my-2 justify-content-evenly">
                                         <div class="col-10">
-                                            <button type="submit" class="btn custom-color rounded-3 w-100">Procéder au paiement</button>
+                                            <button type="submit" class="btn btn-custom-color rounded-3 w-100">Procéder au paiement</button>
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +195,7 @@
                             @if ($panier->vols->isEmpty())
                                 <button type="submit" disabled class="btn w-100 rounded-5 py-2"><small>Continuer la réservation</small></button>
                             @else
-                                <button type="submit" class="btn w-100 rounded-5 custom-color py-2"><small>Procéder au paiement</small></button>
+                                <button type="submit" class="btn w-100 rounded-5 btn-custom-color py-2"><small>Procéder au paiement</small></button>
                             @endif
                         </div>
                         <div class="col-12 mt-2">

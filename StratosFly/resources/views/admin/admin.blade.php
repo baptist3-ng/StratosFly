@@ -41,7 +41,7 @@
                 </div>
                 @endif
                 <div class="card-header fw-bold fs-3"><i class="bi bi-plus-lg me-2"></i>Programmer un vol</div>
-                <div class="card-body">
+                <div class="card-body p-4">
                 <form action="{{ route('vols.add') }}" method="POST">
                 @csrf
 
@@ -101,7 +101,7 @@
                     </div>
                 @endif
                 <div class="card-header fw-bold fs-3"><i class="bi bi-tools me-2"></i>Modifier un vol</div>
-                <div class="card-body">
+                <div class="card-body p-4">
                     <form action="{{ route('vols.update') }} " method="POST">
                         @csrf
                         <div class="mb-3">
@@ -168,7 +168,7 @@
                 </div>
                 @endif
                 <div class="card-header fw-bold fs-3"><i class="bi bi-trash3-fill me-2"></i>Supprimer un vol</div>
-                <div class="card-body">
+                <div class="card-body p-4">
                     <form action="{{ route('vols.delete') }}" method="POST">
                         @csrf
                         <label class="form-label"><i class="bi bi-key me-2"></i>ID du vol</label>
@@ -189,7 +189,7 @@
             {{-- Visualiser les réservations --}}
             <div id="visualiser" class="card my-5 form-section">
                 <div class="card-header fw-bold fs-3"><i class="bi bi-ticket-detailed me-2"></i>Visualiser les réservations</div>
-                <div class="card-body">
+                <div class="card-body p-4">
                     <form action="{{ route('reservations.all') }}" method="GET">
                         <div class="text-center">
                             <button type="submit" class="btn btn-info text-white">Voir toutes les réservations</button>
@@ -202,7 +202,7 @@
             {{-- Informations vol --}}
             <div id="info" class="card my-5 form-section">
                 <div class="card-header fw-bold fs-3"><i class="bi bi-info-circle-fill me-2"></i>Informations sur un vol</div>
-                <div class="card-body">
+                <div class="card-body p-4">
                     <form action="{{ route('vols.info') }}" method="GET">
                     <label class="form-label"><i class="bi bi-key me-2"></i>ID du vol</label>
                         <select name="id" class="form-control">
@@ -226,15 +226,15 @@
                                 </div>
                                 <div class="row justify-content-evenly mb-5">
                                     <div class="col-md-5 card">
-                                        <div class="card-title fs-3 mt-3 mb-0"><i class="bi bi-airplane-fill me-2"></i>Aéroports</div>
-                                        <div class="card-body">
+                                        <div class="card-title fs-3 mt-3 mb-0 fw-bold fs-4"><i class="bi bi-airplane-fill me-2"></i>Aéroports</div>
+                                        <div class="card-body p-4">
                                             <p><strong><i class="bi bi-geo-alt me-1"></i>Départ : </strong>{{ $vol_return->aeroportDepart->nom }}</p>
                                             <p><strong><i class="bi bi-geo-alt me-1"></i>Arrivée :</strong> {{ $vol_return->aeroportArrivee->nom }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-3 card my-3 my-md-0">
-                                        <div class="card-title mt-md-3 mb-md-0"><i class="bi bi-calendar3 me-2"></i> Dates</div>
-                                        <div class="card-body ">
+                                        <div class="card-title mt-md-3 mb-md-0 fw-bold fs-4"><i class="bi bi-calendar3 me-2"></i> Dates</div>
+                                        <div class="card-body p-4">
                                             <p>
                                                 <strong>Départ le </strong> {{ \Carbon\Carbon::parse($vol_return->date_depart)->format('d/m/Y') }} à 
                                                 {{ \Carbon\Carbon::parse($vol_return->date_depart)->format('H\hi') }}
@@ -246,17 +246,17 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3 card">
-                                        <div class="card-title mt-3 mb-0"><i class="bi bi-currency-exchange me-2"></i> Prix </div>
-                                        <div class="card-body">
+                                        <div class="card-title mt-3 mb-0 fw-bold fs-4"><i class="bi bi-currency-exchange me-2"></i> Prix </div>
+                                        <div class="card-body p-4">
                                             <p><strong>Passagers pour ce vol:</strong> {{ $vol_return->places_totales - $vol_return->nb_places }}.</p>
                                             <p><strong>Prix du billet :</strong> {{$vol_return->prix}}€*</p>
                                             <p><strong>Places disponibles :</strong> {{ $vol_return->nb_places }}.</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 card">
-                                    <div class="card-title mt-3 mb-0"><i class="bi bi-person-lines-fill me-2 ms-4"></i>Liste des passagers</div>
-                                    <div class="card-body">
+                                <div class="col-md-11 card mb-5 ms-5">
+                                    <div class="card-title mt-3 mb-0 fw-bold fs-4"><i class="bi bi-person-lines-fill me-2 ms-4"></i>Liste des passagers</div>
+                                    <div class="card-body p-4">
                                     @if($passagers->isEmpty())
                                         <p>Aucun passager pour ce vol.</p>
                                     @else
