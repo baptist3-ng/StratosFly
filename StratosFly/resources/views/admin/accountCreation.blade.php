@@ -3,7 +3,7 @@
 
 @section('content')
     <div style="
-        background-image: url('/images/login-bg.jpg'); /* ➜ Mets ton image ici */
+        background-image: url('/images/login-bg.jpg'); 
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -21,7 +21,7 @@
             width: 100%;
             box-shadow: 0 0 18px rgba(0,0,0,0.25);
         ">
-            <h3 style="text-align: center; margin-bottom: 1.5rem;"><i class="bi bi-plus-lg me-2"></i>Création de compte</h3>
+            <h3 style="text-align: center; margin-bottom: 1.5rem;"><i class="bi bi-person-fill me-2"></i>Création de compte</h3>
             @if (session('error'))
                 <div class="alert alert-danger">
                     {{ session('error') }}
