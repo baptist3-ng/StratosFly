@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'Mes Informations')
+@section('title', 'StratosFly - Mes Informations')
 
 @section('content')
 @if (session('success'))
@@ -10,13 +10,13 @@
 @endif
 <div class="container my-5">
     <div class="card shadow-sm p-4">
-        <h2 class="mb-4"><i class="bi bi-info-circle"> Mes Informations</i></h2>
+        <h2 class="mb-4"><i class="bi bi-info-circle-fill me-2"></i>Mes Informations</h2>
 
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Nom :</strong> {{ $user->name }}</li>
-            <li class="list-group-item"><strong>Prénom :</strong> {{ $user->prenom }}</li>
-            <li class="list-group-item"><strong>Email :</strong> {{ $user->email }}</li>
-            <li class="list-group-item"><strong>Genre :</strong> {{ $user->genre }}</li>
+            <li class="list-group-item"><i class="bi bi-person-vcard-fill me-2"></i><strong>Nom :</strong> {{ $user->name }}</li>
+            <li class="list-group-item"><i class="bi bi-person-vcard me-2"></i><strong>Prénom :</strong> {{ $user->prenom }}</li>
+            <li class="list-group-item"><i class="bi bi-envelope-fill me-2"></i><strong>Email :</strong> {{ $user->email }}</li>
+            <li class="list-group-item"><i class="bi bi-gender-trans me-2"></i><strong>Genre :</strong> {{ $user->genre }}</li>
         </ul>
 
         <div class="mt-4">

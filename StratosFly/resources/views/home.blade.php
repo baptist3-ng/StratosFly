@@ -27,20 +27,30 @@
                     </select>
                 </div>
                 <div class="col-lg-3 py-lg-4 py-2 col-12">
-                    <select id="depart" name="lieu-depart" class="p-lg-3 form-select text-truncate">
-                        <option value="default" disabled selected>Départ de </option>
-                        @foreach ($aeroports as $aeroport)
-                        <option value="{{ $aeroport->id }}">{{ $aeroport->nom }}</option>
-                        @endforeach   
-                    </select>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-airplane"></i> {{-- Départ --}}
+                        </span>
+                        <select id="depart" name="lieu-depart" class="p-lg-3 form-select text-truncate">
+                            <option value="default" disabled selected>Départ de </option>
+                            @foreach ($aeroports as $aeroport)
+                            <option value="{{ $aeroport->id }}">{{ $aeroport->nom }}</option>
+                            @endforeach   
+                        </select>
+                    </div>
                 </div>
                 <div class="col-lg-3 py-lg-4 py-2 col-12">
-                    <select id="arrivee" name="lieu-arrivee" class="p-lg-3 form-select text-truncate">
-                        <option value="default" disabled selected>Arrivée à </option>
-                        @foreach ($aeroports as $aeroport)
-                        <option value="{{ $aeroport->id }}">{{ $aeroport->nom }}</option>
-                        @endforeach
-                    </select>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-airplane-fill"></i> {{-- Arrivée --}}
+                        </span>
+                        <select id="arrivee" name="lieu-arrivee" class="p-lg-3 form-select text-truncate">
+                            <option value="default" disabled selected>Arrivée à </option>
+                            @foreach ($aeroports as $aeroport)
+                            <option value="{{ $aeroport->id }}">{{ $aeroport->nom }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="col-lg-2 py-lg-4 py-2 col-12">
                     <input type="submit" value="PARTIR" class="p-3 btn custom-color col-12">

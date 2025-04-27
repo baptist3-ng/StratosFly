@@ -1,5 +1,5 @@
 @extends('templateAdmin')
-@section('title', 'Actions Admin')
+@section('title', 'StratosFly - Admin')
 
 @section('content')
 
@@ -253,7 +253,31 @@
                                             <p><strong>Places disponibles :</strong> {{ $vol_return->nb_places }}.</p>
                                         </div>
                                     </div>
-                                    
+                                </div>
+                                <div class="col-md-12 card">
+                                    <div class="card-title mt-3 mb-0"><i class="bi bi-person-lines-fill me-2 ms-4"></i>Liste des passagers</div>
+                                    <div class="card-body">
+                                    @if($passagers->isEmpty())
+                                        <p>Aucun passager pour ce vol.</p>
+                                    @else
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Prénom</th>
+                                                <th>Nom</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($passagers as $passager)
+                                                <tr>
+                                                    <td>{{ $passager->prenom }}</td>
+                                                    <td>{{ $passager->nom }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>

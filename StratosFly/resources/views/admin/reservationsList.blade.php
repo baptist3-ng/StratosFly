@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'Liste des réservations')
+@section('title', 'StratosFly - Liste des réservations')
 
 @section('content')
 <div class="container-fluid">

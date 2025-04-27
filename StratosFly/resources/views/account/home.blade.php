@@ -1,14 +1,14 @@
 @extends('template')
 
-@section('title', 'StratosFly - My Account')
+@section('title', 'StratosFly - Mon compte')
 
 @section('content')
 
 @auth
 
 <div class="container-fluid">
-    <div class="row justify-content-evenly">
-        <div class="col-sm-7 fs-1 ms-md-5 mt-3 fw-bold">
+    <div class="row justify-content-between">
+        <div class="col-sm-5 fs-1 ms-md-5 mt-3 fw-bold text-center">
             Bienvenue {{ " " . $user->genre . ". " . $user->name }} 
         </div>
         <div class="col-sm-3 mt-4 ms-md-5">
