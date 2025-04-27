@@ -153,7 +153,17 @@ class AdminController extends Controller
             return redirect()->back()->with('volNotFound', 'Vol introuvable.');
         }
 
+        // Récupérer toutes les réservations liées à ce vol
+        $reservations = $vol->reservation;
+
+        // Récupérer tous les passagers liés aux réservations
+        $passagers = collect(); // Collection vide pour stocker les passagers
+
+        foreach ($reservations as $reservation) {
+            $passagers = $passagers->merge($reservation->passagers);
+        }
+
         // Vol trouvé, afficher les informations
-        return view('admin.admin',['vol_return'=>$vol, 'aeroports'=>$aeroports, 'vols'=>$vols]);
+        return view('admin.admin',['vol_return'=>$vol, 'aeroports'=>$aeroports, 'vols'=>$vols, 'passagers'=>$passagers]);
     }
 }

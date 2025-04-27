@@ -253,7 +253,31 @@
                                             <p><strong>Places disponibles :</strong> {{ $vol_return->nb_places }}.</p>
                                         </div>
                                     </div>
-                                    
+                                </div>
+                                <div class="col-md-12 card">
+                                    <div class="card-title mt-3 mb-0"><i class="bi bi-person-lines-fill me-2"></i>Liste des passagers</div>
+                                    <div class="card-body">
+                                    @if($passagers->isEmpty())
+                                        <p>Aucun passager pour ce vol.</p>
+                                    @else
+                                    <table style="width:100%; border-collapse: collapse;">
+                                        <thead>
+                                            <tr>
+                                                <th style="border: 1px solid black; padding: 8px;">Prénom</th>
+                                                <th style="border: 1px solid black; padding: 8px;">Nom</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($passagers as $passager)
+                                                <tr>
+                                                    <td style="border: 1px solid black; padding: 8px;">{{ $passager->prenom }}</td>
+                                                    <td style="border: 1px solid black; padding: 8px;">{{ $passager->nom }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
